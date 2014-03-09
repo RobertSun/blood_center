@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.cms.entity">
+	<class name="CmsTopic" table="CMS_TOPIC">
+		<meta attribute="sync-DAO">false</meta>
+		<id name="id" type="java.lang.Long" column="TOPIC_ID"><generator class="native"/></id>
+		<property name="name" column="NAME" type="string" not-null="true" length="150"/>
+		<property name="keywords" column="KEYWORDS" type="string" not-null="false" length="255"/>
+		<property name="description" column="DESCRIPTION" type="string" not-null="false" length="255"/>
+		<property name="titleImg" column="TITLE_IMG" type="string" not-null="false" length="100"/>
+		<property name="tplChannel" column="TPL_CHANNEL" type="string" not-null="false" length="100"/>
+		<property name="priority" column="PRIORITY" type="integer" not-null="true" length="10"/>
+		<many-to-one name="website" column="WEBSITE_ID" class="com.jeecms.core.entity.Website" not-null="true"></many-to-one>
+		<set name="articles" table="CMS_ARTICLE_TOPIC">
+			<cache usage="read-write"/>
+			<key column="TOPIC_ID"/>
+			<many-to-many column="ARTICLE_ID" class="com.jeecms.article.entity.Article"/>
+		</set>
+	</class>
+</hibernate-mapping>

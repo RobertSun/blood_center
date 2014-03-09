@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.auxiliary.entity">
+	<class
+		name="VoteTopic"
+		table="VOTE_TOPIC"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="VTOPIC_ID"
+		>
+			<generator class="native"/>
+		</id>
+
+		<property
+			name="title"
+			column="TITLE"
+			type="string"
+			not-null="false"
+			length="255"
+		/>
+		<property
+			name="description"
+			column="DESCRIPTION"
+			type="string"
+			not-null="false"
+			length="255"
+		/>
+		<property
+			name="totalCount"
+			column="TOTAL_COUNT"
+			type="java.lang.Long"
+			not-null="false"
+			length="19"
+		/>
+		<property
+			name="startTime"
+			column="START_TIME"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="endTime"
+			column="END_TIME"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="repeateHour"
+			column="REPEATE_HOUR"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="multiSelect"
+			column="MULTI_SELECT"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="restrictMember"
+			column="IS_RESTRICT_MEMBER"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<property
+			name="restrictIp"
+			column="IS_RESTRICT_IP"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<property
+			name="restrictCookie"
+			column="IS_RESTRICT_COOKIE"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<property
+			name="disabled"
+			column="IS_DISABLED"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<property
+			name="current"
+			column="IS_CURRENT"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<many-to-one
+			name="website"
+			column="WEBSITE_ID"
+			class="com.jeecms.core.entity.Website"
+			not-null="true"
+		>
+		</many-to-one>
+		<set name="records" inverse="true" cascade="delete">
+			<key column="VTOPIC_ID"/>
+			<one-to-many class="VoteRecord"/>
+		</set>
+		<set name="items" inverse="true" cascade="all-delete-orphan" sort="com.jeecms.core.util.PriorityComparator">
+			<key column="VTOPIC_ID"/>
+			<one-to-many class="VoteItem"/>
+		</set>
+	</class>	
+</hibernate-mapping>

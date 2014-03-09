@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.cms.entity">
+	<class
+		name="CmsMemberGroup"
+		table="CMS_MEMBER_GROUP"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="GROUP_ID"
+		>
+			<generator class="native"/>
+		</id>
+
+		<property
+			name="name"
+			column="NAME"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		<property
+			name="level"
+			column="GROUP_LEVEL"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="description"
+			column="DESCRIPTION"
+			type="string"
+			not-null="false"
+			length="255"
+		/>
+		<property
+			name="uploadSize"
+			column="UPLOAD_SIZE"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<many-to-one
+			name="website"
+			column="WEBSITE_ID"
+			class="com.jeecms.core.entity.Website"
+			not-null="true"
+		>
+		</many-to-one>
+		<set name="members" inverse="true">
+			<key column="CMEMBER_ID"/>
+			<one-to-many class="CmsMember"/>
+		</set>
+	</class>	
+</hibernate-mapping>

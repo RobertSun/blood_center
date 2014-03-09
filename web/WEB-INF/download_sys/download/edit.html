@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/download_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#submitForm").validate();
+});
+//改变内容属性时改变缩略图大小
+var attrMap = {};
+function attrChange(id) {
+	$('#zoomWidth1').val(attrMap[id][0]);
+	$('#zoomHeight1').val(attrMap[id][1]);
+}
+</script>
+</head>
+<body>
+<#include "/WEB-INF/common/image_upload.html"/>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 下载系统 - 下载管理 - 修改</div>
+	<div class="clear"></div>
+</div>
+<@p.form id="submitForm" labelWidth="12" action="Com_update">
+<@p.select colspan="1" width="50" label="所属栏目" name="bean.channel.id" list=list listKey="id" listValue="selectTree" help="请选择末级栏目"/>
+<@p.select colspan="1" width="50" label="下载属性" name="bean.contentCtg.id" onchange="attrChange(this.value);" list=contentCtgList listKey="id" listValue="nameWithComment"/>
+<@p.tr/>
+<@p.text colspan="2" label="标题" name="bean.title" size="80" class="required" required="true" maxlength="255"/><@p.tr/>
+<@p.text colspan="1" width="50" label="简短标题" name="bean.shortTitle" size="35" class="pn-fruler" maxlength="255" help="在文章列表中显示，不填写则显示完整标题" helpPosition="3"/>
+<@p.td colspan="1" width="50" label="标题颜色" help="在下载列表中的样式" helpPosition="3">
+<select name="bean.titleColor" onchange="this.blur();">
+	<option value="">--默认--</option>
+	<#list ["#000000","#FFFFFF","#FF0000","#FFFF00","#00FF00","#00FFFF","#0000FF","#FF00FF","#808080","#C0C0C0","#800000","#808000","#008000","#008080","#000080","#800080"] as c>
+	<option value="${c}" style="background-color:${c}"></option>
+	</#list>
+</select>
+<@p.checkbox name="bean.bold" value="true" labelFor="加粗"/></@p.td><@p.tr/>
+<@p.textarea colspan="2" label="内容概要" name="bean.description" cols="80" rows="3" maxlength="255" /><@p.tr/>
+<@p.select colspan="1" width="50" label="下载类型" name="bean.downType.id" list=downTypeList listKey="id" listValue="name"/>
+<@p.select colspan="1" width="50" label="指定模板" name="bean.tplContent" list=tplContentList headerKey="" headerValue="使用栏目选择的模板" help="可以为文章单独指定模板，一般无需选择" helpPosition="3"/>
+<@p.tr/>
+<@p.td colspan="1" width="50" label="固顶级别">
+	<@p.select name="bean.topLevel" list={"0":"不固顶","1":"固顶1","2":"固顶2","3":"固顶3","4":"固顶4","5":"固顶5","6":"固顶6"} /><span class="pn-fhlep">越大级别越高</span>
+&nbsp; <@p.select name="topTime" list={"0":"置顶时间","24":"置顶一天","48":"置顶二天","72":"置顶三天","168":"置顶一周","720":"置顶一月","2160":"置顶三月","4320":"置顶半年","8760":"置顶一年"} />
+</@p.td>
+<@p.radio colspan="1" width="50" label="是否推荐" name="bean.recommend" list={'true':'是', 'false':'否'}/>
+<@p.tr/>
+<@p.editor colspan="2" label="内容" height="300" name="bean.content" noHeight="true" /><@p.tr/>
+<@p.td label="缩略图" colspan="1" width="50" noHeight="true">
+<@p.text id="uploadImgPath1" name="bean.titleImg" readonly="readonly" size="24"/> <input type="button" value="剪裁" onclick="imgCut(1);"/> <input type="button" value="清空" onclick="clearImg(1);"/><br/>
+<span id="ufc1"><input type="file" id="uploadFile1" size="20"/></span> <input type="button" value="上传" onclick="upload(1);"/><br/>
+上传是否压缩图片：<input type="checkbox" id="zoom1" value="true" checked="checked"/>&nbsp;
+宽：<input type="text" id="zoomWidth1" value="${contentCtgList[0].imgWidth}" size="3"/> 高：<input type="text" id="zoomHeight1" value="${contentCtgList[0].imgHeight}" size="3"/>
+</@p.td><@p.td colspan="1" width="50">
+<img id="preImg1" alt="预览区" srcRoot="${web.uploadUrl}" src="${bean.imgUrl}" style="width:100px;height:70px;background-color:#CCCCCC;border:1px solid #333"/>
+</@p.td><@p.tr/>
+<@p.td label="下载附件" colspan="2" width="50" noHeight="true">
+<@p.text id="uploadImgPath2" name="downloadAttch" value="${(bean.attachment.filePath)!}" readonly="readonly" size="24"/><input type="button" value="清空" onclick="clearImg(2);"/><br/>
+<span id="ufc2"><input type="file" id="uploadFile2" size="20"/></span> <input type="button" value="上传" onclick="upload(2);"/><br/>
+<input type="hidden" id="zoomWidth2" value="100" size="3"/><input type="hidden" id="zoomHeight2" value="100" size="3"/>
+</@p.td><@p.tr/>
+<@p.text colspan="2" label="发布时间" name="bean.releaseDate" readonly="readonly" size="25" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate"/>
+<@p.tr/>
+<@p.td colspan="2">
+<input type="hidden" name="uploadRuleId" value="${uploadRuleId}"/>
+<input type="hidden" name="chnlId" value="${chnlId!}"/>
+<@p.hidden name="bean.id"/><@p.submit/> &nbsp; <@p.reset/></@p.td>
+</@p.form>
+<#include "/WEB-INF/common/alert_message.ftl" />
+</div>
+</body>
+</html>

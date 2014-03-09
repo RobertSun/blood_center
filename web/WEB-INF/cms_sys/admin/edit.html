@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
+<style type="text/css">
+label.lerror{display:none;}
+</style>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 核心功能 - 管理员管理 - 修改</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form id="jvForm" action="Com_update">
+<@p.text label="登录名" name="bean.loginName" disabled="disabled"/>
+<@p.td label="角色">
+<label for="roles.id" class="error lerror">请选择角色</label>
+<@p.checkboxlist name="roles.id" valueList=stack.findValue("bean.admin.roles.{id}") list=roleList listKey="id" listValue="name" required="true" class="required"/>
+</@p.td><@p.tr/>
+<@p.text label="审核级别" name="bean.checkRight" help="0为录入员，内容不用审核时所有管理员都可为0"/>
+<@p.radio label="只能管理自己的数据" name="bean.selfOnly" list={"true":"是","false":"否"}/>
+<@p.td label="文章栏目权限">
+	<#if artiChnlRoot?? && artiChnlRoot?size gt 0>
+		<@p.tree treeId="at" root=artiChnlRoot showDeep=1 isUrl=false isCheckBox=true checkBoxName="channels.id" valueContent=stack.findValue("bean.channels.{id}")/>
+	</#if>
+</@p.td><@p.tr/>
+<#--
+<@p.td label="下载栏目权限">
+	<#if downChnlRoot?? && downChnlRoot?size gt 0>
+		<@p.tree treeId="dt" root=downChnlRoot showDeep=1 isUrl=false isCheckBox=true checkBoxName="channels.id" valueContent=stack.findValue("bean.channels.{id}")/>
+	</#if>
+</@p.td><@p.tr/>
+-->
+<@p.radio label="禁用" name="bean.admin.disabled" list={"true":"是","false":"否"}/>
+<@p.td><@p.hidden name="bean.id"/><@p.submit value="保存"/> &nbsp; <@p.reset value="重置"/></@p.td>
+</@p.form>
+</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+H1 {
+	FONT-SIZE: 9px; MARGIN: 0px; COLOR: #333
+}
+H2 {
+	FONT-SIZE: 10px; MARGIN: 0px; COLOR: #666
+}
+H3 {
+	FONT-SIZE: 12px; MARGIN: 0px; COLOR: #000
+}
+H4 {
+	FONT-SIZE: 14px; MARGIN: 0px; COLOR: #333
+}
+H5 {
+	FONT-SIZE: 16px; MARGIN: 0px; COLOR: #333
+}
+H6 {
+	FONT-SIZE: 20px; MARGIN: 0px; COLOR: #333
+}
+.h6B {
+	FONT-SIZE: 16px; COLOR: #333
+}
+.f10-3 {
+	FONT-SIZE: 10px; COLOR: #333
+}
+.f11b-3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #333
+}
+.f12-3 {
+	FONT-WEIGHT: normal; FONT-SIZE: 12px; COLOR: #333
+}
+.f12b-3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #333
+}
+.f12-6 {
+	FONT-SIZE: 12px; COLOR: #666
+}
+.f12-9 {
+	FONT-SIZE: 12px; COLOR: #999
+}
+.f12-f {
+	FONT-SIZE: 12px; COLOR: #fff
+}
+.f12-f A:link {
+	FONT-SIZE: 12px; COLOR: #fff
+}
+.f12-red {
+	FONT-SIZE: 12px; COLOR: red
+}
+.f12b-red {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: red
+}
+.f12-org {
+	FONT-SIZE: 12px; COLOR: #f90
+}
+.f12b-org {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #f90
+}
+.f12-green {
+	FONT-SIZE: 12px; COLOR: #090
+}
+.f12b-green {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #090
+}
+.price {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #090
+}
+.f14b-green {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #090
+}
+.f14bb-green {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #060
+}
+.brand {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #060
+}
+.f12-blue {
+	FONT-SIZE: 12px; COLOR: #09c
+}
+.f12b-blue {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #09c
+}
+.f12b-yellow {
+	color: #CC9900;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.f14b-blue {
+	FONT-SIZE: 14px; COLOR: #09c
+}
+.f14-3 {
+	FONT-SIZE: 14px; COLOR: #333
+}
+.f14b-3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #333
+}
+.f14b-f {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #fff
+}
+.f14b-red {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: red
+}
+.f14b-yellow {
+	color: #CC9900;
+	font-weight: bold;
+	font-size: 14px;
+}
+.f16b-red {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; COLOR: red
+}
+.f16b-3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; COLOR: #333
+}
+.f16b-green {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; COLOR: #090
+}
+.f16b-blue {
+	FONT-WEIGHT: bold; FONT-SIZE: 16px; COLOR: #069
+}
+.f18b-red {
+	FONT-WEIGHT: bold; FONT-SIZE: 18px; COLOR: red
+}
+

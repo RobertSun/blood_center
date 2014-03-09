@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--核心设置-->
+	<package name="cms.cmsConfig" namespace="/admin/cms/config" extends="core-default">
+		<action name="Com_*" method="{1}" class="cms.cmsConfigAct">
+			<result name="edit">/WEB-INF/cms_sys/config/edit.html</result>
+		</action>
+		<action name="Cache_*" method="{1}" class="cms.cmsCacheAct">
+			<result name="edit">/WEB-INF/cms_sys/config/cache_edit.html</result>
+		</action>
+		<action name="Self_*" method="{1}" class="cms.selfInfoAct">
+			<result name="edit">/WEB-INF/cms_sys/config/self_edit.html</result>
+		</action>
+	</package>
+	<!--缓存清除-->
+	<package name="cms.cmsConfig.ajax" namespace="/admin/cms/config/ajax" extends="ajax-default">
+		<action name="*" method="{1}" class="cms.cmsCacheAct">
+			<result type="json"/>
+		</action>
+	</package>
+	<!--栏目模型管理-->
+	<package name="cms.chnlModel" namespace="/admin/cms/chnl_model" extends="core-default">
+		<action name="Com_*" method="{1}" class="cms.chnlModelAct">
+			<result name="list">/WEB-INF/cms_sys/chnl_model/list.html</result>
+			<result name="add">/WEB-INF/cms_sys/chnl_model/add.html</result>
+			<result name="edit">/WEB-INF/cms_sys/chnl_model/edit.html</result>
+			<result name="addItem">/WEB-INF/cms_sys/model_item/add.html</result>
+			<result name="editItem">/WEB-INF/cms_sys/model_item/edit.html</result>
+		</action>
+	</package>
+	<!--内容属性-->
+	<package name="cms.artiCtg" namespace="/admin/cms/content_ctg" extends="core-default">
+		<action name="Com_*" method="{1}" class="cms.contentCtgAct">
+			<result name="list">/WEB-INF/cms_sys/content_ctg/list.html</result>
+			<result name="add">/WEB-INF/cms_sys/content_ctg/add.html</result>
+			<result name="edit">/WEB-INF/cms_sys/content_ctg/edit.html</result>
+		</action>
+		<action name="checkLabel" method="checkLabel" class="cms.contentCtgAct"/>
+	</package>
+	<!--管理员管理-->
+	<package name="cms.cmsAdmin" namespace="/admin/cms/admin" extends="core-default">
+		<action name="Com_*" method="{1}" class="cms.cmsAdminAct">
+			<result name="list">/WEB-INF/cms_sys/admin/list.html</result>
+			<result name="add">/WEB-INF/cms_sys/admin/add.html</result>
+			<result name="edit">/WEB-INF/cms_sys/admin/edit.html</result>
+		</action>
+	</package>
+	<!--会员管理-->
+	<package name="cms.cmsMember" namespace="/admin/cms/member" extends="core-default">
+		<action name="Com_*" method="{1}" class="cms.cmsMemberAct">
+			<result name="list">/WEB-INF/cms_sys/member/list.html</result>
+			<result name="add">/WEB-INF/cms_sys/member/add.html</result>
+			<result name="edit">/WEB-INF/cms_sys/member/edit.html</result>
+		</action>
+	</package>
+	<!--框架页面-->
+	<package name="cms.frame" namespace="/admin/cms/frame" extends="core-default">
+		<action name="*">
+			<result>/WEB-INF/cms_sys/frame/{1}.html</result>
+		</action>
+	</package>
+	<!--会员组管理-->
+	<package name="cms.cmsMemberGroup" namespace="/admin/cms/group" extends="core-default">
+		<action name="Com_*" method="{1}" class="cms.cmsMemberGroupAct">
+			<result name="list">/WEB-INF/cms_sys/group/list.html</result>
+			<result name="add">/WEB-INF/cms_sys/group/add.html</result>
+			<result name="edit">/WEB-INF/cms_sys/group/edit.html</result>
+		</action>
+	</package>
+	<!--评论管理-->
+	<package name="cms.cmsComment" namespace="/admin/cms/comment" extends="core-default">
+		<action name="Com_*" method="{1}" class="cms.cmsCommentAct">
+			<result name="list">/WEB-INF/cms_sys/comment/list.html</result>
+			<result name="edit">/WEB-INF/cms_sys/comment/edit.html</result>
+		</action>
+	</package>
+	<!--专题管理-->
+	<package name="cms.cmsTopic" namespace="/admin/cms/topic" extends="core-default">
+		<action name="Com_*" method="{1}" class="cms.cmsTopicAct">
+			<result name="list">/WEB-INF/cms_sys/topic/list.html</result>
+			<result name="add">/WEB-INF/cms_sys/topic/add.html</result>
+			<result name="edit">/WEB-INF/cms_sys/topic/edit.html</result>
+		</action>
+	</package>
+</struts>

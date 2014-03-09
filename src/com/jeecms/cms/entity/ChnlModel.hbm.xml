@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.cms.entity">
+	<class
+		name="ChnlModel"
+		table="CMS_CHNL_MODEL"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="MODEL_ID"
+		>
+			<generator class="native"/>
+		</id>
+		<property
+			name="sysType"
+			column="SYS_TYPE"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="name"
+			column="NAME"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		<property
+			name="shortName"
+			column="SHORT_NAME"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="tplPrefixChannel"
+			column="TPL_PREFIX_CHANNEL"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="tplPrefixContent"
+			column="TPL_PREFIX_CONTENT"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="priority"
+			column="PRIORITY"
+			type="integer"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="display"
+			column="IS_DISPLAY"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<property
+			name="hasChild"
+			column="HAS_CHILD"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<many-to-one
+			name="website"
+			column="WEBSITE_ID"
+			class="com.jeecms.core.entity.Website"
+			not-null="true"
+		>
+		</many-to-one>
+		<set name="items" inverse="true" cascade="all-delete-orphan" sort="com.jeecms.core.util.PriorityComparator">
+			<cache usage="read-write"/>
+			<key column="MODEL_ID"/>
+			<one-to-many class="ChnlModelItem"/>
+		</set>
+	</class>	
+</hibernate-mapping>

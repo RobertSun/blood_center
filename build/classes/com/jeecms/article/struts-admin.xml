@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--栏目管理-->
+	<package name="article.cmsChannel" namespace="/admin/article/channel" extends="core-default">
+		<action name="Com_*" method="{1}" class="article.channelAct">
+			<result name="list">/WEB-INF/article_sys/channel/list.html</result>
+			<result name="add">/WEB-INF/article_sys/channel/add.html</result>
+			<result name="edit">/WEB-INF/article_sys/channel/edit.html</result>
+			<result name="main">/WEB-INF/article_sys/channel/main.html</result>
+			<result name="left">/WEB-INF/article_sys/channel/left.html</result>
+		</action>
+	</package>
+	<!--文章管理-->
+	<package name="article.article" namespace="/admin/article/article" extends="core-default">
+		<action name="Com_*" method="{1}" class="article.articleAct">
+			<result name="list">/WEB-INF/article_sys/article/list.html</result>
+			<result name="add">/WEB-INF/article_sys/article/add.html</result>
+			<result name="edit">/WEB-INF/article_sys/article/edit.html</result>
+			<result name="main">/WEB-INF/article_sys/article/main.html</result>
+			<result name="left">/WEB-INF/article_sys/article/left.html</result>
+			<result name="listUncheck">/WEB-INF/article_sys/article/list_uncheck.html</result>
+			<result name="listSignin">/WEB-INF/article_sys/article/list_signin.html</result>
+			<result name="checkView">/WEB-INF/article_sys/article/check_view.html</result>
+			<result name="signinView">/WEB-INF/article_sys/article/signin_view.html</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=gbk"/>
+    <title>${web.name}</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="robots" content="all"/>
+    <meta name="author" content=""/>
+    <link rel="stylesheet" type="text/css" href="${root}/common/css/theme.css" media="all"/>
+    <link href="${sysResRoot}/front.css" type="text/css" rel="stylesheet" />
+    <script src="${sysResRoot}/jquery.js" type="text/javascript"></script>
+    <script src="${sysResRoot}/jquery_dialog.js" type="text/javascript"></script>
+    <script type="text/javascript">
+	$(function(){
+		$("#jvForm").validate(
+			$.extend(
+				{submitHandler: function(form) {
+					Auxi.saveMsg('${base}');
+				}},
+				$.validator.AlertError
+			)
+		);
+		/* setTimeout("temporary()", 4000); */
+	});
+
+/* 	function temporary()
+	{
+		$("#temporary").slideDown(3000);
+		setTimeout("$('#temporary').slideUp(6000)",9000);
+	} */
+
+	function showPung(){
+		var mv = $('#btypem').val();
+		var fv = $('#btypef').val();
+		JqueryDialog.Open('title', '${base}/jeecms/modulepung.do?btypem='+mv+'&btypef='+fv,400,250);
+	}
+	function subClose(){
+		JqueryDialog.Close();
+	}
+	</script>
+</head>
+<body>
+	<div id="temporary" style="float:top;display:none;height:600px;" align="middle" valign="top"><img src="${root}/common/images/new_year2013.jpg" alt="2012" /></div>
+   	<div class="BLOODHOME">[@cms.Include name='head.html' solution='default'/]
+   	<div id="bd">
+  	<div class="wrapper">
+   	<div class="col w222 mr6">[@cms.Include name='login.html'             solution='default' /]
+   	<div class="skin-gray mt6">
+   	<div class="hd">
+   	<h3>通知公告</h3>
+   <a class="more" href="${base}/notice/index.htm"><img src="${root}/common/images/more.gif" alt="MORE" /></a></div>
+   <div class="bd news-alert">
+   <ul class="info-list">                         [@cms.ArtiList chnlId='59' count='9' sysContent='1-1' titLen='13'                         sysTpl='0' style='1' /]                     </ul>
+     </div>
+     </div>
+     <div class="mod-single mt6"><a href="http://parernity.dlbc.org.cn/"><img src="${root}/common/images/sb_1.png" alt="" /></a></div>
+     <div class="mod-single mt6"><a href="http://parernity.dlbc.org.cn/"><img src="${root}/common/images/sb_2.png" alt="" /></a></div>
+     <div class="skin-gray mt6">
+     <div class="hd">
+     <h3>留言板</h3>
+     </div>
+     <div class="guest">
+     <form id="jvForm">
+       <table>
+         <tbody>
+           <tr>
+             <th>标题</th>
+             <td><input type="text" id="msg_title" name="msg_title" size="16" class="Q required" minlength="3" maxlength="50" vld="{messages:{required:'请填写标题',minlength:'标题不能少于3个字符',maxlength:'标题长度不能超过50个字符'}}" />                                        <input type="hidden" id="msg_ctg_id" value="4" /></td>
+           </tr>
+           <tr>
+             <th>内容</th>
+             <td><textarea id="msg_content" name="msg_content" cols="20" rows="10" class="required Q" minlength="5" vld="{messages:{required:'请填写留言内容',minlength:'留言内容不能少于5个字符'}}"></textarea></td>
+           </tr>
+           <tr>
+             <th></th>
+             <td><input class="B" type="submit" value="提 交" />                                        <input class="B" type="reset" value="重 置" /></td>
+           </tr>
+           <tr>
+             <th>&nbsp;</th>
+             <td></td>
+           </tr>
+         </tbody>
+       </table>
+     </form>
+     </div>
+     </div>
+     </div>
+     <div class="col w542 mr6">
+     <div class="skin-gray mt4">
+     <div class="hd">
+     <h3>新闻动态</h3>
+     <a class="more" href="${base}/latest/index.htm"><img src="${root}/common/images/more.gif" alt="MORE" /></a></div>
+     <div class="bd">
+     <div class="turn">[@cms.ArtiList attr='2' count='4'                         sysContent='3-1' titLen='25' flashWidth='230' flashHeight='175'/]</div>
+     <ul class="info-list kgb">                         [@cms.ArtiList chnlId='60' count='8' sysContent='1-1' titLen='17' sysTpl='2' style='9' inner='1';p]
+       <li><span class="date">[${p.releaseDate?string('yyyy-MM-dd')}]</span><a href="${p.url}" title="${p.title}">${p.stit(15)}</a></li>
+       [/@cms.ArtiList]                     </ul>
+       <div class="clear"></div>
+       </div>
+       </div>
+       <div class="clear mt6"></div>
+       <div class="mod-videos">
+       <div class="player"><img src="${root}/common/images/temp/temp_video.jpg" alt="" /></div>
+       <ul class="menu">                     [@cms.ArtiList chnlId='62' count='6' sysContent='1-1' titLen='17' sysTpl='2' style='9' inner='1';v]
+         <li><a href="${v.url}" target="_blank">${v.stit(5)}</a></li>
+         [/@cms.ArtiList]                 </ul>
+         </div>
+         <div class="skin-gray mod-download">
+         <div class="hd">
+         <h3>下载中心</h3>
+         <a class="more" href="${base}/down/index.htm"><img src="${root}/common/images/more.gif" alt="MORE" /></a></div>
+         <div class="bd">
+         <ul class="info-list">                         [@cms.DownloadList count='6' sysContent='1-1' titLen='50' isPage='0' sysTpl='2' style='8' inner='1';d]
+           <li><a href="${d.url}" target="_blank" title="${d.title}">${d.stit(17)}</a></li>
+           [/@cms.DownloadList]                     </ul>
+           </div>
+           </div>
+           <div class="clear"></div>
+           <div class="skin-gray mt6">
+           <div class="hd">
+           <h3>献血屋</h3>
+           <a class="more" href="#"><img src="${root}/common/images/more.gif" alt="MORE" /></a></div>
+           <div class="location"><a href="${base}/house.htm"><img width="400px" src="${root}/common/images/2012_blood_room.jpg" alt="" /></a></div>
+           </div>
+           </div>
+           <div class="col w227">
+           <div class="mod-status">
+           <div class="bd">
+           <ul class="status">
+             <li><strong>A</strong><span>正 常</span></li>
+             <li><strong>B</strong><span>正 常</span></li>
+             <li><strong>AB</strong><span>正 常</span></li>
+             <li><strong>O</strong><span>正 常</span></li>
+           </ul>
+           </div>
+           </div>
+           <div class="mod-single mt6"><a href="${base}/jeecms/SearchTest.jspx"><img src="${root}/common/images/sb_3.png" alt="" /></a></div>
+           <div class="mod-single mt6"><a href="${base}/jeecms/Booking.jspx"><img src="${root}/common/images/sb_4.png" alt="" /></a></div>
+           <div class="mod-single mt6"><a href="${base}/jeecms/Booking.jspx"><img src="${root}/common/images/sb_5.png" alt="" /></a></div>
+           <div class="mod-bloodtype mt6"><dl>                     <dt><span>子女可能的血型</span> <input class="B" type="image" src="${root}/common/images/bloodtype.png" alt="submit" name="" onclick="showPung()" value="" /></dt>                     <dd>母亲血型 <select id="btypem" name="btypem">
+           <option value="O">O</option>
+           <option value="A">A</option>
+           <option value="B">B</option>
+           <option value="AB">AB</option>
+           </select></dd>                     <dd>父亲血型 <select id="btypef" name="btypef">
+           <option value="O">O</option>
+           <option value="A">A</option>
+           <option value="B">B</option>
+           <option value="AB">AB</option>
+           </select></dd>                 </dl></div>
+           <div class="skin-gray mt6">
+           <div class="hd">
+           <h3>献血具体地点</h3>
+           <a class="more" href="${base}/location/index.htm"><img src="${root}/common/images/more.gif" alt="MORE" /></a></div>
+           <div class="bd">
+           <ul class="info-list">                         [@cms.ArtiList chnlId='71' count='12' sysContent='1-1' titLen='15'                         sysTpl='0' style='1' /]                     </ul>
+             </div>
+             </div>
+             </div>
+             </div>
+             </div>
+             [@cms.Include name='foot.html' solution='default'/]</div>
+           </body>
+         </html>

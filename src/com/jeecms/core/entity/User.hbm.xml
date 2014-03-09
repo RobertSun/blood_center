@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jeecms.core.entity">
+	<class name="User" table="CORE_USER">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Long" column="USER_ID"><generator class="native"/></id>
+		<property name="loginName" column="LOGIN_NAME" type="string" not-null="true" length="50"/>
+		<property name="realName" column="REAL_NAME" type="string" not-null="false" length="50"/>
+		<property name="password" column="PASSWORD" type="string" not-null="false" length="32"/>
+		<property name="email" column="EMAIL" type="string" not-null="true" length="100"/>
+		<property name="unreadMsg" column="UNREAD_MSG" type="integer" not-null="true" length="10"/>
+		<property name="fax" column="FAX" type="string" not-null="false" length="255"/>
+		<property name="tel" column="TEL" type="string" not-null="false" length="255"/>
+		<property name="mobile" column="MOBILE" type="string" not-null="false" length="255"/>
+		<property name="zip" column="ZIP" type="string" not-null="false" length="20"/>
+		<property name="comefrom" column="COMEFROM" type="string" not-null="false" length="50"/>
+		<property name="address" column="ADDRESS" type="string" not-null="false" length="255"/>
+		<property name="gender" column="GENDER" type="java.lang.Boolean" not-null="false"/>
+		<property name="birthday" column="BIRTHDAY" type="date" not-null="false"/>
+		<property name="createTime" column="CREATE_TIME" type="timestamp" not-null="false"/>
+		<property name="lastLoginTime" column="LAST_LOGIN_TIME" type="timestamp" not-null="false"/>
+		<property name="lastLoginIp" column="LAST_LOGIN_IP" type="string" not-null="false" length="50"/>
+		<property name="currentLoginTime" column="CURRENT_LOGIN_TIME" type="timestamp" not-null="false"/>
+		<property name="currentLoginIp" column="CURRENT_LOGIN_IP" type="string" not-null="false" length="50"/>
+		<property name="loginCount" column="LOGIN_COUNT" type="java.lang.Long" not-null="false" length="19"/>
+		<property name="disabled" column="IS_DISABLED" type="java.lang.Boolean" not-null="true"/>
+		<!-- **add 2011.11 start-->
+		<property name="idNo" column="ID_NO" type="string" not-null="false" length="225"/>
+		<!-- **add 2011.11 end-->	
+	</class>
+</hibernate-mapping>

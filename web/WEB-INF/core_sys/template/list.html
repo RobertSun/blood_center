@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>list</title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+<script type="text/javascript">
+function fileModify(o) {
+	if($(o).attr('isModify')!='true'){
+		$(o).attr('isModify','true');
+		$(o).attr('style','border:1px solid #000');
+		$(o).select();
+	}
+}
+function fileRename(o){
+	if($(o).attr('isModify')!='true'){
+		return;
+	}
+	$(o).attr('isModify','false');
+	if(!Pn.checkLen($(o))) {
+		alert("文件名不能为空！");
+	}
+	//文件名没有改动
+	if($(o).val()==$(o).attr('origName')) {
+		$(o).attr('style','border:1px solid #ddd;');
+		return;
+	}
+	$.postJson('${base}/admin/core/template/ajax/rename.do', {
+		'tplName' : $(o).val(),
+		'origName' : $(o).attr('origName'),
+		'relPath' : '${relPath?j_string}'
+	}, function(data) {
+		if (data.success) {
+			$(o).attr('origName',$(o).val());
+			$(o).attr('style','border:1px solid #ddd;');
+			$(o).blur();
+		} else {
+			$(o).val($(o).attr('origName'));
+			$(o).select();
+			alert('重命名失败');
+		}
+	});
+}
+function fileDelete(o,f) {
+	if(confirm('您确定删除吗？')) {
+		var href = $(o).attr('href');
+		$(o).attr('href',href+'?relPath=${relPath?j_string}&tplName='+$('#'+f).val());
+		return true;
+	} else {
+		return false;
+	}
+}
+function createDir() {
+	
+}
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置：模板管理 - 列表</div>
+	<form class="ropt" method="post">
+		新建目录：<input type="text" name="dirName" size="10" onkeypress="if(event.keyCode==13){$('#dirButton').click();return false;}"/>
+		<input id="dirButton" type="submit" value="新建" onclick="this.form.action='Com_createDir.do?relPath=${relPath?j_string}';"/>
+&nbsp; <input type="submit" value="创建模板" onclick="this.form.action='Com_add.do?relPath=${relPath?j_string}';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<table class="pn-ltable" width="100%" cellspacing="1" cellpadding="0" border="0">
+<thead class="pn-lthead">
+<tr>
+	<th width="20px"><input type="checkbox" name="allCheck" value="checkbox" onclick="Pn.checkBox('ids',this.checked);"/></th>
+	<th>文件名</th>
+	<th>大小</th>
+	<th>最后修改时间</th>
+	<th>操作</th>
+</tr>
+</thead>
+<tbody class="pn-ltbody">
+<#list subDir as d>
+<tr onmouseover="Pn.LTable.lineOver(this);" onmouseout="Pn.LTable.lineOut(this);">
+<td><input type="checkbox" name="ids" value="file-${d_index}"/></td>
+<td>
+	<img src="${base}/common_res/img/file/${d.ico}" border="0"/>
+	<input type="text" id="file-${d_index}" value="${d.name}" origName="${d.name}" style="border:1px solid #ddd;" onclick="fileModify(this);" onblur="fileRename(this);" onkeypress="if(event.keyCode==13){fileRename(this);}" size="30"/>
+</td>
+<td>${d.size} KB</td>
+<td>${d.lastModified}</td>
+<td class="pn-lopt"><a href="Com_delete.do" onclick="fileDelete(this,'file-${d_index}');" class="pn-loperator">删除</a></td>
+</tr>
+</#list>
+</tbody>
+</table>
+<#include "/WEB-INF/common/alert_message.ftl" />
+</div>
+</body>
+</html>

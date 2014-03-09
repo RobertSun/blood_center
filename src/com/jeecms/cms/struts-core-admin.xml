@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--公用功能-->
+	<package name="core.common" namespace="/admin/core/common" extends="core-default">
+		<!--图片区域选择-->
+		<action name="ImgAreaSelect" method="imgAreaSelect" class="core.imgCutAct">
+			<result>/WEB-INF/common/img_area_select.html</result>
+		</action>
+		<!--图片剪裁-->
+		<action name="ImgCut" method="imgCut" class="core.imgCutAct">
+			<result>/WEB-INF/common/img_cuted.html</result>
+		</action>
+		<!--上传图片-->
+		<action name="UploadImg" method="uploadImg" class="core.imgUploadAct">
+			<result>/WEB-INF/common/iframe_upload.html</result>
+		</action>
+	</package>
+	<!--功能菜单管理-->
+	<package name="core.function" namespace="/admin/core/function" extends="core-default">
+		<action name="Com_*" method="{1}" class="core.functionAct">
+			<result name="list">/WEB-INF/core_sys/function/list.html</result>
+			<result name="add">/WEB-INF/core_sys/function/add.html</result>
+			<result name="edit">/WEB-INF/core_sys/function/edit.html</result>
+			<result name="main">/WEB-INF/core_sys/function/main.html</result>
+			<result name="left">/WEB-INF/core_sys/function/left.html</result>
+		</action>
+	</package>
+	<!--用户管理-->
+	<package name="core.user" namespace="/admin/core/user" extends="core-default">
+		<action name="Com_*" method="{1}" class="core.userAct">
+			<result name="list">/WEB-INF/core_sys/user/list.html</result>
+			<result name="add">/WEB-INF/core_sys/user/add.html</result>
+			<result name="edit">/WEB-INF/core_sys/user/edit.html</result>
+			<result name="editPassword">/WEB-INF/core_sys/user/edit_password.html</result>
+		</action>
+		<action name="checkUsername" method="checkUsername" class="core.userAct"/>
+		<action name="checkEmail" method="checkEmail" class="core.userAct"/>
+	</package>
+	<!--角色管理-->
+	<package name="core.role" namespace="/admin/core/role" extends="core-default">
+		<action name="Com_*" method="{1}" class="core.roleAct">
+			<result name="list">/WEB-INF/core_sys/role/list.html</result>
+			<result name="add">/WEB-INF/core_sys/role/add.html</result>
+			<result name="edit">/WEB-INF/core_sys/role/edit.html</result>
+		</action>
+	</package>
+	<!--会员管理-->
+	<package name="core.member" namespace="/admin/core/member" extends="core-default">
+		<action name="Com_*" method="{1}" class="core.memberAct">
+			<result name="list">/WEB-INF/core_sys/member/list.html</result>
+			<result name="add">/WEB-INF/core_sys/member/add.html</result>
+			<result name="edit">/WEB-INF/core_sys/member/edit.html</result>
+		</action>
+	</package>
+	<!--网站配置-->
+	<package name="core.config" namespace="/admin/core/config" extends="core-default">
+		<action name="Com_*" method="{1}" class="core.websiteAct">
+			<result name="emailEdit">/WEB-INF/core_sys/config/email_edit.html</result>
+			<result name="siteEdit">/WEB-INF/core_sys/config/site_edit.html</result>
+			<result name="globalEdit">/WEB-INF/core_sys/config/global_edit.html</result>
+			<result name="domainChanged">/WEB-INF/core_sys/config/domain_changed.html</result>
+		</action>
+	</package>
+	<!--站点管理-->
+	<package name="core.website" namespace="/admin/core/website" extends="core-default">
+		<action name="Com_*" method="{1}" class="core.websiteAct">
+			<result name="list">/WEB-INF/core_sys/website/list.html</result>
+			<result name="add">/WEB-INF/core_sys/website/add.html</result>
+			<result name="edit">/WEB-INF/core_sys/website/edit.html</result>
+		</action>
+		<action name="checkDomain" method="checkDomain" class="core.websiteAct"/>
+		<action name="checkResPath" method="checkResPath" class="core.websiteAct"/>
+	</package>
+	<!--模板管理-->
+	<package name="core.template" namespace="/admin/core/template" extends="core-default">
+		<action name="Com_*" method="{1}" class="core.templateAct">
+			<result name="list">/WEB-INF/core_sys/template/list.html</result>
+			<result name="add">/WEB-INF/core_sys/template/add.html</result>
+			<result name="edit">/WEB-INF/core_sys/template/edit.html</result>
+			<result name="left">/WEB-INF/core_sys/template/left.html</result>
+			<result name="right">/WEB-INF/core_sys/template/right.html</result>
+			<result name="main">/WEB-INF/core_sys/template/main.html</result>
+			<result name="solution">/WEB-INF/core_sys/template/solution.html</result>
+			<result name="exportTpl">/WEB-INF/core_sys/template/export_tpl.html</result>
+			<result name="importTpl">/WEB-INF/core_sys/template/import_tpl.html</result>
+		</action>
+	</package>
+	<!--资源管理-->
+	<package name="core.resource" namespace="/admin/core/resource" extends="core-default">
+		<action name="Com_*" method="{1}" class="core.templateAct">
+			<result name="list">/WEB-INF/core_sys/resource/list.html</result>
+			<result name="add">/WEB-INF/core_sys/resource/add.html</result>
+			<result name="edit">/WEB-INF/core_sys/resource/edit.html</result>
+			<result name="left">/WEB-INF/core_sys/resource/left.html</result>
+			<result name="right">/WEB-INF/core_sys/resource/right.html</result>
+			<result name="main">/WEB-INF/core_sys/resource/main.html</result>
+			<result name="upload">/WEB-INF/core_sys/resource/upload.html</result>
+		</action>
+	</package>
+	<!--模板管理ajax-->
+	<package name="core.template.ajax" namespace="/admin/core/template/ajax" extends="ajax-default">
+		<action name="*" method="{1}" class="core.templateAct">
+			<result type="json"/>
+		</action>
+	</package>
+	<!--资源管理ajax-->
+	<package name="core.resource.ajax" namespace="/admin/core/resource/ajax" extends="ajax-default">
+		<action name="*" method="{1}" class="core.templateAct">
+			<result type="json"/>
+		</action>
+	</package>
+	<!--附件管理-->
+	<package name="core.attachment" namespace="/admin/core/attachment" extends="core-default">
+		<action name="Com_*" method="{1}" class="core.attachmentAct">
+			<result name="list">/WEB-INF/core_sys/attachment/list.html</result>
+			<result name="add">/WEB-INF/core_sys/attachment/add.html</result>
+			<result name="edit">/WEB-INF/core_sys/attachment/edit.html</result>
+		</action>
+	</package>
+</struts>

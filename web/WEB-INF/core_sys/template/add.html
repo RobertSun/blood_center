@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 模板管理 - 添加</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回列表" onclick="this.form.action='Com_list.do?relPath=${relPath?j_string}';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form labelWidth="15" action="Com_save">
+<@p.td label="模板文件名"><@p.text name="tplName" size="20"/></@p.td><@p.tr/>
+<@p.textarea label="模板内容" id="tplContent" name="tplContent" cols="90" rows="20"/>
+<@p.td>
+	<@p.hidden id="relPath" name="relPath" />
+	<input type="hidden" name="uploadRuleId" value="${uploadRuleId}"/>
+	<@p.submit/> &nbsp; <@p.reset/>
+</@p.td>
+</@p.form>
+</div>
+</body>
+</html>

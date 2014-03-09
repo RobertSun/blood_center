@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	//$("#submitForm").validate();
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 核心功能 - 站点管理 - 添加</div>
+	<form class="ropt">
+		<input type="submit" value="返回列表" onclick="this.form.action='Com_list.do';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form id="submitForm" action="Com_save">
+<@p.text label="名称" name="bean.name" required="true" class="required" maxlength="100"/>
+<@p.text label="简称" name="bean.shortName" maxlength="20"/>
+<@p.text label="域名" name="bean.domain" rname="domain" required="true" class="required" maxlength="50" vld="{remote:'${base}/admin/core/website/checkDomain.do',messages:{remote:'域名已存在！'}}" help="请确保域名是有效的，本地测试可用的域名有localhost和127.0.0.1"/>
+<@p.text label="根域名" name="bean.baseDomain" maxlength="50" help="多站点需要单点登录时使用，如域名是www.sina.com则填写sina.com"/>
+<@p.text label="资源路径" name="bean.resPath" rname="resPath" required="true" class="required" maxlength="20" vld="{remote:'${base}/admin/core/website/checkResPath.do',messages:{remote:'资源路径已存在！'}}" help="资源保存的路径，一般按域名填写，如域名是www.sina.com则填写sina_com_www"/>
+<@p.select label="父级站点" name="bean.parent.id" list=parentList listKey="id" listValue="name"/>
+<@p.text label="COOKIE识别码" name="bean.cookieKey" value="_jeecms" required="true" class="required" maxlength="50" help="一般根据域名填写，如_sina"/>
+<#--<@p.select label="系统类型" name="bean.currentSystem" list={'jeecms':'内容管理系统','jeeshop':'商城系统','jeeforum':'论坛系统'} style="width:150px;"/>-->
+<@p.select label="系统类型" name="bean.currentSystem" list={'jeecms':'内容管理系统'} style="width:150px;"/>
+<@p.radio label="是否关闭" name="bean.close" list={'true':'是', 'false':'否'} value="false"/>
+<@p.td><@p.submit /> &nbsp; <@p.reset /></@p.td>
+</@p.form>
+</div>
+</body>
+</html>

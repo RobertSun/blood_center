@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>${web.name} - powered by jeecms</title>
+<meta content="${chnl.keywords}" name="keywords" />
+<meta content="${chnl.description}" name="description" />
+<script src="${sysResRoot}/jquery.js" type="text/javascript"></script>
+<link href="${sysResRoot}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${root}/blue/article/css/whole.css" rel="stylesheet" type="text/css"/>
+<link href="${root}/blue/article/css/layout.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<!--页头Begin-->
+[@cms.Include name='head.html' solution='blue'/]
+<!--页头End-->
+
+<!--搜索栏Begin-->
+[@cms.Include name='search.html' solution='blue'/]
+<!--搜索栏End-->
+
+<!--页面主体Begin-->
+<div id="page_content">
+	<!--左列Begin-->
+	<div id="page_content_left">
+		<div class="left_row">
+			[@cms.ChnlList hasContent='1' inner='1';c]
+			<div id="news_list2">
+			    <div id="news_list_t">
+					<div id="news_list_tl"><img src="${root}/blue/article/img/head_1.gif" /></div>
+					<div id="news_list_tm">
+						<div id="bar_title2">
+						<img src="${root}/blue/article/img/ico_2.gif" align="absmiddle"/> ${c.name}</div>	
+						<div class="bar_more"><a target="_blank" href="${c.url}">more</a>..</div>					
+						<div style="clear:both"></div>
+					</div>
+					<div id="news_list_tr"><img src="${root}/blue/article/img/head_3.gif" /></div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="channel_news_list_m2">
+				[@cms.ArtiList count='20' sysContent='1-1' titLen='50' lineHeight='6' chnlId=c.id  dateFormat='1' datePosition='2' headMark='4' bottomLine='1'/]
+				</div>
+				<div id="news_list_b">
+					<div id="news_list_bl"><img src="${root}/blue/article/img/foot_1.gif" /></div>
+					<div id="news_list_bm"></div>
+					<div id="news_list_br"><img src="${root}/blue/article/img/foot_3.gif" /></div>
+					<div style="clear:both"></div>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+			[/@cms.ChnlList]
+			<div style="clear:both"></div>
+		</div>
+				
+		<div style="clear:both"></div>			
+	</div>
+	<!--左列End-->
+	
+	<!--右列Begin-->
+	<div id="page_content_right">
+	[@cms.Include name='right.html' solution='blue'/]
+	</div>
+	<!--右列End-->
+	
+	<div style="clear:both"></div>
+</div>
+<!--页面主体End-->
+
+<!--页脚Begin-->
+[@cms.Include name='foot.html' solution='blue'/]
+<!--页脚End-->
+</body>
+</html>

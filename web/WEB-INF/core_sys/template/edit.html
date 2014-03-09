@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>edit</title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+<script type="text/javascript">
+function ajaxSubmit() {
+	$.postJson('${base}/admin/core/template/ajax/update.do', {
+		'tplName' : $('#tplName').val(),
+		<#if tplName?starts_with("tag_")>
+		'tplContent' : $('#tplContent').val(),
+		<#else>
+		'tplContent' : FCKeditorAPI.GetInstance('FCKeditor1').GetHTML(true),
+		</#if>
+		'relPath' : $('#relPath').val(),
+		'uploadRuleId': ${uploadRuleId}
+	}, function(data) {
+		if (data.success) {
+			alert(data.msg);
+		} else {
+			alert(data.msg);
+		}
+	});
+}
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 模板管理 - 修改</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回列表" onclick="this.form.action='Com_list.do?relPath=${parentPath?j_string}';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form labelWidth="15" onsubmit="ajaxSubmit();return false;">
+<@p.td label="模板文件名">${tplName}<@p.hidden id="tplName" name="tplName"/></@p.td><@p.tr/>
+<@p.td>
+<#if tplName?starts_with("tag_")>
+<div>按ctrl+s可以直接保存</div>
+<@p.textarea id="tplContent" name="tplContent" style="width:100%;" cols="70" rows="20" onkeydown="if((event.keyCode==115||event.keyCode==83)&&event.ctrlKey){ajaxSubmit();return false;}"/>
+<#else>
+<script type="text/javascript">
+var oFCKeditor = new FCKeditor('FCKeditor1');
+oFCKeditor.BasePath='${base}/fckeditor/';
+oFCKeditor.Config["CustomConfigurationsPath"]="${base}/fckeditor/myconfig.js?"+(new Date()*1);
+//oFCKeditor.Config["CustomConfigurationsPath"]="${base}/fckeditor/myconfig.js";
+oFCKeditor.ToolbarSet='template';
+oFCKeditor.Config["TabSpaces"]=2;
+
+oFCKeditor.Config["LinkUpload"] = false;
+oFCKeditor.Config["ImageUpload"] = false;
+oFCKeditor.Config["FlashUpload"] = false;
+<#if uploadRuleId??>
+oFCKeditor.Config["uploadRuleId"]=${uploadRuleId};
+</#if>
+<#if !parentPath?contains("include") && !tplName?starts_with("inc_")>
+oFCKeditor.Config["FullPage"]=true;
+</#if>
+oFCKeditor.Config["EnterMode"]='p';
+oFCKeditor.Config["FormatOutput"]=true;
+oFCKeditor.Config["FillEmptyBlocks"]=false;
+oFCKeditor.Config["FromSrc"]="\\$\\{root\\},\\$\\{sysResRoot\\},\\$\\{base\\}";
+oFCKeditor.Config["ToView"]="${web.userResUrl},${web.sysResUrl},${web.webUrl}";
+oFCKeditor.Config["FromView"]="${web.userResUrl},${web.sysResUrl},${web.webUrl}";
+oFCKeditor.Config["ToSrc"]  ="${r'${root}'},${r'${sysResRoot}'},${r'${base}'}";
+oFCKeditor.Height=350;
+oFCKeditor.Value="${tplContent?js_string}";
+oFCKeditor.Create();
+</script>
+</#if>
+
+</@p.td><@p.tr/>
+<#--
+<@p.td><@p.editor id="tplContent" name="tplContent" height="400" fullPage="true"/></@p.td><@p.tr/>
+-->
+<@p.td>
+	<input type="hidden" name="uploadRuleId" value="${uploadRuleId}"/>
+	<@p.hidden id="relPath" name="relPath" />
+	<@p.submit value="保存"/> &nbsp; <@p.reset value="重置"/>
+</@p.td>
+</@p.form>
+</div>
+</body>
+</html>

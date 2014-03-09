@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--文章搜索-->
+	<package name="article.front.inde" namespace="/jeecms" extends="inde-default">
+		<action name="ArtiSearch*" method="search" class="article.artiIndeAct">
+			<result>${tplPath}</result>
+		</action>
+	</package>
+	<!--文章标签-->
+	<package name="article.front.tag" namespace="/jeecms/tag/article" extends="tag-default">
+		<action name="ArtiList" method="artiList" class="article.artiPartAct">
+			<result name="sysTpl">/WEB-INF/ftl_lib/jeecms/article/arti_list.ftl</result>
+			<result>${tplPath}</result>
+		</action>
+		<action name="ArtiListInner" method="artiListInner" class="article.artiPartAct">
+			<result></result>
+		</action>
+	</package>
+</struts>

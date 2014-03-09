@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/auxiliary_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 辅助系统 - 留言内容 - 回复</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form labelWidth="15" action="Com_update">
+<@p.text colspan="2" label="标题" name="bean.title" size="80"/><@p.tr/>
+<@p.textarea colspan="2" label="网友留言" name="bean.contentMember" value=bean.txtCm cols="80" rows="5"/><@p.tr/>
+<@p.textarea colspan="2" label="管理员回复" name="bean.contentAdmin" value=bean.txtCa cols="80" rows="5"/><@p.tr/>
+<@p.text colspan="1" width="50" label="电子邮箱" name="bean.email" />
+<@p.text colspan="1" width="50" label="联系电话" name="bean.phone" /><@p.tr/>
+<@p.text colspan="1" width="50" label="留言IP" name="bean.ip" />
+<@p.text colspan="1" width="50" label="QQ" name="bean.qq" /><@p.tr/>
+<@p.radio colspan="1" width="50" label="是否审核" name="bean.check" list={'true':'是', 'false':'否'}/>
+<@p.text colspan="1" width="50" label="留言时间" name="bean.createTime" disabled="disabled"/><@p.tr/>
+<@p.radio colspan="1" width="50" label="是否推荐" name="bean.recommend" list={'true':'是', 'false':'否'}/>
+<@p.radio colspan="1" width="50" label="是否屏蔽" name="bean.disabled" list={'true':'是', 'false':'否'}/><@p.tr/>
+<@p.td colspan="2"><@p.hidden name="bean.id"/><@p.submit value="保存"/> &nbsp; <@p.reset value="重置"/></@p.td>
+</@p.form>
+</div>
+</body>
+</html>

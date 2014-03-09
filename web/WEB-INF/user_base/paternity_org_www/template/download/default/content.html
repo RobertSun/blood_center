@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=gbk"/>
+    <title>${download.title!} - ${chnl.name} - ${web.name}</title>
+    <meta content="${download.title!}" name="keywords" />
+    <meta content="${download.title!}" name="description" />
+    <meta name="robots" content="all"/>
+    <link rel="stylesheet" type="text/css" href="${root}/common/css/theme.css" media="all"/>
+</head>
+<body class="BLOODTEST">
+	[@cms.Include name='head.html' solution='default'/]
+	<div id="bd">
+		<div class="wrapper">
+			[@cms.Include name='left.html' solution='default'/]
+			<div class="col w775">
+				<div class="skin-gray">
+					<div class="hd">
+						<h3>${chnl.name}</h3>
+						<a class="more" href="${chnl.url!}"><img src="${root}/common/images/more.gif" alt="MORE"></a>
+					</div>
+					<div class="bd m-ppost">
+						<h1><span class="pr"><a href="${base}/download/UserDownload.do?id=${download.id!}"><img
+								src="${root}/common/images/i_download.png" alt="" /></a></span>${download.title!}</h1>
+						<div class="info">
+							<span>更新时间：${download.releaseDate?string('yyyy-MM-dd')!}</span>
+							<span>发布人：${(download.attachment.user.loginName)!}</span>
+							<span>浏览量：${download.visitTotal!} 次</span>
+							<span>下载次数：${download.downCount!} 次</span>
+
+						</div>
+						<div class="entry">
+							${download.content!}
+						</div>
+						<div class="pfoot">
+							下载链接：<a href="${base}/download/UserDownload.do?id=${download.id!}">${download.title!}</a> [${download.fileSize!} K] <a 
+								href="${base}/download/UserDownload.do?id=${download.id!}"><img
+								src="${root}/common/images/i_download.png" alt="" /></a>
+						</div>
+					</div>
+					<span class="cl"></span><span class="cr"></span>
+				</div>
+			</div>
+
+		</div>
+	</div>
+[@cms.Include name='foot.html' solution='default'/]
+</body>
+</html>

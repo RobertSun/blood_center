@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=gbk"/>
+    <title>${download.title!} - ${chnl.name} - ${web.name}</title>
+    <meta content="${download.title!}" name="keywords" />
+    <meta content="${download.title!}" name="description" />
+    <meta name="robots" content="all"/>
+    <link rel="stylesheet" type="text/css" href="${root}/common/css/theme.css" media="all"/>
+</head>
+<body class="BLOODHOME">
+[@cms.Include name='head.html' solution='default'/]
+<div id="bd">
+    <div class="wrapper">
+        <div class="col w222 mr6">
+            [@cms.Include name='login.html' solution='default'/]
+            [@cms.Include name='left.html' solution='default'/]
+        </div>
+
+        <div class="col w775">
+            <div class="skin-gray mt4">
+                <div class="hd">
+                    <h3>${chnl.name}</h3>
+                </div>
+                <div class="bd m-ppost">
+                    <h1>${download.title!}</h1>
+                    <div class="info">
+                        <span>发布日期：${download.releaseDate?string('yyyy-MM-dd')!}</span>
+                        <span>作者：${(download.attachment.user.loginName)!}</span>
+                        <span>点击：${download.visitTotal!} 次</span>
+                    </div>
+                    <div class="entry">
+                        <p class="pic"><img src="${root}/common/images/temp/temp_vidk.jpg" alt=""></p>
+                        <p>
+                            ${download.content!}
+                        </p>
+                    </div>
+                </div>
+                <span class="cl"></span><span class="cr"></span>
+            </div>
+        </div>
+
+    </div>
+</div>
+[@cms.Include name='foot.html' solution='default'/]
+</body>
+</html>

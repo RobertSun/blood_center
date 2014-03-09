@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>jeecms-left</title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+$(function(){
+	JCore.lmenu('lmenu');
+});
+</script>
+</head>
+<body class="lbody">
+<ul id="lmenu">
+<@p.operateRight operate="/admin/core/website/Com_list">
+<li><a href="${base}/admin/core/website/Com_list.do" target="rightFrame">站点管理</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/core/function/Com_main">
+<li><a href="${base}/admin/core/function/Com_main.do" target="mainFrame">功能菜单</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/core/role/Com_list">
+<li><a href="${base}/admin/core/role/Com_list.do" target="rightFrame">角色管理</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/core/user/Com_list">
+<li><a href="${base}/admin/core/user/Com_list.do" target="rightFrame">用户管理</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/cms/admin/Com_list">
+<li><a href="${base}/admin/cms/admin/Com_list.do" target="rightFrame">管理员管理</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/cms/group/Com_list">
+<li><a href="${base}/admin/cms/group/Com_list.do" target="rightFrame">会员组管理</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/cms/member/Com_list">
+<li><a href="${base}/admin/cms/member/Com_list.do" target="rightFrame">会员管理</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/cms/chnl_model/Com_list">
+<li><a href="${base}/admin/cms/chnl_model/Com_list.do" target="rightFrame">模型管理</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/cms/content_ctg/Com_list">
+<li><a href="${base}/admin/cms/content_ctg/Com_list.do" target="rightFrame">内容属性</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/cms/topic/Com_list">
+<li><a href="${base}/admin/cms/topic/Com_list.do" target="rightFrame">专题管理</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/core/attachment/Com_list">
+<li><a href="${base}/admin/core/attachment/Com_list.do" target="rightFrame">附件管理</a></li>
+</@p.operateRight>
+</ul>
+</body>
+</html>

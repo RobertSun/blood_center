@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>${chnl.name} - ${web.name} - powered by jeecms</title>
+<meta content="${chnl.keywords}" name="keywords" />
+<meta content="${chnl.description}" name="description" />
+<script src="${sysResRoot}/jquery.js" type="text/javascript"></script>
+<link href="${sysResRoot}/front.css" rel="stylesheet" type="text/css"/>
+<link href="${root}/default/article/css/whole.css" rel="stylesheet" type="text/css"/>
+<link href="${root}/default/article/css/layout.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!--页头Begin-->
+[@cms.Include name='head.html' solution='default'/]
+<!--页头End-->
+
+<!--搜索栏Begin-->
+[@cms.Include name='search.html' solution='default'/]
+<!--搜索栏End-->
+
+<!--页面主体Begin-->
+<div id="page_content">
+	<!--左列Begin-->
+	<div id="page_content_left">
+		<div class="left_row">
+			<div id="news_list5">
+			    <div id="news_list_t">
+					<div id="news_list_tl"><img src="${root}/default/article/img/head_1.gif" /></div>
+					<div id="news_list_tm">
+						<div id="bar_title2">
+						<img src="${root}/default/article/img/ico_2.gif" align="absmiddle"/> [@cms.Position /]</div>						
+						<div style="clear:both"></div>
+					</div>
+					<div id="news_list_tr"><img src="${root}/default/article/img/head_3.gif" /></div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="content_news_list_m">
+					<div id="news_main">		
+					<div id="news_title">${chnl.name}</div>			
+					<div id="news_content">
+					<P>JEECMS是JavaEE版网站管理系统（Java Enterprise Edition Content Manage System）的简称。</P>
+<P>Java凭借其强大、稳定、安全、高效等多方面的优势，一直是企业级应用的首选。在国外基于JavaEE技术的CMS已经发展的相当成熟，但授权费昂贵，一般需几十万一套；而国内在这方面一直比较薄弱，至今没有一款基于JavaEE技术的开源免费CMS产品。这次我们本着"大气开源，诚信图强"的原则将我们开发的这套JEECMS系统源码完全公布，希望能为国内JavaEE技术的发展尽自己的一份力量。</P>
+<P>JEECMS使用目前java主流技术架构：hibernate3+struts2+spring2+freemarker。AJAX使用jquery和json实现。视图层并没有使用传统的JSP技术，而是使用更为专业、灵活、高效freemarker。 数据库使用MYSQL，并可支持orcale、DB2、SQLServer等主流数据库。应用服务器使用tomcat，并支持其他weblogic、websphere等应用服务器。</P>
+<P>JEECMS并不是一个只追求技术之先进，而不考虑用户实际使用的象牙塔CMS。系统的设计宗旨就是从用户的需求出发，提供最便利、合理的使用方式，懂html就能建站，从设计上满足搜索引擎优化，最小性能消耗满足小网站要求、可扩展群集满足大网站需要。</P>
+<P>很多人觉得java、jsp难掌握，技术门槛高。jeecms具有强大的模板机制。所有前台页面均由模板生成，通过在线编辑模板轻松调整页面显示。模板内容不涉及任何java和jsp技术，只需掌握html语法和jeecms标签即可完成动态网页制作。</P>
+<P>强大、灵活的标签。提供两种风格的标签，一种风格的标签封装了大量互联网上常见的显示样式，通过调整参数就可实现文章列表、图文混排、图文滚动、跑马灯、焦点图等效果。这种标签的优势在于页面制作简单、效率高，对js、css、html不够精通和希望快速建站的用户非常适用。并且各种效果的内容不使用js生成，对搜索引擎非常友好。另一种风格的标签只负责读取数据，由用户自己控制显示内容和显示方式，想到什么就能做到什么，对于技术能力高和追求个性化的用户，可谓如鱼得水。</P>
+<P>天然的伪静态页面技术，无需多余的urlrewrite。考虑到对搜索引擎的友好，系统在设计时就使用了为静态页面技术，以.htm作为url地址后缀，扁平的、可自定义的路径结构。对于有特别需求者，可自定义页面后缀，如.php,.asp,.aspx等。</P>
+<P>站群设计。对于大型的网站，往往需要通过次级域名建立子站群。各个子站后台管理权限可以分离，前台用户实现单点登录。大规模网站轻松建设。</P>
+					</div>
+					<div style="clear:both"></div>
+					</div>
+				</div>
+				<div id="news_list_b">
+					<div id="news_list_bl"><img src="${root}/default/article/img/foot_1.gif" /></div>
+					<div id="news_list_bm"></div>
+					<div id="news_list_br"><img src="${root}/default/article/img/foot_3.gif" /></div>
+					<div style="clear:both"></div>
+				</div>
+				<div style="clear:both"></div>
+			</div>	
+			<div style="clear:both"></div>		
+		</div>
+		<div style="clear:both"></div>	
+	</div>
+	<!--左列End-->
+	
+	<!--右列Begin-->
+	<div id="page_content_right">
+	[@cms.Include name='right.html' solution='default'/]
+	</div>
+	<!--右列End-->
+	
+	<div style="clear:both"></div>
+</div>
+<!--页面主体End-->
+
+<!--页脚Begin-->
+[@cms.Include name='foot.html' solution='default'/]
+<!--页脚End-->
+</body>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.core.entity">
+	<class
+		name="Admin"
+		table="CORE_ADMIN"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ADMIN_ID"
+		>
+			<generator class="native"/>
+		</id>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+		/>
+		<property
+			name="disabled"
+			column="IS_DISABLED"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<many-to-one
+			name="website"
+			column="WEBSITE_ID"
+			class="Website"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="user"
+			column="USER_ID"
+			class="User"
+			not-null="true"
+		>
+		</many-to-one>
+		<set
+			name="roles"
+			table="CORE_ADMIN_ROLE"
+		>
+			<key column="ADMIN_ID"/>
+			<many-to-many column="ROLE_ID" class="Role"/>
+		</set>
+		<set
+			name="functions"
+			table="CORE_ADMIN_FUNCTION"
+		>
+			<key column="ADMIN_ID"/>
+			<many-to-many column="FUNCTION_ID" class="Function"/>
+		</set>
+	</class>
+</hibernate-mapping>

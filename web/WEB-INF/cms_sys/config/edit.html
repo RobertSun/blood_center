@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 首页 - 系统设置</div>
+	<div class="clear"></div>
+</div>
+<@p.form action="Com_configUpdate" validate="false">
+<@p.text label="内容审核次数" name="bean.checkCount" size="20" help="内容的审核次数，如文章。为0则无需审核"/>
+<@p.radio label="评论是否需要审核" name="bean.commentNeedCheck" list={'true':'是','false':'否'}/>
+<@p.radio label="评论是否需要登录" name="bean.commentNeedLogin" list={'true':'是','false':'否'}/>
+<@p.radio label="评论排序方式" name="bean.commentSort" list={'true':'降序','false':'升序'} help="按评论时间排序"/>
+<#--
+<@p.text label="评论最大字节数" name="bean.commentMaxLength" size="20" help="一个英文字符占一个字节，一个中文字符占两个字节"/>
+-->
+<@p.text label="文章默认模型ID" name="bean.defArticleModel.id" size="20"/>
+<@p.text label="下载默认模型ID" name="bean.defDownloadModel.id" size="20"/>
+<@p.select label="允许新用户注册" name="bean.registerStatus" list={'0':'关闭注册','1':'开放普通注册'}/>
+<@p.radio label="开启自动注册" name="bean.autoRegister" list={'true':'是','false':'否'} help="如在其他系统中已注册，进入本系统会自动注册"/>
+<@p.text label="默认会员组ID" name="bean.memberGroup.id" size="20" help="默认注册为哪个会员组"/>
+<@p.text label="会员名最短限制" name="control.nameMinLen" size="20" help="会员名最短必须几个字符"/>
+<@p.textarea label="用户信息保留关键字" name="control.reservedWords" cols="50" rows="5" helpPosition="3" help="每个关键字一行。用户在其用户信息(如昵称、自定义头衔等)中无法使用这些关键字。可使用通配符 “*” 如“*管理员*”(不含引号)"/>
+<@p.textarea label="许可协议内容" name="bean.registerRule" cols="50" rows="5" helpPosition="3" help="注册许可协议的详细内容" />
+<@p.textarea label="允许访问前台的 IP 列表" name="control.frontIps" cols="50" rows="5" helpPosition="3" help="每 IP 一行。只有当用户处于本列表中的 IP 地址时才可以访问前台，列表以外的地址访问将视为 IP 被禁止，留空则不限制"/>
+<@p.textarea label="允许访问后台的 IP 列表" name="control.adminIps" cols="50" rows="5" helpPosition="3" help="每 IP 一行。只有当用户处于本列表中的 IP 地址时才可以访问前台，列表以外的地址访问将视为 IP 被禁止，留空则不限制"/>
+<@p.td><@p.submit value="保存"/> &nbsp; <@p.reset value="重置" /></@p.td>
+</@p.form>
+<#include "/WEB-INF/common/alert_message.ftl" />
+</div>
+</body>
+</html>

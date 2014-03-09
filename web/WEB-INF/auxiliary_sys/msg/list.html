@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/auxiliary_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 辅助系统 - 留言内容 - 列表</div>
+	<div class="clear"></div>
+</div>
+<@p.table
+	cols=[{"label":"留言类别","name":"row.ctg.name"},
+  		{"label":"标题","name":"row.title","escape":false},
+        {"label":"邮件","name":"row.email","escape":false},
+  		{"label":"留言时间","name":"row.createTime"},
+  		{"label":"留言IP","name":"row.ip"},
+  		{"label":"推荐","name":"row.recommend?string('<span style=\"{color:red;}\">是</span>','否')","escape":false},
+  		{"label":"屏蔽","name":"row.disabled?string('<span style=\"{color:red;}\">是</span>','否')","escape":false},
+        {"label":"审核","name":"row.check?string('是','<span style=\"{color:red;}\">否</span>')","escape":false}
+		]
+	rowIndex=false
+	normalOperate=[{"action":"Com_edit","name":"回复"},
+				{"action":"Com_delete","name":"删除","confirm":"您确定删除吗？"}
+				]
+	batchOperate=[{"action":"Com_delete","name":"删除","confirm":"您确定删除吗？"}
+				]
+/>
+<#include "/WEB-INF/common/alert_message.ftl"/>
+</div>
+</body>
+</html>

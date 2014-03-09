@@ -1,0 +1,34 @@
+<table>
+	<col width="15%" />
+	<tbody>
+		[#list pagination.list as msg]
+		<tr class="thi">
+			<th>${(msg.member.loginName)!config.msgAnonymity}</th>
+			<td>提问：${(msg.title)!}</td>
+		</tr>
+		<tr class="tbq">
+			<th></th>
+			<td>
+			<p>留言时间：${(msg.createTime)!}</p>
+			<p>${(msg.contentMember)!}</p>
+			</td>
+		</tr>
+		[#if (msg.contentAdmin)?? && msg.contentAdmin!='']
+		<tr class="tba">
+			<th></th>
+			<td>
+			<div class="hi">专家解答：${msg.replyTime}</div>
+			<div class="bi">
+			<p class="sh">[#if msg.member??]${msg.member.loginName!}[/#if]：你好！</p>
+			<p>${msg.contentAdmin}</p>
+			<p>谢谢提问， 祝您健康快乐生活！</p>
+			</div>
+			</td>
+		</tr>
+		[/#if]
+		[/#list]
+	</tbody>
+</table>
+[#if pagination.list?size > 0]
+<div class="msg_page">[@cms.SysPage style='6'/]</div>
+[/#if]

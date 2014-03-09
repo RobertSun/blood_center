@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<include file="com/jeecms/cms/struts-default.xml" />
+	
+	<include file="com/jeecms/cms/struts-core-admin.xml" />
+	<include file="com/jeecms/cms/struts-core-ajax.xml" />
+	<include file="com/jeecms/cms/struts-core-front.xml" />
+	
+	<include file="com/jeecms/cms/struts-admin.xml" />
+	<include file="com/jeecms/cms/struts-login.xml" />
+	<include file="com/jeecms/cms/struts-front.xml" />
+	
+	<include file="com/jeecms/article/struts-admin.xml" />
+	<include file="com/jeecms/article/struts-front.xml" />
+	
+	<include file="com/jeecms/download/struts-admin.xml" />
+	<include file="com/jeecms/download/struts-front.xml" />
+	
+	<include file="com/jeecms/auxiliary/struts-admin.xml" />
+	<include file="com/jeecms/auxiliary/struts-front.xml" />
+</struts>

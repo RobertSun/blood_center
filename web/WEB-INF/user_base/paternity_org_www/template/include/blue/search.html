@@ -1,0 +1,53 @@
+<script type="text/javascript">
+function searchFormSubmit() {
+	if(document.getElementById('searchKey').value==''){
+		alert('请输入搜索内容');
+		return false;
+	}
+	document.getElementById('searchForm').submit();	
+}
+</script>
+
+<form id="searchForm" action="${base}/jeecms/ArtiSearch.do" target="_blank">
+  <div id="page_search">
+    <div id="page_search_left">
+      <input type="hidden" name="count" value="10" />
+      <img alt="" align="absMiddle" src="${root}/blue/article/img/ann.gif" />
+      <input id="searchKey" align="absMiddle" size="16" onkeypress="if(event.keyCode==13){searchFormSubmit();return false;}" style="border-right: #cccccc 1px solid; border-top: #cccccc 1px solid; border-left: #cccccc 1px solid; border-bottom: #cccccc 1px solid" name="searchKey" type="text" />
+    </div>
+    <div id="page_search_btn" style="cursor: pointer"><img alt="" border="0" onclick="searchFormSubmit();" src="${root}/blue/article/img/search_but.gif" /></div>
+    <div id="page_search_mid">[@cms.ArtiList chnlId='' attr='5' count='10' sysContent='2-1' titLen='10' dateFormat='3' datePosition='3' headMark='2' target='1' rollCols='2' rollSpeed='3' rollSleepTime='100'/]</div>
+    <div id="page_search_right">今天是：
+      <script>
+		<!--var day="";
+		var month="";
+		var ampm="";
+		var ampmhour="";
+		var myweekday="";
+		var year="";
+		mydate=new Date();
+		myweekday=mydate.getDay();
+		mymonth=mydate.getMonth()+1;
+		myday= mydate.getDate();
+		year= mydate.getFullYear();
+		if(myweekday == 0)
+		weekday=" 星期日 ";
+		else if(myweekday == 1)
+		weekday=" 星期一 ";
+		else if(myweekday == 2)
+		weekday=" 星期二 ";
+		else if(myweekday == 3)
+		weekday=" 星期三 ";
+		else if(myweekday == 4)
+		weekday=" 星期四 ";
+		else if(myweekday == 5)
+		weekday=" 星期五 ";
+		else if(myweekday == 6)
+		weekday=" 星期六 ";
+		document.write(year+"年"+mymonth+"月"+myday+"日 "+weekday);
+		//-->
+	  </script>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+</form>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+					http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+					http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true">
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    	<property name="location">
+    		<value>classpath:jdbc.properties</value>
+ 		</property>
+	</bean>	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="autoCommitOnClose" value="true"/>
+		<property name="checkoutTimeout" value="${cpool.checkoutTimeout}"/>
+		<property name="initialPoolSize" value="${cpool.minPoolSize}"/>
+		<property name="minPoolSize" value="${cpool.minPoolSize}"/>
+		<property name="maxPoolSize" value="${cpool.maxPoolSize}"/>
+		<property name="maxIdleTime" value="${cpool.maxIdleTime}"/>
+		<property name="acquireIncrement" value="${cpool.acquireIncrement}"/>
+		<property name="maxIdleTimeExcessConnections" value="${cpool.maxIdleTimeExcessConnections}"/>
+	</bean>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!--
+		<property name="mappingDirectoryLocations">
+			<list>
+			<value>classpath:/com/jeecms/core/entity</value>
+			<value>classpath:/com/jeecms/cms/entity</value>
+			<value>classpath:/com/jeecms/article/entity</value>
+			<value>classpath:/com/jeecms/download/entity</value>
+			<value>classpath:/com/jeecms/auxiliary/entity</value>
+			</list>
+		</property>
+		-->
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:/com/jeecms/core/entity/*.hbm.xml</value>
+				<value>classpath:/com/jeecms/cms/entity/*.hbm.xml</value>
+				<value>classpath:/com/jeecms/article/entity/*.hbm.xml</value>
+				<value>classpath:/com/jeecms/download/entity/*.hbm.xml</value>
+				<value>classpath:/com/jeecms/auxiliary/entity/*.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+			hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
+			hibernate.show_sql=true
+			hibernate.format_sql=false
+			hibernate.query.substitutions=true 1, false 0
+			hibernate.jdbc.batch_size=20
+			hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
+			hibernate.cache.provider_configuration_file_resource_path=/ehcache-hibernate.xml
+			</value>
+		</property>
+		<property name="entityInterceptor">   
+			<ref local="treeInterceptor"/>
+		</property>
+	</bean>
+	<bean id="treeInterceptor" class="com.jeecms.common.hibernate3.TreeIntercptor"/>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<context:component-scan base-package="com.jeecms" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+</beans>

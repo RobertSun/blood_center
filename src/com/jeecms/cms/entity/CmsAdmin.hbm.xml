@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.cms.entity">
+	<class
+		name="CmsAdmin"
+		table="CMS_ADMIN"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="ADMIN_ID"
+		>
+			<generator class="foreign">
+				<param name="property">admin</param>
+			</generator>
+		</id>
+		<property
+			name="checkRight"
+			column="CHECK_RIGHT"
+			type="integer"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="selfOnly"
+			column="IS_SELF_ONLY"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<one-to-one
+			name="admin"
+			class="com.jeecms.core.entity.Admin"
+			constrained="true"
+			cascade="all"
+		/>
+		<many-to-one
+			name="website"
+			column="WEBSITE_ID"
+			class="com.jeecms.core.entity.Website"
+			not-null="true"
+		>
+		</many-to-one>
+		<set
+			name="channels"
+			table="CMS_ADMIN_CHANNEL"
+		>
+			<key column="ADMIN_ID"/>
+			<many-to-many column="CHANNEL_ID" class="CmsChannel"/>
+		</set>
+	</class>
+</hibernate-mapping>

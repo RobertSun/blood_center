@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.core.entity">
+	<class
+		name="Function"
+		table="CORE_FUNCTION"
+		>
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="FUNCTION_ID"
+			>
+			<generator class="native"/>
+		</id>
+		<property
+			name="name"
+			column="NAME"
+			type="string"
+			not-null="false"
+			length="100"
+			/>
+		<property
+			name="url"
+			column="URL"
+			type="string"
+			not-null="false"
+			length="200"
+			/>
+		<property
+			name="funcs"
+			column="FUNCS"
+			type="string"
+			not-null="false"
+			/>
+		<property
+			name="description"
+			column="DESCRIPTION"
+			type="string"
+			not-null="false"
+			length="250"
+			/>
+		<property
+			name="priority"
+			column="PRIORITY"
+			type="integer"
+			not-null="true"
+			length="10"
+			/>
+		<property
+			name="menu"
+			column="IS_MENU"
+			type="java.lang.Boolean"
+			not-null="true"
+			/>	
+		<many-to-one
+			name="parent"
+			column="PARENT"
+			class="Function"
+			not-null="false"
+			>
+		</many-to-one>
+		<set
+			name="admins"
+			table="CORE_ADMIN_FUNCTION"
+			inverse="true"
+			>
+			<key column="FUNC_ID"/>
+			<many-to-many column="ADMIN_ID" class="Admin"/>
+		</set>		
+		<set
+			name="roles"
+			table="CORE_ROLE_FUNCTION"
+			inverse="true"
+			>
+			<key column="FUNCTION_ID"/>
+			<many-to-many column="ROLE_ID" class="Role"/>
+		</set>
+		<set name="child" inverse="true" cascade="all,delete" sort="com.jeecms.core.util.PriorityComparator">
+			<cache usage="read-write"/>
+			<key column="PARENT"/>
+			<one-to-many class="Function"/>
+		</set>
+	</class>	
+</hibernate-mapping>

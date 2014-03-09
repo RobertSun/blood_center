@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 核心功能 - 功能菜单 - 添加</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回列表" onclick="this.form.action='Com_list.do?pid=${pid!}';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form action="Com_save">
+<@p.td label="上级菜单">${(parent.name)!"顶级菜单"}</@p.td><@p.tr/>
+<@p.text label="名称" name="bean.name" noValue="true"/>
+<@p.text label="URL" name="bean.url" noValue="true" size="50"/>
+<@p.textarea label="功能集" name="bean.funcs" noValue="true" cols="70" rows="12"/>
+<@p.text label="描述" name="bean.description" noValue="true" size="50"/>
+<@p.text label="排列顺序" name="bean.priority" value="100" help="从小到大"/>
+<@p.radio label="菜单" name="bean.menu" list={'true':'是','false':'否'} value="true"/>
+<@p.td>
+<input type="hidden" name="bean.parent.id" value="${pid!}"/>
+<input type="hidden" name="pid" value="${pid!}"/>
+<@p.submit value="保存"/> &nbsp; <@p.reset value="重置"/></@p.td>
+</@p.form>
+<#include "/WEB-INF/common/alert_message.ftl" />
+</div>
+</body>
+</html>

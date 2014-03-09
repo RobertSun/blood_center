@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+function clearHomepageCache() {
+	$.postJson('${base}/admin/cms/config/ajax/clearHomepageCache.do', {},
+	function(data) {
+		if (data.success) {
+			alert(data.msg);
+		} else {
+			alert(data.msg);
+		}
+	});
+}
+function clearChannelCache() {
+	$.postJson('${base}/admin/cms/config/ajax/clearChannelCache.do', {},
+	function(data) {
+		if (data.success) {
+			alert(data.msg);
+		} else {
+			alert(data.msg);
+		}
+	});
+}
+function lucene() {
+	$('#luceneButton').val("正在生成索引，请稍候...").attr("disabled","disabled");
+	$.postJson('${base}/admin/cms/config/ajax/lucene.do', {
+		"startDate":$("#startDate").val()
+	},
+	function(data) {
+		if (data.success) {
+			alert("成功生成索引 "+ data.count + " 条");
+		} else {
+			alert(data.msg);
+		}
+		$('#luceneButton').removeAttr("disabled").val("生成索引");
+	});
+}
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 首页 - 系统设置</div>
+	<div class="clear"></div>
+</div>
+<@p.form action="Cache_configUpdate" validate="false">
+<@p.td label="是否开启首页缓存">
+	<@p.radio name="cacheHomepage" list={'true':'是','false':'否'}/>
+&nbsp; <input type="button" value="清空首页缓存" onclick="clearHomepageCache();"/>
+</@p.td><@p.tr/>
+<@p.td label="是否开启栏目页缓存">
+	<@p.radio name="cacheChannel" list={'true':'是','false':'否'}/>
+&nbsp; <input type="button" value="清空栏目页缓存" onclick="clearChannelCache();"/>
+</@p.td><@p.tr/>
+<@p.td label="全文检索" help="不选择开始日期则生成全部">
+	开始日期：<input type="text" id="startDate" readonly="readonly" style="width:100px" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="Wdate"/>
+&nbsp; <input type="button" id="luceneButton" value="生成索引" onclick="lucene();"/>
+</@p.td><@p.tr/>
+<@p.td><@p.submit value="保存"/> &nbsp; <@p.reset value="重置" /></@p.td>
+</@p.form>
+<#include "/WEB-INF/common/alert_message.ftl" />
+</div>
+</body>
+</html>

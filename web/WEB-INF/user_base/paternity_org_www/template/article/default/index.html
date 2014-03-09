@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=gbk"/>
+    <title>${web.name}</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="robots" content="all"/>
+    <meta name="author" content=""/>
+    <link rel="stylesheet" type="text/css" href="${root}/common/css/theme.css" media="all"/>
+    <script src="${sysResRoot}/jquery.js" type="text/javascript"></script>
+    <script src="${base}/auxiliary_res/js/front.js" type="text/javascript"></script>
+</head>
+<body class="BLOODTEST">
+[@cms.Include name='head.html' solution='default'/]
+<div id="bd">
+    <div class="wrapper">
+        <div class="col w222 mr6">
+
+            <div class="skin-gray">
+                [@cms.ChnlList id='' isDisplay='0' sysType='article' hasContent='0' inner='1';c]
+                [#if c.id==52]
+                <div class="hd">
+                    <h3>鉴定流程</h3>
+                    <a class="more" href="${base}/procedure.htm"><img src="${root}/common/images/more.gif" alt="MORE"/></a>
+                </div>
+                <div class="bd jd-steps">
+                    ${c.content}
+                </div>
+                [/#if]
+                [/@cms.ChnlList]
+                <span class="cl"></span><span class="cr"></span>
+            </div>
+
+            <div class="skin-gray mt6">
+                <div class="hd">
+                    <h3>如何采样</h3>
+                    <a class="more" href="${base}/sampling/index.htm"><img src="${root}/common/images/more.gif" alt="MORE"/></a>
+                </div>
+                <div class="bd how-test">
+                    [@cms.ArtiList chnlId='47' count='10' sysContent='1-1' sysTpl='0' style='3'  titLen='14'/]
+                </div>
+                <span class="cl"></span><span class="cr"></span>
+            </div>
+        </div>
+
+        <div class="col w542 mr6">
+            <div class="skin-gray">
+                [@cms.ChnlList id='' isDisplay='0' sysType='article' hasContent='0' inner='1';c]
+                [#if c.id==51]
+                <div class="hd center-hd">
+                    <h3>中心简介</h3>
+                    <a class="more" href="${c.url}"><img src="${root}/common/images/more.gif" alt="MORE"/></a>
+                </div>
+                <div class="bd center-intro">
+                    ${c.content}
+                </div>
+                [/#if]
+                [/@cms.ChnlList]
+                <span class="cl"></span><span class="cr"></span>
+            </div>
+            <div class="clear mt6"></div>
+            <div class="skin-gray mod-cenews mr6">
+                [@cms.ChnlList id='' isDisplay='0' sysType='article' hasContent='0' inner='1';c]
+                [#if c.id==54]
+                <div class="hd">
+                    <h3>保密承诺</h3>
+                    <a class="more" href="#"><img src="${root}/common/images/more.gif" alt="MORE"/></a>
+                </div>
+                <div class="bd">
+                    ${c.content}
+                </div>
+                [/#if]
+                [/@cms.ChnlList]
+                <span class="cl"></span><span class="cr"></span>
+            </div>
+
+            <div class="skin-gray mod-cenews">
+                <div class="hd">
+                    <h3>新闻动态</h3>
+                    <a class="more" href="${base}/news/index.htm"><img src="${root}/common/images/more.gif" alt="MORE"/></a>
+                </div>
+                <div class="bd">
+                    [@cms.ArtiList chnlId='43' count='6' sysContent='1-1' sysTpl='0' style='3'  titLen='14'/]
+                </div>
+                <span class="cl"></span><span class="cr"></span>
+            </div>
+
+            <div class="clear"></div>
+
+            <div class="skin-gray mod-qna mt6">
+                <div class="hd">
+                    <h3>常见问题</h3>
+                    <a class="more" href="${base}/question/index.htm"><img src="${root}/common/images/more.gif" alt="MORE"/></a>
+                </div>
+                <div class="bd">
+                    [@cms.ArtiList chnlId='49' count='7' sysContent='1-1' sysTpl='0' style='4'  titLen='14'/]
+                </div>
+                <span class="cl"></span><span class="cr"></span>
+            </div>
+            <div class="skin-gray mod-payinfo mt6">
+                [@cms.ChnlList id='' isDisplay='0' sysType='article' hasContent='0' inner='1';c]
+                [#if c.id==53]
+                <div class="hd">
+                    <h3>收费标准</h3>
+                    <a class="more" href="${base}/charges/index.htm"><img src="${root}/common/images/more.gif" alt="MORE"/></a>
+                </div>
+                <div class="bd">
+                    ${c.content}
+                </div>
+                [/#if]
+                [/@cms.ChnlList]
+                <span class="cl"></span><span class="cr"></span>
+            </div>
+        </div>
+        <div class="col w227">
+            <div class="mod-single">
+                <a href="#"><img src="${root}/common/images/sb_6.jpg" alt=""/></a>
+            </div>
+            <div class="mod-single mt6">
+                <a href="#"><img src="${root}/common/images/sb_7.jpg" alt=""/></a>
+            </div>
+
+            <div class="skin-gray mt6">
+                <div class="hd"><h3>留言板</h3></div>
+                <div class="guest" style="padding-top:9px;*padding-top:7px;">
+                    <form id="jvForm">
+                        <input type="hidden" id="msg_ctg_id" value="3"/>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th>昵称</th>
+                            <td>
+                                <input type="text" id="msg_title" name="msg_title" size="16" class="Q required"
+                                       minlength="3" maxlength="10" 
+                                       vld="{messages:{required:'请填写昵称',minlength:'昵称不能少于3个字符',maxlength:'昵称长度不能超过10个字符'}}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>邮箱</th>
+                            <td><input type="text" vld="{messages:{required:'请输入您的邮箱'}}" class="required Q" name="msg_email" id="msg_email" size="16" />		
+</td>
+                        </tr>
+                        <tr>
+                            <th>内容</th>
+                            <td>
+                                <textarea id="msg_content" name="msg_content" cols="20" rows="5" class="Q required" 
+                                          minlength="5" vld="{messages:{required:'请填写留言内容',minlength:'留言内容不能少于5个字符'}}"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <td>
+                                <input class="B" type="submit" value="提 交"/>
+                                <input class="B" type="reset" value="重 置"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </form>
+                </div>
+                <span class="cl"></span><span class="cr"></span>
+            </div>
+            <div class="mod-contactus mt6">
+                <ul>
+                    <li>电话：82654539，82653536</li>
+                    <li>QQ号：</li>
+                    <li>邮箱：xuexingjiandian@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+[@cms.Include name='foot.html' solution='default'/]
+<script type="text/javascript">
+$(function(){
+	$("#jvForm").validate(
+		$.extend(
+			{submitHandler: function(form) {
+				Auxi.saveMsg('${base}');
+			}},
+			$.validator.AlertError
+		)
+	);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 核心功能 - 会员管理 - 修改</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form id="jvForm" action="Com_update">
+<@p.text label="登录名" name="bean.loginName" disabled="disabled"/>
+<@p.select label="会员组" name="bean.group.id" list=list listKey="id" listValue="name"/>
+<@p.text label="积分" name="bean.score" required="true" class="required digits"/>
+<@p.text label="点券" name="bean.coupon" required="true" class="required digits"/>
+<@p.radio label="禁用" name="bean.disabled" list={"true":"是","false":"否"}/>
+<@p.td><@p.hidden name="bean.id"/><@p.submit /> &nbsp; <@p.reset /></@p.td>
+</@p.form>
+</div>
+</body>
+</html>

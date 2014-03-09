@@ -1,0 +1,16 @@
+<@p.table
+	cols=[{"label":"ID","name":"row.id"},
+		{"label":"名称","name":"row.name"},
+		{"label":"路径","name":"row.path"},
+		{"label":"排列顺序","name":"row.priority","type":"input","inputName":"prioritys"},
+		{"label":"文档数量","name":"row.docCount"},
+		{"label":"点击次数","name":"row.visitTotal"},
+        {"label":"是否显示","name":"row.display?string('是','<span style=\"color:red;\">否</span>')", "escape":false}
+		]
+	rowIndex=false isPagination=false value=list keepParams=["pid"] wholeOptName="保存排列顺序" wholeOptAction="Com_priorityUpdate"
+	normalOperate=[{"action":"Com_edit","name":"修改"},
+				{"action":"Com_delete","name":"删除","confirm":"您确定删除吗？"}
+				]
+	batchOperate=[{"action":"Com_delete","name":"删除","confirm":"您确定删除吗？"}
+				]
+/>

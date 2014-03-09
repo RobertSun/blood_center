@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 核心功能 - 专题管理 - 添加</div>
+	<form class="ropt">
+		<input type="submit" value="返回列表" onclick="this.form.action='Com_list.do';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<#include "/WEB-INF/common/image_upload.html"/>
+<@p.form id="jvForm" action="Com_save" labelWidth="12">
+<@p.text colspan="2" label="名称" name="bean.name" required="true" class="required" maxlength="150"/><@p.tr/>
+<@p.text colspan="2" label="相关文章" name="articleIds" maxlength="65535" size="70" help="多个文章ID用，分割"/><@p.tr/>
+<@p.text colspan="1" width="50" label="关键字" name="bean.keywords" maxlength="255"/>
+<@p.text colspan="1" width="50" label="排列顺序" name="bean.priority" value="10" required="true" class="required digits" maxlength="5" style="width:70px"/><@p.tr/>
+<@p.textarea colspan="2" label="描述" name="bean.description" rows="3" cols="70" maxlength="255"/><@p.tr/>
+<@p.td label="缩略图" colspan="1" width="50" noHeight="true">
+<@p.text id="uploadImgPath1" name="bean.titleImg" noValue="true" readonly="readonly" size="24"/> <input type="button" value="剪裁" onclick="imgCut(1);"/> <input type="button" value="清空" onclick="clearImg(1);"/><br/>
+<span id="ufc1"><input type="file" id="uploadFile1" size="20"/></span> <input type="button" value="上传" onclick="upload(1);"/><br/>
+上传是否压缩图片：<input type="checkbox" id="zoom1" value="true"/>&nbsp;
+宽：<input type="text" id="zoomWidth1" value="139" size="3"/> 高：<input type="text" id="zoomHeight1" value="139" size="3"/>
+</@p.td><@p.td colspan="1" width="50">
+<img id="preImg1" alt="预览区" srcRoot="${web.uploadUrl}" style="width:100px;height:70px;background-color:#CCCCCC;border:1px solid #333"/>
+</@p.td><@p.tr/>
+<@p.td colspan="2"><@p.submit/> &nbsp; <@p.reset/></@p.td>
+</@p.form>
+</div>
+</body>
+</html>

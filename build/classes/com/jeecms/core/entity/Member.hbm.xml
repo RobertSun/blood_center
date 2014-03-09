@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.core.entity">
+	<class
+		name="Member"
+		table="CORE_MEMBER"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="MEMBER_ID"
+		>
+			<generator class="native"/>
+		</id>
+		<property
+			name="nickName"
+			column="NICK_NAME"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="personalWebsite"
+			column="PERSONAL_WEBSITE"
+			type="string"
+			not-null="false"
+			length="100"
+		/>		
+		<property
+			name="qq"
+			column="QQ"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		<property
+			name="msn"
+			column="MSN"
+			type="string"
+			not-null="false"
+			length="100"
+		/>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="true"
+		/>
+		<property
+			name="disabled"
+			column="IS_DISABLED"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<many-to-one
+			name="website"
+			column="WEBSITE_ID"
+			class="Website"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="user"
+			column="USER_ID"
+			class="User"
+			not-null="true"
+		>
+		</many-to-one>	
+	</class>	
+</hibernate-mapping>

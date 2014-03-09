@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.cms.entity">
+	<class
+		name="CmsMember"
+		table="CMS_MEMBER"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="MEMBER_ID"
+		>
+			<generator class="foreign">
+				<param name="property">member</param>
+			</generator>
+		</id>
+
+		<property
+			name="score"
+			column="SCORE"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="coupon"
+			column="COUPON"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="uploadStatDate"
+			column="UPLOAD_STAT_DATE"
+			type="date"
+			not-null="false"
+		/>
+		<property
+			name="uploadSize"
+			column="UPLOAD_SIZE"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="uploadTotalSize"
+			column="UPLOAD_TOTAL_SIZE"
+			type="java.lang.Long"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="disabled"
+			column="IS_DISABLED"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<one-to-one
+			name="member"
+			class="com.jeecms.core.entity.Member"
+			constrained="true"
+		/>
+		<many-to-one
+			name="website"
+			column="WEBSITE_ID"
+			class="com.jeecms.core.entity.Website"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="group"
+			column="GROUP_ID"
+			class="CmsMemberGroup"
+			not-null="true"
+		>
+		</many-to-one>
+	</class>
+</hibernate-mapping>

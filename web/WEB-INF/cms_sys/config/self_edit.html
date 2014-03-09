@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 首页 - 个人资料</div>
+	<div class="clear"></div>
+</div>
+<@p.form id="jvForm" action="Self_update">
+<@p.text label="登录名" name="loginName" size="20" disabled="disabled"/>
+<@p.password label="原密码" name="origPassword" size="20" help="不修改请留空"/>
+<@p.password label="新密码" id="password" name="password" size="20" help="不修改请留空"/>
+<@p.password label="确认密码" equalTo="#password" size="20" help="不修改请留空"/>
+<@p.text label="邮箱" name="email" size="20" required="true" maxlength="100" vld="{required:true,email:true,remote:'Self_checkEmail.do?origEmail=${email}',messages:{remote:'email已经被使用！'}}"/>
+<@p.text label="真实姓名" name="realName" size="20" maxlength="50"/>
+<@p.td><@p.submit /> &nbsp; <@p.reset /></@p.td>
+</@p.form>
+<#include "/WEB-INF/common/alert_message.ftl" />
+</div>
+</body>
+</html>

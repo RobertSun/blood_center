@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	>
+	<!--缓存-->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">    
+		<property name="configLocation">
+			<value>classpath:ehcache-application.xml</value>
+		</property>
+	</bean>
+	<!--首页缓存-->
+	<bean id="homepageCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="cacheManager"/>
+		</property>
+		<property name="cacheName">
+			<value>com.jeecms.core.page.Homepage</value>
+		</property>
+		<qualifier value="homepage"/>
+	</bean>
+	<!--栏目页缓存-->
+	<bean id="channelCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="cacheManager"/>
+		</property>
+		<property name="cacheName">
+			<value>com.jeecms.core.page.Channel</value>
+		</property>
+		<qualifier value="channel"/>
+	</bean>
+	<!--域名缓存-->
+	<bean id="websiteDomainCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="cacheManager"/>
+		</property>
+		<property name="cacheName">
+			<value>com.jeecms.core.entity.Website.DOMAIN2ID</value>
+		</property>
+		<qualifier value="websiteDomain"/>
+	</bean>
+	<!--域名别名缓存-->
+	<bean id="websiteAliasCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="cacheManager"/>
+		</property>
+		<property name="cacheName">
+			<value>com.jeecms.core.entity.Website.Alias2DOMAIN</value>
+		</property>
+		<qualifier value="websiteAlias"/>
+	</bean>
+	<!--通用ID缓存-->
+	<bean id="commonIdCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="cacheManager"/>
+		</property>
+		<property name="cacheName">
+			<value>com.jeecms.core.CommonId</value>
+		</property>
+		<qualifier value="commonId"/>
+	</bean>
+</beans>

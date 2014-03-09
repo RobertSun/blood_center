@@ -1,0 +1,61 @@
+[#--
+该模板用于用户自定义文章列表显示风格。
+调整文章列表标签参数sysTpl='0'可调用本模板
+--]
+
+
+[#--
+文章排行列表
+调用方法：[@cms.ArtiList count='10' sysContent='1-1' titLen='25' sysTpl='0' style='1' /]
+--]
+
+[#if style=='1']
+<div class="orderlist">
+[#list pagination.list as ctt]
+<a href="${ctt.url}" title="${ctt.title}" target="_blank">${ctt.stit(titLen)}</a> <br />
+[/#list]
+</div>
+
+
+[#--
+右列图文列表
+调用方法：[@cms.ArtiList count='4' attr='2' titLen='25' sysTpl='0' style='2' /]
+--]
+[#elseif style=='2']
+<ul class="left_pic">
+[#list pagination.list as ctt]
+  <li><a href="${ctt.url}" title="${ctt.title}" target="_blank"><img src="${ctt.imgUrl!}" alt="${ctt.title}" /></a><a href="${ctt.url}" target="_blank">${ctt.stit(titLen)}</a></li>
+[/#list]  
+</ul>
+[#--
+左侧列表
+调用方法：[@cms.ArtiList chnlId='' count='7' sysContent='1-1' sysTpl='0' style='3'  titLen='12'/]
+--]
+[#elseif style=='3']
+<ul class="info-list">
+    [#list pagination.list as ctt]
+    <li><a href="${ctt.url}" title="${ctt.title}" target="_blank">${ctt.stit(titLen)}</a></li>
+    [/#list]
+</ul>
+[#elseif style=='4']
+<ul class="info-list">
+    [#list pagination.list as ctt]
+    <li><span class="date">[${ctt.releaseDate?string("yyyy-MM-dd")}]</span><a href="${ctt.url}" title="${ctt.title}" target="_blank">${ctt.stit(titLen)}</a></li>
+    [/#list]
+</ul>
+[#else]
+<ul class="info-list m-wdm">
+[#list pagination.list as ctt]
+<li><span class="date">[${ctt.releaseDate?string("yyyy-MM-dd")}]</span><a href="${ctt.url}" title="${ctt.tit(200)}" target="_blank">${ctt.stit(titLen)}</a></li>
+[/#list]
+</ul>
+[/#if]
+
+
+[#if isPage=="1" && pagination.list?size > 0]
+	[#if sysPage!="0"]
+		[@cms.SysPage style=sysPage cssClass=pageClass cssStyle=pageStyle/]
+	[#elseif userPage!=""]
+		[@cms.UserPage name=userPage cssClass=pageClass cssStyle=pageStyle solution=upSolution webRes=upWebRes/]
+	[/#if]
+[/#if]

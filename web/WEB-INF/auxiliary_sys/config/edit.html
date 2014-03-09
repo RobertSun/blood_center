@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/auxiliary_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 首页 - 辅助设置</div>
+	<div class="clear"></div>
+</div>
+<@p.form action="Com_configUpdate">
+<@p.radio label="是否开启留言板" name="bean.msgIsOpen" list={'true':'是','false':'否'}/>
+<@p.radio label="留言是否需要审核" name="bean.msgNeedCheck" list={'true':'是','false':'否'}/>
+<@p.text label="匿名网友名称" name="bean.msgAnonymity"/>
+<@p.text label="留言内容长度限制（字节）" name="bean.msgMaxSize" help="一个英文字符占一个字节，一个中文字符占两个字节"/>
+<@p.td><@p.submit value="保存"/> &nbsp; <@p.reset value="重置"/></@p.td>
+</@p.form>
+<#include "/WEB-INF/common/alert_message.ftl" />
+</div>
+</body>
+</html>

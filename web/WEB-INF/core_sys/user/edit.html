@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 核心功能 - 用户管理 - 修改</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form id="jvForm" labelWidth="15" action="Com_update">
+<@p.text colspan="1" width="50" label="登录名" name="bean.loginName" rname="username" rvalue=bean.loginName required="true" vld="{required:true,rangelength:[2,20],username:true,remote:'checkUsername.do',messages:{remote:'用户名已存在！'}}"/>
+<@p.text colspan="1" width="50" label="真实姓名" name="bean.realName" maxlength="50"/><@p.tr/>
+<@p.password colspan="1" width="50" label="密码" id="password" name="bean.password" maxlength="32"/>
+<@p.password colspan="1" width="50" label="确认密码" equalTo="#password"/><@p.tr/>
+<@p.text colspan="1" width="50" label="电子邮箱" name="bean.email" rname="email" rvalue=bean.email required="true" maxlength="100" vld="{required:true,email:true,remote:'checkEmail.do',messages:{remote:'email已经被使用！'}}"/>
+<@p.text colspan="1" width="50" label="邮编" name="bean.zip" maxlength="20"/><@p.tr/>
+<@p.text colspan="2" label="地址" name="bean.address" size="60" maxlength="250"/><@p.tr/>
+<@p.text colspan="1" width="50" label="电话" name="bean.tel" maxlength="250"/>
+<@p.text colspan="1" width="50" label="手机" name="bean.mobile" maxlength="250"/><@p.tr/>
+<@p.radio colspan="1" width="50" label="性别" name="bean.gender" list={"true":"男","false":"女"}/>
+<@p.radio colspan="1" width="50" label="禁用" name="bean.disabled" list={"true":"是","false":"否"}/><@p.tr/>
+<@p.text colspan="1" width="50" label="创建时间" name="bean.createTime" disabled="disabled"/>
+<@p.text colspan="1" width="50" label="登录次数" name="bean.loginCount" disabled="disabled"/><@p.tr/>
+<@p.text colspan="1" width="50" label="最后登录时间" name="bean.lastLoginTime" disabled="disabled"/>
+<@p.text colspan="1" width="50" label="最后登录IP" name="bean.lastLoginIp" disabled="disabled"/><@p.tr/>
+<@p.td colspan="2"><@p.hidden name="bean.id" /><@p.submit /> &nbsp; <@p.reset /></@p.td>
+</@p.form>
+</div>
+</body>
+</html>

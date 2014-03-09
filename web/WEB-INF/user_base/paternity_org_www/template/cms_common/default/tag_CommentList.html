@@ -1,0 +1,10 @@
+[#--
+该模板用于用户自定义显示风格。
+调整标签参数sysTpl='0'可调用本模板
+--]
+<ul>
+用户评论自定义模板
+[#list pagination.list as c]
+<li>${c.contentMember}</li>
+[/#list]
+</ul>

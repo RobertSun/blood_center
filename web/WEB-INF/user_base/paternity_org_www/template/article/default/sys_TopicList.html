@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head xmlns="">
+<title>专题列表 - ${web.name} - powered by jeecms</title>
+<meta content="text/html; charset=gb2312" http-equiv="Content-Type" />
+<meta content="专题列表" name="keywords" />
+<meta content="专题列表" name="description" />
+<link href="${sysResRoot}/front.css" type="text/css" rel="stylesheet" />
+<script src="${sysResRoot}/jquery.js" type="text/javascript"></script>
+<link href="${root}/default/article/css/whole.css" type="text/css" rel="stylesheet" />
+<link href="${root}/default/article/css/layout.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+<!--页头Begin-->[@cms.Include name='head.html' solution='default'/] <!--页头End-->
+<!--搜索栏Begin-->[@cms.Include name='search.html' solution='default'/]<!--搜索栏End-->
+
+<!--主体下Begin-->
+<div class="page_row box">
+  <div class="page_main_msg left">
+    <div class="list_bar" style="width:680px;"><a href="${base}/" >首页</a> &raquo; 专题列表</div>
+    <div class="left_row"><img src="${root}/default/article/img/zt.jpg" /></div>
+    <div class="left_row">	
+      <div class="list pic_news" style="margin-top: 5px">
+        <div class="list_bar"> // 专题列表</div>
+        <div class="list_content dl_list">		  	  
+		 [@cms.TopicList;t,i]
+		    <dl [#if (i+1)%2==0]class="p1"[/#if]>
+			  <dt><a href="${base}/jeecms/topic.jspx?topicId=${t.id}" target="_blank">${t.name}</a></dt>
+			  <dd class="pic">
+			  <a href="${base}/jeecms/topic.jspx?topicId=${t.id}" target="_blank"><img src="${t.titleImgUrl}" alt="${t.name}"/></a>
+			  </dd>
+			  <dd class="text">
+			  [#if t.description?length lte 110 ]${t.description}[#else]${t.description[0..109]}...[/#if]
+			</dl>
+		 [/@cms.TopicList]		  
+		</div>
+      </div>	  
+    </div>
+  </div>
+
+    <div class="page_other_msg right">
+	 	[@cms.Include name='right.html' solution='default'/] 
+	</div>
+</div>
+<!--主体下End-->
+
+
+<!--友情链接Begin-->
+[@cms.Include name='hotlink.html' solution='default'/] 
+<!--友情链接End-->
+
+<!--页脚Begin-->
+[@cms.Include name='foot.html' solution='default'/] 
+<!--页脚End-->
+</body>
+</html>

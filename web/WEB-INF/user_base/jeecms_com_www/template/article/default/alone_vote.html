@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=gbk" />
+	<title>${chnl.name} - ${web.name}</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="robots" content="all" />
+	<meta name="author" content="" />
+	<link rel="stylesheet" type="text/css" href="${root}/common/css/theme.css" media="all" />
+</head>
+<body class="BLOODHOME">
+    <div id="hd">
+		<div class="panel">
+			<a href="#">登录</a> | <a href="#">注册</a> | <a href="#">站内导航</a> | <a href="#">加入收藏</a>
+		</div>
+		<div class="logo"><a href="#"><img src="${root}/common/images/logo.png" alt="" /></a></div>
+		<div class="nav">
+			<div class="top">
+				<ul>
+                    [#assign chnlname = (chnl.name)!("n10")]
+					<li class="n1"><a [#if chnlname=="首页"]class="current"[/#if] href="${base}/index.jspa">首 页</a></li>
+                    [@cms.ChnlList id='' inner='1';c]
+                    [#assign curl= c.url]
+                    [#if c.id != 29]
+                    [#list c.child as item]
+                        [#assign curl=item.url]
+                        [#break]
+                    [/#list]
+                    [/#if]
+                    [#if c.name=='医院下载']
+                    	[#assign hosurl= c.url]
+                    [#else]
+                    <li class="${c.title!}"><a href="${curl}" [#if chnlname==c.name]class="current"[/#if]>${c.name}</a></li>
+                    [/#if]
+                    [/@cms.ChnlList]
+					<li class="n10"><a [#if chnlname=="n10"]class="current"[/#if] href="${base}/jeecms/Guestbook.jspx?msgCtgId=1">信息沟通</a></li>
+                    <li class="n11"><a [#if chnlname=="下载中心"]class="current"[/#if] href="${base}/down/index.htm">下载中心</a></li>
+					<li class="n12"><a [#if chnlname=="关于我们"]class="current"[/#if] href="${base}/about.htm">联系我们</a></li>
+				</ul>
+			</div>
+			<div class="sub">
+                
+				<a href="${base}/jeecms/Guestbook.jspx?msgCtgId=1" >常见问题</a> |
+				<a href="${base}/jeecms/Guestbook.jspx?msgCtgId=2" >在线咨询</a> |
+				<a href="${chnl.url}" class="mover">${chnl.name}</a> |
+				<a href="${base}/jeecms/Guestbook.jspx?msgCtgId=4" >留言板</a> 
+			</div>
+		</div>
+	</div>
+    <div id="bd">
+        <div class="path" align="right">
+             您的位置: <a href="${base}/">首页</a> &gt;
+            <a href="${base}/jeecms/Guestbook.jspx">信息沟通</a> &gt;  
+            <a href="${base}/vote/index.htm">问卷调查</a>
+        </div>
+        <div class="wrapper">
+                <div class="col w222 mr6">
+                    <div class="mod-bmenu">
+                        <div class="hd hd03"><img class="t" src="${root}/common/images/bm_t3.png" alt="" /></div>
+                        <ul class="bd">
+                            <li class="item"><a href="${base}/jeecms/Guestbook.jspx?msgCtgId=1">常见问题</a></li>
+                            <li class="item"><a href="${base}/jeecms/Guestbook.jspx?msgCtgId=2">在线咨询</a></li>
+                            <li class="item"><a class="current" href="${base}/vote/index.htm">问卷调查</a></li>
+                            <li class="item"><a href="${base}/jeecms/Guestbook.jspx?msgCtgId=4">留言板</a></li>
+                        </ul>
+                        <span class="cl"></span><span class="cr"></span>
+                    </div>
+                    <div class="mod-single mt6">
+                        <a href="${base}/jeecms/Booking.jspx"><img src="${root}/common/images/sb_8.png" alt="" /></a>
+                    </div>
+                    <div class="mod-single mt6">
+                        <a href="${base}/jeecms/Booking.jspx"><img src="${root}/common/images/sb_9.png" alt="" /></a>
+                    </div>
+                    <div class="mod-single mt6">
+                        <a href="${base}/jeecms/SearchTest.jspx"><img src="${root}/common/images/sb_10.png" alt="" /></a>
+                    </div>
+                </div>
+                <div class="col w775">
+                    <div class="skin-gray mt18">
+                        <div class="hd">
+                            <h3>${chnl.name}</h3>
+                        </div>
+                        <div class="bd m-results">
+                            [@cms.VoteTopic sysTpl='0'/]
+                            <div class="clear"></div>
+                        </div>
+                        <span class="cl"></span><span class="cr"></span>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    [@cms.Include name='foot.html' solution='default'/]
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=gbk" />
+	<title>大连市血液中心-献血检验结果查询</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="robots" content="all" />
+	<meta name="author" content="" />
+    <script src="${sysResRoot}/jquery.js" type="text/javascript"></script>
+    <script src="${sysResRoot}/jam.js" type="text/javascript"></script>
+    <script src="${sysResRoot}/jquery_dialog.js" type="text/javascript"></script>
+    <script src="${base}/My97DatePicker/WdatePicker.js" type="text/javascript" language="javascript"></script>
+	<link rel="stylesheet" type="text/css" href="${root}/common/css/theme.css" media="all" />
+	<script>
+	$(document).ready(function(){
+		if(${returnMsg.returnState} != "-1"){
+			JqueryDialog.init('', '${base}/jeecms/BookingSearchBack.jspx',354, 260);
+		}
+	});
+	</script>
+</head>
+<body class="BLOODHOME">
+    [@cms.Include name='head.html' solution='default'/]
+    <div id="bd">
+		<div class="wrapper">
+				<form id="form1" name="form1" method="post" action="${base}/jeecms/SearchTestResult.jspx" enctype="multipart/form-data" onsubmit="return checkBookingSearchFrom()">
+				<div class="col" style="width:100%;">
+					<div class="skin-gray mt4" >
+						<div class="hd">
+							<h3>献血检验结果查询</h3>
+						</div>
+						<div class="bd m-ppost m-form" >
+							<div class="PassWarp">
+								<label><input name="bookingSearch.searchType" id="searchType1" type="radio" value="1" checked="checked" onclick="Bpass('BloodNo')" />通过献血码</label>
+								<label><input name="bookingSearch.searchType" id="searchType2" type="radio" value="2"  onclick="Bpass('BloodCard')" />通过证件</label>
+							</div>
+							<table class="m-Stable " id="BloodNo">
+								<colgroup width="45%"></colgroup>
+								<tr>
+									<th><em>*</em>献血码：</th>
+									<td>
+										<input name="bookingSearch.donCode" type="text" id="donCode" /> 
+										<input class="Bsend" type="button" style="height:26px;width:95px;border:none;line-height:30px;" name="" value="发送验证码" onclick="searchVerifyCodeByDonCode();" /><em>验证码将以短信形式发送到您预约时留的手机</em>
+									</td>
+								</tr>
+								<tr>
+									<th><em>*</em>验证码：</th>
+									<td><input name="bookingSearch.verifyCodeDon" type="text" id="verifyCodeDon" /></td>
+								</tr>	
+							</table>
+							
+							<table class="m-Stable m-none" id="BloodCard">
+								<colgroup width="45%"></colgroup>
+								<tr>
+									<th><em>*</em>证件类型：</th>
+									<td>
+										<select name="bookingSearch.idTypeID" id="idTypeID">
+											<option value="-1">*请选择*</option>
+											<option value="0">身份证</option>
+											<option value="1">军人证</option>
+											<option value="2">护照</option>
+											<option value="4">献血证</option>
+											<option value="3">其它</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th><em>*</em>证件号码：</th>
+									<td>
+										<input name="bookingSearch.idCode" type="text" id="idCode" /> 
+										<input class="Bsend" type="button" name="" value="发送验证码" onclick="searchVerifyCodeByIdCode();"/><em>验证码将以短信形式发送到您预约时留的手机</em>
+									</td>
+								</tr>
+								<tr>
+									<th><em>*</em>验证码：</th>
+									<td><input name="bookingSearch.verifyCodeID" type="text" id="verifyCodeID" /></td>
+								</tr>	
+							</table>
+							
+							<div class="m-btnCenter">
+								
+										<input class="B" type="submit" name="" value="提 交" />
+										<input class="B" type="submit" name="" value="重 置" />
+							</div>
+						</div>
+						<span class="cl"></span><span class="cr"></span>
+					</div>
+				</div>
+				</form>
+		</div>
+	</div>
+    [@cms.Include name='foot.html' solution='default'/]    
+<script>
+    function  trim(str){
+		return str.replace(/(^\s*)|(\s*$)/g,"");
+	}
+	
+    function searchVerifyCodeByDonCode(){
+		if (trim(document.getElementById('donCode').value).length <= 0) 
+		{
+			alert("请输入献血码!");
+			document.getElementById('donCode').focus();
+			return false;
+		}
+
+		$.postJson('${base}/jeecms/ajax/auxiliary/SearchVerifyCodeByDonCode.do', {
+			'donCode' : $('#donCode').val()
+		}, function(data) {
+			alert(data.msg);
+		});
+    }
+
+    function isIdCard(s)
+    {
+	    var patrn = /^\s*\d{15}\s*$/;
+	    var patrn1 = /^\s*\d{16}[\dxX]{2}\s*$/;
+	    if (!patrn.exec(s) && !patrn1.exec(s))
+	    {
+	    	return false;
+	    }
+	    return true;
+    }
+    
+    function searchVerifyCodeByIdCode(){
+    	if (document.getElementById('idTypeID').selectedIndex == 0) 
+		{
+			alert("请选择证件类型!");
+			document.getElementById('idTypeID').focus();
+			return false;
+		}else if (trim(document.getElementById('idCode').value).length <= 0) 
+		{
+			alert("请输入证件号码!");
+			document.getElementById('idCode').focus();
+			return false;
+		}else if (document.getElementById('idTypeID').selectedIndex == 1 && !isIdCard(trim(document.getElementById('idCode').value))) 
+		{
+			alert("身份证格式错误!");
+			document.getElementById('idCode').focus();
+			return false;
+		}
+
+		$.postJson('${base}/jeecms/ajax/auxiliary/SearchVerifyCodeByIdCode.do', {
+			'idTypeID' : $('#idTypeID').val(),
+			'idCode' : $('#idCode').val()
+		}, function(data) {
+			alert(data.msg);
+		});
+    }
+
+    function checkBookingSearchFrom() {
+    	if(document.getElementById('searchType1').checked){
+        	if (trim(document.getElementById('donCode').value).length <= 0) 
+    		{
+    			alert("请输入献血码!");
+    			document.getElementById('donCode').focus();
+    			return false;
+    		}else if (trim(document.getElementById('verifyCodeDon').value).length <= 0) 
+    		{
+    			alert("请输入验证码!");
+    			document.getElementById('verifyCodeDon').focus();
+    			return false;
+    		}
+        }else if(document.getElementById('searchType2').checked){
+        	if (document.getElementById('idTypeID').selectedIndex == 0) 
+    		{
+    			alert("请选择证件类型!");
+    			document.getElementById('idTypeID').focus();
+    			return false;
+    		}else if (trim(document.getElementById('idCode').value).length <= 0) 
+    		{
+    			alert("请输入证件号码!");
+    			document.getElementById('idCode').focus();
+    			return false;
+    		}else if (trim(document.getElementById('verifyCodeID').value).length <= 0) 
+    		{
+    			alert("请输入验证码!");
+    			document.getElementById('verifyCodeID').focus();
+    			return false;
+    		}
+        }
+		return true;
+    }
+</script>
+</body>
+</html>

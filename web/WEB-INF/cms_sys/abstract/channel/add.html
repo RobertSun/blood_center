@@ -1,0 +1,84 @@
+<script type="text/javascript">
+$(function() {
+	$("#submitForm").validate();
+});
+</script>
+<#include "/WEB-INF/common/image_upload.html"/>
+<@p.form id="submitForm" labelWidth="12" action="Com_save">
+<@p.td colspan="1" width="50" label="上级栏目">${(parent.name)!'顶级栏目'}</@p.td>
+<@p.td colspan="1" width="50" label="模型">${model.name}</@p.td><@p.tr/>
+<@p.text colspan="1" width="50" label="名称" name="bean.name" maxlength="100" required="true" class="required"/>
+<@p.text colspan="1" width="50" label="访问路径" name="bean.path" maxlength="100" required="true" vld="{required:true,path:true,remote:'Com_checkPath.do',messages:{remote:'路径已存在'}}" help="栏目的访问路径"/><@p.tr/>
+<#list itemMap?keys as key>
+<#if !itemMap[key].predefine>
+<@p.selfDefineWidget colspan="2" type=itemMap[key].inputType dataType=itemMap[key].dataType name="bean."+itemMap[key].name help=itemMap[key].help
+	label=itemMap[key].label value=itemMap[key].defValue size=itemMap[key].inputSize
+	inputWidth=itemMap[key].inputWidth rows=itemMap[key].textareaRows cols=itemMap[key].textareaCols
+	list=itemMap[key].optionValue noValue="true"/>
+<@p.tr/>
+<#else>
+<#if key == 'tplIndex'>
+<@p.select colspan="1" width="50" label=itemMap[key].label name="bean.tplIndex" list=tplChannlList headerKey="" headerValue="使用默认模板"/>
+<@p.select colspan="1" width="50" label=itemMap['tplContent'].label name="bean.tplContent" list=tplContentList headerKey="" headerValue="使用默认模板"/><@p.tr/>
+</#if>
+<#if key == 'outerUrl'>
+<@p.text colspan="2" label=itemMap[key].label name="bean.outerUrl" size=itemMap[key].inputSize!?string help=itemMap[key].help value=itemMap[key].defValue maxlength="255"/><@p.tr/>
+</#if>
+<#if key == 'title'>
+<@p.text colspan="2" label=itemMap[key].label name="bean.title" size=itemMap[key].inputSize!?string help=itemMap[key].help value=itemMap[key].defValue maxlength="255"/><@p.tr/>
+</#if>
+<#if key == 'keywords'>
+<@p.text colspan="2" label=itemMap[key].label name="bean.keywords" size=itemMap[key].inputSize!?string help=itemMap[key].help value=itemMap[key].defValue maxlength="255"/><@p.tr/>
+</#if>
+<#if key == 'description'>
+<@p.text colspan="2" label=itemMap[key].label name="bean.description" size=itemMap[key].inputSize!?string help=itemMap[key].help value=itemMap[key].defValue maxlength="255"/><@p.tr/>
+</#if>
+<#if key == 'groupVisit'>
+<@p.select colspan="1" width="50" label=itemMap['groupVisit'].label name="bean.groupVisit.id" list=groupVisitList listKey="id" listValue="name" headerKey="" headerValue="开放浏览" help=itemMap[key].help/>
+<@p.select colspan="1" width="50" label=itemMap['groupContribute'].label name="bean.groupContribute.id" list=groupContributeList listKey="id" listValue="name" headerKey="" headerValue="不允许投稿" headerButtom="true" help=itemMap[key].help/><@p.tr/>
+</#if>
+<#if key == 'admins'>
+<@p.checkboxlist colspan="2" label=itemMap['admins'].label name="admins.id" valueList=stack.findValue("admins.{id}") list=admins listKey="id" listValue="loginName"/><@p.tr/>
+</#if>
+<#if key == 'priority'>
+<@p.text colspan="1" width="50" label=itemMap[key].label name="bean.priority" required="true" vld="{required:true,range:[-999999,999999]}" size=itemMap[key].inputSize!?string help=itemMap[key].help value=itemMap[key].defValue/>
+<@p.radio colspan="1" width="50" label=itemMap['display'].label name="bean.display" list={'true':'是', 'false':'否'} value="true"/><@p.tr/>
+</#if>
+<#if key == 'content'>
+<@p.editor colspan="2" label="内容" height="300" name="bean.content" toolbarSet="template" noHeight="true" noValue="true"/><@p.tr/>
+</#if>
+<#if key == 'titleImg'><@p.td label="缩略图" colspan="1" width="50" noHeight="true">
+<@p.text id="uploadImgPath1" name="bean.titleImg" noValue="true" readonly="readonly" size="24"/> <input type="button" value="剪裁" onclick="imgCut(1);"/> <input type="button" value="清空" onclick="clearImg(1);"/><br/>
+<span id="ufc1"><input type="file" id="uploadFile1" size="20"/></span> <input type="button" value="上传" onclick="upload(1);"/><br/>
+上传是否压缩图片：<input type="checkbox" id="zoom1" value="true" checked="checked"/>&nbsp;
+宽：<input type="text" id="zoomWidth1" value="139" size="3"/> 高：<input type="text" id="zoomHeight1" value="139" size="3"/>
+</@p.td><@p.td colspan="1" width="50">
+<img id="preImg1" alt="预览区" srcRoot="${web.uploadUrl}" style="width:100px;height:70px;background-color:#CCCCCC;border:1px solid #333"/>
+</@p.td><@p.tr/>
+</#if>
+<#if key == 'contentImg'>
+<@p.td label="内容图" colspan="1" width="50" noHeight="true">
+<@p.text id="uploadImgPath2" name="bean.contentImg" noValue="true" readonly="readonly" size="24"/> <input type="button" value="剪裁" onclick="imgCut(2);"/> <input type="button" value="清空" onclick="clearImg(2);"/><br/>
+<span id="ufc2"><input type="file" id="uploadFile2" size="20"/></span> <input type="button" value="上传" onclick="upload(2);"/><br/>
+上传是否压缩图片：<input type="checkbox" id="zoom2" value="true"/>&nbsp;
+宽：<input type="text" id="zoomWidth2" value="310" size="3"/> 高：<input type="text" id="zoomHeight2" value="310" size="3"/>
+</@p.td><@p.td colspan="1" width="50">
+<img id="preImg2" alt="预览区" srcRoot="${web.uploadUrl}" style="width:100px;height:70px;background-color:#CCCCCC;border:1px solid #333"/>
+</@p.td><@p.tr/>
+</#if>
+<#if key == 'paramData'>
+<@p.td colspan="2" label=itemMap[key].label noHeight="true" help=itemMap[key].help helpPosition="3">
+数据1：<@p.text name="bean.param1" size="20" maxlength="255" noValue="true"/> &nbsp;
+数据2：<@p.text name="bean.param2" size="20" maxlength="255" noValue="true"/> &nbsp;
+数据3：<@p.text name="bean.param3" size="20" maxlength="255" noValue="true"/>
+</@p.td><@p.tr/>
+</#if>
+</#if>
+</#list>
+<@p.td colspan="2">
+<input type="hidden" name="pid" value="${pid!}"/>
+<input type="hidden" name="uploadRuleId" value="${uploadRuleId!}"/>
+<input type="hidden" name="bean.parent.id" value="${pid!}"/>
+<input type="hidden" name="bean.model.id" value="${modelId}"/>
+<@p.submit /> &nbsp; <@p.reset /></@p.td>
+</@p.form>

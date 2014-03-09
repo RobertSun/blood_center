@@ -1,0 +1,65 @@
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+<validators>
+	<field name="bean.loginName">
+		<field-validator type="requiredstring">
+			<message>该项不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">2</param>
+			<param name="maxLength">20</param>
+			<param name="trim">false</param>
+			<message>必须在${minLength}到${maxLength}个字符之间</message>
+		</field-validator>
+	</field>
+	<field name="bean.password">
+		<field-validator type="requiredstring">
+			<message>该项不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="maxLength">32</param>
+			<param name="trim">false</param>
+			<message>长度不能超过${maxLength}个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.email">
+		<field-validator type="requiredstring">
+			<message>该项不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="maxLength">32</param>
+			<param name="trim">false</param>
+			<message>长度不能超过${maxLength}个字符</message>
+		</field-validator>
+		<field-validator type="email">
+			<message>不合法的邮箱地址</message>
+		</field-validator>
+	</field>
+	<field name="bean.zip">
+		<field-validator type="stringlength">
+			<param name="maxLength">20</param>
+			<param name="trim">false</param>
+			<message>长度不能超过${maxLength}个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.address">
+		<field-validator type="stringlength">
+			<param name="maxLength">250</param>
+			<param name="trim">false</param>
+			<message>长度不能超过${maxLength}个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.tel">
+		<field-validator type="stringlength">
+			<param name="maxLength">250</param>
+			<param name="trim">false</param>
+			<message>长度不能超过${maxLength}个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.mobile">
+		<field-validator type="stringlength">
+			<param name="maxLength">250</param>
+			<param name="trim">false</param>
+			<message>长度不能超过${maxLength}个字符</message>
+		</field-validator>
+	</field>
+</validators>

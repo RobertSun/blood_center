@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--独立模板-->
+	<package name="auxiliary.front.inde" namespace="/jeecms" extends="inde-default">
+		<!--留言板-->
+		<action name="Guestbook*" method="guestbook" class="auxiliary.auxiIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<!--投票-->
+		<action name="VoteResult" method="voteResult" class="auxiliary.auxiIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<!--献血预约-->
+		<action name="Booking" method="booking" class="auxiliary.auxiIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<action name="BookingSubmit" method="bookingSave" class="auxiliary.auxiIndeAct">
+			<result>${tplPath}</result>
+			<result name="BookingBack" type="redirectAction">
+				<param name="namespace">/jeecms</param>
+				<param name="actionName">Booking</param>
+			</result>
+		</action>
+		<action name="BookingBack" method="bookingBack" class="auxiliary.auxiIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<!--献血检验结果查询-->
+		<action name="SearchTest" method="searchTest" class="auxiliary.auxiIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<action name="SearchTestResult" method="searchTestResult" class="auxiliary.auxiIndeAct">
+			<result>${tplPath}</result>
+			<result name="SearchBack" type="redirectAction">
+				<param name="namespace">/jeecms</param>
+				<param name="actionName">SearchTest</param>
+			</result>
+		</action>
+		<action name="BookingSearchBack" method="bookingSearchBack" class="auxiliary.auxiIndeAct">
+			<result>${tplPath}</result>
+		</action>
+	</package>
+	<!--标签-->
+	<package name="auxiliary.front.tag" namespace="/jeecms/tag/auxiliary" extends="tag-default">
+		<!--留言列表-->
+		<action name="MsgList" method="msgList" class="auxiliary.msgPartAct">
+			<result name="sysTpl">/WEB-INF/ftl_lib/jeecms/auxiliary/msg_list.ftl</result>
+			<result>${tplPath}</result>
+		</action>
+		<!--留言列表Inner-->
+		<action name="MsgListInner" method="msgListInner" class="auxiliary.msgPartAct">
+			<result></result>
+		</action>
+		<!--留言类别-->
+		<action name="MsgCtgListInner" method="msgCtgListInner" class="auxiliary.msgPartAct">
+			<result></result>
+		</action>
+		<!--投票-->
+		<action name="VoteTopic" method="voteTopic" class="auxiliary.votePartAct">			
+			<result name="sysTpl">/WEB-INF/ftl_lib/jeecms/auxiliary/vote_topic.ftl</result>
+			<result>${tplPath}</result>
+		</action>
+		<!--投票Inner-->
+		<action name="VoteTopicInner" method="msgCtgListInner" class="auxiliary.msgPartAct">
+			<result></result>
+		</action>
+	</package>
+	<!--AJAX-->
+	<package name="auxiliary.front.ajax" namespace="/jeecms/ajax/auxiliary" extends="ajax-default">
+		<!--留言-->
+		<action name="msgSave" method="msgSave" class="auxiliary.auxiFrontAjaxAct">
+			<result type="json"/>
+		</action>
+		<!--通过献血码获取验证码-->
+		<action name="SearchVerifyCodeByDonCode" method="searchVerifyCodeByDonCode" class="auxiliary.auxiFrontAjaxAct">
+			<result type="json"/>
+		</action>
+		<!--通过证件获取验证码-->
+		<action name="SearchVerifyCodeByIdCode" method="searchVerifyCodeByIdCode" class="auxiliary.auxiFrontAjaxAct">
+			<result type="json"/>
+		</action>
+	</package>
+</struts>

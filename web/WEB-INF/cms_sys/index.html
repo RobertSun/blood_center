@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>后台管理</title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+var url = location.href;
+var index = url.indexOf('jsessionid');
+if(index != -1) {
+	var sid = url.substr(index+11);
+	document.cookie = "JSESSIONID="+sid+";path=/;";
+}
+
+function resizeFrame() {
+	document.getElementById("mainFrame").style.height = document.body.offsetHeight-document.getElementById("top").offsetHeight-1+"px";
+}
+$(window).load(function() {
+	resizeFrame();
+});
+$(window).resize(function() {
+	resizeFrame();
+});
+</script>
+<style type="text/css">
+html{height:100%; overflow:hidden;}
+body{height:100%;}
+</style>
+</head>
+<body>
+<!--页头Begin-->
+<div id="top">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="330"><img src="${base}/cms_res/img/admin/cms_logo.jpg" border="0" /></td>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="32" align="right" background="${base}/core_res/img/admin/top_bg.jpg">
+		<table border="0" cellspacing="0" cellpadding="0" style="margin-top:5px;">
+          <tr>
+          	<td align="left">
+          	<#if websiteList?size == 1>
+				<span style="color:red;">${websiteList[0].name}</span>
+			<#elseif websiteList?size gt 1>
+				<select onchange="location=this.options[this.selectedIndex].value;">
+				<#list websiteList as website>
+					<#if website.currentSystem=='jeecms'>
+					<option value="${website.webUrl}/admin/cms/Com_index.do${sessionAppend}"<#if website.id==webId> selected="selected"</#if>>${website.name}</option>
+				<#else>
+				    <option value="${website.webUrl}/admin/bbs/Com_index.do${sessionAppend}"<#if website.id==webId> selected="selected"</#if>>${website.name}</option>
+				</#if> 
+				</#list>
+				</select>
+			</#if>&nbsp;
+          	</td>
+            <td width="17" align="center"><img src="${base}/core_res/img/admin/msg2.jpg" width="10" height="8" border="0"/></td>
+            <td width="80" align="left"><span style="color:#FFF">您好, ${user.loginName}</span></td>
+            <td width="17" align="center"><img src="${base}/core_res/img/admin/ico5.jpg" border="0"/></td>
+            <td width="60" align="left"><a href="${base}/login/CmsLogout.do" class="channel" onclick="return confirm('您确定退出吗？');">退 出</a></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+          	<@p.operateRight operate="/admin/cms/Com_index">
+            <td width="95" align="right" background="${base}/core_res/img/admin/sy_bg.jpg">
+            	<a href="${base}/admin/cms/Com_index.do">首 页</a> &nbsp;
+			</td>
+			</@p.operateRight>
+          	<@p.operateRight operate="/admin/article/channel/Com_main">
+			<td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+            <td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+            	<a href="${base}/admin/article/channel/Com_main.do" target="mainFrame">文章栏目</a>
+            </td>
+			</@p.operateRight>
+          	<@p.operateRight operate="/admin/article/article/Com_main">
+			<td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+            <td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+            	<a href="${base}/admin/article/article/Com_main.do" target="mainFrame">文章内容</a>
+            </td>
+			</@p.operateRight>
+			<!--
+			<@p.operateRight operate="/admin/bbk/frame/Com_main">
+			<td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+            <td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+            	<a href="${base}/admin/bbk/frame/Com_main.do" target="mainFrame">产品中心</a>
+            </td>
+			</@p.operateRight>
+             <@p.operateRight operate="/admin/bbk/frame/Com_downloadmain">
+			<td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+            <td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+            	<a href="${base}/admin/bbk/frame/Com_downloadmain.do" target="mainFrame">下载中心</a>
+            </td>
+			</@p.operateRight>
+			-->
+          	<@p.operateRight operate="/admin/cms/frame/document_main">
+			<td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+            <td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+            	<a href="${base}/admin/cms/frame/document_main.do" target="mainFrame">文档维护</a>
+            </td>
+			</@p.operateRight>	
+          	<@p.operateRight operate="/admin/download/channel/Com_main">
+			<td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+            <td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+            	<a href="${base}/admin/download/channel/Com_main.do" target="mainFrame">下载栏目</a>
+            </td>
+			</@p.operateRight>
+          	<@p.operateRight operate="/admin/download/download/Com_main">
+			<td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+            <td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+            	<a href="${base}/admin/download/download/Com_main.do" target="mainFrame">下载内容</a>           
+            </td>
+			</@p.operateRight>
+          	<@p.operateRight operate="/admin/core/template/Com_main">
+            <td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+			<td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+            	<a href="${base}/admin/core/template/Com_main.do" target="mainFrame">模板管理</a>
+			</td>
+			</@p.operateRight>
+          	<@p.operateRight operate="/admin/core/resource/Com_resMain">
+            <td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+			<td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+            	<a href="${base}/admin/core/resource/Com_resMain.do" target="mainFrame">资源管理</a>
+			</td>
+			</@p.operateRight>
+          	<@p.operateRight operate="/admin/cms/frame/auxiliary_main">
+            <td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+			<td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+            	<a href="${base}/admin/cms/frame/auxiliary_main.do" target="mainFrame">辅助系统</a>
+			</td>
+			</@p.operateRight>
+          	<@p.operateRight operate="/admin/cms/frame/core_main">
+            <td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+			<td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+            	<a href="${base}/admin/cms/frame/core_main.do" target="mainFrame">核心功能</a>
+			</td>
+			</@p.operateRight>
+          	<@p.operateRight operate="/admin/cms/frame/config_main">
+            <td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+			<td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+            	<a href="${base}/admin/cms/frame/config_main.do" target="mainFrame">网站配置</a>
+			</td>
+			</@p.operateRight>
+            <td width="8"><img src="${base}/core_res/img/admin/menu_sep.jpg" border="0" /></td>
+			<td width="76" align="center" background="${base}/core_res/img/admin/menu_bg.jpg">
+			</td>
+            <td background="${base}/core_res/img/admin/menu_bg.jpg">&nbsp; </td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="99" align="center" background="${base}/core_res/img/admin/msg_bg.jpg">
+    <img src="${base}/core_res/img/admin/xs.gif" width="99" height="26" border="0"/></td>
+    <td background="${base}/core_res/img/admin/msg_bg.jpg"><!--<a href="javascript:void(0);">关闭左栏</a>-->&nbsp;</td>
+    <td width="73" align="center" background="${base}/core_res/img/admin/msg_bg.jpg">
+    【<a href="${base}/" target="_blank">查看首页</a>】</td>
+    <td width="28" background="${base}/core_res/img/admin/msg_bg.jpg">
+    <img src="${base}/core_res/img/admin/tleft.jpg" width="28" height="26" border="0"/></td>
+    <td width="140" align="center" background="${base}/core_res/img/admin/tbg.jpg">
+    <script language="JavaScript" type="text/javascript">
+		<!--
+				var enabled = 0; today = new Date();
+				var day; var date;
+				if(today.getDay()==0) day = " 星期日"
+				if(today.getDay()==1) day = " 星期一"
+				if(today.getDay()==2) day = " 星期二"
+				if(today.getDay()==3) day = " 星期三"
+				if(today.getDay()==4) day = " 星期四"
+				if(today.getDay()==5) day = " 星期五"
+				if(today.getDay()==6) day = " 星期六"
+				date = (today.getFullYear()) + "年" + (today.getMonth() + 1 ) + "月" + today.getDate() + "日" + day +"";
+				document.write(date);
+		// -->
+	  </script></td>
+  </tr>
+</table>
+<div style="border-top:1px solid #1879B0;"></div>
+</div>
+<!--页头End-->
+<!--主体框架Begin-->
+<iframe id="mainFrame" name="mainFrame" src="Com_main.do" frameborder="0" scrolling="no" style="width:100%;"></iframe>
+<!--主体框架End-->
+<div style="border-top:1px solid #1879B0;"></div>
+</body>
+</html>

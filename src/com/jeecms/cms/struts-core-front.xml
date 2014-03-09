@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--动态系统-->
+	<package name="core.front.dynamic" namespace="" extends="empty-default">
+		<action name="**" class="core.dynamicSystemAct">
+			<result type="chain">
+				<param name="namespace">${namespace}</param>
+				<param name="actionName">${actionName}</param>
+			</result>
+			<interceptor-ref name="startTime"/>
+			<interceptor-ref name="exception"/>
+			<interceptor-ref name="domain"/>
+			<interceptor-ref name="cookieIdentity"/>
+			<interceptor-ref name="url"/>
+		</action>		
+	</package>
+	
+	<package name="front.attachment" namespace="/front/attachment" extends="inde-default">
+		<action name="Com_*" method="{1}" class="core.attachmentAct">
+			<result name="edit">/WEB-INF/bbs_sys/topic/img.html</result>
+		</action>
+	</package>
+</struts>

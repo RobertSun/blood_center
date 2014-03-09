@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--登录-->
+	<package name="cms.login" namespace="/login" extends="core-default">
+		<global-results>
+			<result name="logout" type="redirectAction">
+				<param name="namespace">/login</param>
+				<param name="actionName">Jeecms</param>
+			</result>
+			<result name="loginInput">/WEB-INF/cms_sys/login.html</result>
+		</global-results>
+		<action name="Jeecms" method="loginInput" class="cms.adminLoginAct"/>
+		<action name="CmsLogout" method="logout" class="cms.adminLoginAct"/>
+		<action name="CmsSubmit" method="login" class="cms.adminLoginAct">
+			<result name="success" type="redirectAction">
+				<param name="actionName">Com_index</param>
+				<param name="namespace">/admin/cms</param>
+			</result>
+		</action>
+	</package>
+	<!--后台首页-->
+	<package name="cms.console" namespace="/admin/cms" extends="core-default">
+		<action name="Com_*" method="{1}" class="cms.adminConsoleAct">
+			<result name="index">/WEB-INF/cms_sys/index.html</result>
+			<result name="main">/WEB-INF/cms_sys/main.html</result>
+			<result name="left">/WEB-INF/cms_sys/left.html</result>
+			<result name="right">/WEB-INF/cms_sys/right.html</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--验证用户名-->
+	<package name="core.common.ajax" namespace="/jeecms/core/ajax" extends="ajax-default">
+		<action name="checkUserName" method="checkUserName" class="core.userAjaxAct"/>
+		<action name="checkEmail" method="checkEmail" class="core.userAjaxAct"/>
+	</package>
+</struts>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/article_sys/head.ftl"/>
+<script type="text/javascript">
+function checkSubmit() {
+  var f = document.getElementById("checkForm");
+	if(document.getElementById('pass').checked) {
+	  f.action = '${base}/admin/article/article/Com_signin.do';
+	} else {
+	  f.action = '${base}/admin/article/article/Com_reject.do';
+	}
+	f.submit();
+}
+</script>
+<style type="text/css">
+html{height:100%; overflow:hidden;}
+body{height:100%;}
+</style>
+</head>
+<body onresize="resizeFrame();">
+<form id="checkForm" method="post">
+<@p.hidden name="pageNo" />
+<input type="hidden" name="id" value="${bean.id}"/>
+<input type="hidden" name="updateType" value="${updateType}"/>
+<#list Parameters?keys as pkey>
+  <#if pkey?starts_with('query')>
+    <@p.hidden name="${pkey}" />
+  </#if>
+</#list>
+<div style="padding:4px;">
+<input type="radio" name="isPass" value="true" id="pass" checked="checked"/><label for="pass">签收</label>
+<input type="radio" name="isPass" value="false" id="unpass"/><label for="unpass">退回</label>
+&nbsp; 审核意见：<input type="text" name="checkOpinion" size="30" onkeypress="if(event.keyCode==13){checkSubmit();return true;}"/>
+<input type="button" value="确定" onclick="checkSubmit();" />
+</div>
+</form>
+<iframe id="check_view_frame" src="${bean.url}" style="width:100%;"></iframe>
+<script type="text/javascript">
+function resizeFrame() {
+	document.getElementById("check_view_frame").style.height = document.body.offsetHeight-document.getElementById("checkForm").offsetHeight-1+"px";
+}
+resizeFrame();
+</script>
+</body>
+</html>

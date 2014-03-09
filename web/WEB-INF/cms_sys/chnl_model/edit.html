@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#submitForm").validate();
+});
+</script>
+<style type="text/css">
+.control{padding:10px 10px}
+.line{border-top:1px dashed #ccc;padding:2px 0px;}
+#dynamicDiv{}
+</style>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 核心功能 - 模型管理 - 修改</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回列表" onclick="this.form.action='Com_list.do';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<form id="addModelItemForm" action="Com_addItem.do" method="post">
+	<input type="hidden" name="modelId" value="${bean.id}"/>
+	<input type="hidden" id="itemType" name="itemType" value="1"/>
+</form>
+<@p.form id="submitForm" labelWidth="15" action="Com_update">
+<@p.text colspan="1" width="50" label="名称" name="bean.name"/>
+<@p.text colspan="1" width="50" label="简称" name="bean.shortName"/><@p.tr/>
+<@p.text colspan="1" width="50" label="栏目模板前缀" name="bean.tplPrefixChannel"/>
+<@p.text colspan="1" width="50" label="内容模板前缀" name="bean.tplPrefixContent"/><@p.tr/>
+<@p.radio colspan="1" width="50" label="是否有子栏目" name="bean.hasChild" list={"true":"是","false","否"}/>
+<@p.radio colspan="1" width="50" label="是否显示" name="bean.display" list={"true":"是","false","否"}/><@p.tr/>
+<@p.text colspan="1" width="50" label="排列是顺序" name="bean.priority"/>
+<@p.select colspan="1" width="50" label="所属系统" name="bean.sysType" list=stack.findValue('@com.jeecms.cms.Constants@CMSSYS_TYPES') headerKey="" headerValue="所有系统共用"/><@p.tr/>
+<@p.td colspan="2" label="栏目模型">
+<div id="dynamicDiv">
+<div class="control">
+	<input type="button" value="添加新字段" onclick="$('#itemType').val('1');$('#addModelItemForm').submit();"/>
+	<span style="color:red">一般情况下无需添加和删除字段</span>
+</div>
+<#assign itemIndex = -1/>
+<#list bean.chnlItems as item>
+<#assign itemIndex=itemIndex+1/>
+<div id="dy_${itemIndex}" class="line">
+<input type="hidden" name="modelItems[${itemIndex}].id" value="${item.id}"/>
+名称：<input type="text" name="modelItems[${itemIndex}].name" value="${item.name}" size="10"/>
+标题：<input type="text" name="modelItems[${itemIndex}].label" value="${item.label!}" size="13"/>
+帮助：<input type="text" name="modelItems[${itemIndex}].help" value="${item.help!}" size="13"/>
+排序：<input type="text" name="modelItems[${itemIndex}].priority" value="${item.priority}" size="3"/>
+显示：<input type="checkbox" name="modelItems[${itemIndex}].checked" value="true"<#if item.checked> checked="checked"</#if>/>
+<a href="Com_editItem.do?id=${item.id}" class="pn-loperator">修改</a>
+<a href="javascript:void(0);" onclick="$('#dy_${itemIndex}').remove();" class="pn-loperator">删除</a>
+</div>
+</#list>
+</div>
+</@p.td><@p.tr/>
+<@p.td colspan="2" label="内容模型">
+<div id="dynamicDiv">
+<div class="control">
+	<input id="addButton" type="button" value="添加新字段" onclick="$('#itemType').val('2');$('#addModelItemForm').submit();"/>
+	<span style="color:red">一般情况下无需添加和删除字段</span>
+</div>
+<#list bean.contentItems as item>
+<#assign itemIndex=itemIndex+1/>
+<div id="dy_${itemIndex}" class="line">
+<input type="hidden" name="modelItems[${itemIndex}].id" value="${item.id}"/>
+名称：<input type="text" name="modelItems[${itemIndex}].name" value="${item.name}" size="10"/>
+标题：<input type="text" name="modelItems[${itemIndex}].label" value="${item.label!}" size="13"/>
+帮助：<input type="text" name="modelItems[${itemIndex}].help" value="${item.help!}" size="13"/>
+排序：<input type="text" name="modelItems[${itemIndex}].priority" value="${item.priority}" size="3"/>
+显示：<input type="checkbox" name="modelItems[${itemIndex}].checked" value="true"<#if item.checked> checked="checked"</#if>/>
+<a href="Com_editItem.do?id=${item.id}" class="pn-loperator">修改</a>
+<a href="javascript:void(0);" onclick="$('#dy_${itemIndex}').remove();" class="pn-loperator">删除</a>
+</div>
+</#list>
+</div>
+</@p.td><@p.tr/>
+<@p.td colspan="2">
+	<@p.hidden name="bean.id"/>
+	<span id="pmsg" style="color:red;display:none;">正在传送数据，请稍候...</span>
+	<@p.submit onclick="$(this).hide();$('#pmsg').show();"/> &nbsp; <@p.reset />
+</@p.td>
+</@p.form>
+</div>
+</body>
+</html>

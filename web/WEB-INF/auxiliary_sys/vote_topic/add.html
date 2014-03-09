@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/auxiliary_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+<#assign lineNum = 4/>
+var lineNum = ${lineNum};
+function addLine(count) {
+	count = count || 1;
+	for(var i=0;i<count;i++) {
+		lineNum++;
+		$('#dynamicDiv div:last').after(getLine(lineNum));
+	}
+}
+function getLine(num) {
+  return '<div id="dynamicDiv_'+num+'">'+
+'标题：<input type="text" name="voteItems['+num+'].title" size="50"/>&nbsp; '+
+'票数：<input type="text" name="voteItems['+num+'].voteCount" value="0" size="5"/>&nbsp; '+
+'排序：<input type="text" name="voteItems['+num+'].priority" value="'+(num+1)+'" size="5"/>&nbsp; '+
+'<input type="button" value="删除" onclick="$(dynamicDiv_'+num+').remove();"/>'+
+'</div>';
+}
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 辅助系统 - 投票主题 - 添加</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回列表" onclick="this.form.action='Com_list.do';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form id="jvForm" labelWidth="20" action="Com_save">
+<@p.text label="标题" name="bean.title" size="50" required="true" class="required" maxlength="255"/>
+<@p.textarea label="描述" name="bean.description" cols="49" rows="4" maxlength="255"/>
+<@p.td colspan="1" label="投票时间限制：<br/>(留空不做限制)&nbsp;" hasColon="false">
+开始时间：<@p.text name="bean.startTime" /> 格式：2008-08-08 20:00:00<br/>
+结束时间：<@p.text name="bean.endTime" /> 格式：2008-08-08 20:00:00
+</@p.td><@p.tr/>
+<@p.text label="重复投票时间" id="reHour" name="bean.repeateHour" value="24" help="单位：小时。<span style='cursor:pointer;' onclick='$(\"#reHour\").val(\"0\");'> 0 </span>为不限制重复投票；<span style='cursor:pointer;' onclick='$(\"#reHour\").val(\"999999\");'>999999</span>为禁止重复投票。"/>
+<@p.radio label="是否限制用户" name="bean.restrictMember" list={'true':'是', 'false':'否'} value="false" help="（是：必须登录才能投票；否：允许游客投票）"/>
+<@p.radio label="是否限制IP" name="bean.restrictIp" list={'true':'是', 'false':'否'} value="false"/>
+<@p.radio label="是否限制COOKIE" name="bean.restrictCookie" list={'true':'是', 'false':'否'} value="true" help="（可以识别同一IP的不同电脑）"/>
+<@p.td label="最多能选几项"><@p.text name="bean.multiSelect" value="1"/> &nbsp;
+<@p.checkbox labelFor="最新投票" name="bean.current" value="true" checked="checked"/> &nbsp;
+<@p.checkbox labelFor="暂停投票" name="bean.disabled" value="true"/>
+</@p.td><@p.tr/>
+<@p.td colspan="1">
+<div id="dynamicDiv">
+<div>投票选项&nbsp; <input id="addCount" type="text" value="1" size="2"/> <input type="button" value="新增几行" onclick="addLine($(addCount).val());"/></div>
+<#list 0..lineNum as i>
+<div id="dynamicDiv_${i}">
+标题：<input type="text" name="voteItems[${i}].title" size="50"/>&nbsp;
+票数：<input type="text" name="voteItems[${i}].voteCount" value="0" size="5"/>&nbsp;
+排序：<input type="text" name="voteItems[${i}].priority" value="${i+1}" size="5"/>&nbsp;
+<input type="button" value="删除" onclick="$(dynamicDiv_${i}).remove();"/>
+</div>
+</#list>
+</div>
+</@p.td><@p.tr/>
+<@p.td><@p.submit value="保存"/> &nbsp; <@p.reset value="重置" /></@p.td>
+</@p.form>
+<#include "/WEB-INF/common/alert_message.ftl" />
+</div>
+</body>
+</html>

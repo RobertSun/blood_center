@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>jeecms-left</title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+$(function(){
+	JCore.lmenu('lmenu');
+});
+</script>
+</head>
+<body class="lbody">
+<ul id="lmenu">
+<li><a href="Com_right.do" target="rightFrame">欢迎页</a></li>
+<@p.operateRight operate="/admin/cms/config/Cache_configEdit">
+<li><a href="${base}/admin/cms/config/Cache_configEdit.do" target="rightFrame">缓存管理</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/cms/config/Self_edit">
+<li><a href="${base}/admin/cms/config/Self_edit.do" target="rightFrame">个人信息管理</a></li>
+</@p.operateRight>
+</ul>
+</body>
+</html>

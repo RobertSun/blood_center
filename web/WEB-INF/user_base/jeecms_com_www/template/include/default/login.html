@@ -1,0 +1,58 @@
+<div class="mod-login">
+[#if cmsMember?exists]
+<table width="98%" border="0" cellspacing="0" cellpadding="0">
+  <tr >
+    <td width="40%" height=26px align="right">用户名：</td>
+    <td width="60%">${cmsMember.loginName}</td>
+  </tr>
+  <tr >
+    <td  height=26px align="right">级　别：</td>
+    <td>${cmsMember.group.name}</td>
+  </tr>
+  <tr>
+    <td  colspan="2" align="center">
+	【<a href="${base}/cmsmember/index.jspx" target="_top">会员中心</a>】&nbsp;&nbsp;
+	【<a href="${base}/jeecms/LoginAloneLogout.jspx">安全退出</a>】</td>
+  </tr>
+</table>
+[#else]
+<script type="text/javascript">
+	$(function() {
+		$("#in_jvForm").validate($.validator.AlertError);
+		new JCore.CheckCode($('#checkCode'),'${base}/CheckCode.svl');
+		[#if actionErrors?size > 0]
+		$('#username').focus();
+		[/#if]
+	});
+</script>
+<form id="in_jvForm" action="${base}/jeecms/LoginAloneSubmit.jspx" method="post">
+	<input type="hidden" name="redirectUrl" value="${wholeUrl}" />
+	<table>
+		<tbody>
+			<tr>
+				<th>用户名</th>
+				<td colspan="2"><input class="Q" type="text" name="username" size="16" /></td>
+            </tr>
+			<tr>
+				<th>密&nbsp;&nbsp;码</th>
+				<td colspan="2"><input class="Q" type="password" name="password" size="16" /></td>
+			</tr>
+            <tr>
+				<th>验证码</th>
+				<td colspan="2"><input class="Q" type="text" id="checkCode" name="checkCode" size="4" /></td>
+            </tr>
+			<tr class="handle">
+				<th><a href="${base}/jeecms/RegisterInput.jspx">注册</a> |</th>
+				<td style="width:60px;">
+					<a href="#">找回密码</a>
+				</td>
+                <td>
+					<input class="B" type="image" src="${root}/common/images/login_btn1.png" alt="submit" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</form>
+    [#include '/WEB-INF/common/alert_message.ftl'/]
+[/#if]
+</div>

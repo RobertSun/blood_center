@@ -1,0 +1,49 @@
+                    <div class="mod-bmenu">
+                    [#if chnl.name=='关于我们' || chnl.parent.name=='关于我们' || chnl.parent.name=='信息沟通']
+                        <div class="hd hd02">
+                    [#elseif chnl.parent.name=='献血招募' || chnl.parent.name=='信息反馈' || chnl.parent.name=='献血服务' || chnl.parent.name=='临床输血']
+                    	<div class="hd">
+                    [#else]
+                    	<div class="hd hd01">
+                    [/#if]
+                        
+                        [#if chnl.parent.name=='中心概况'||chnl.parent.name=='中心概述' || chnl.name=='中心概况']
+					    <img class="t" src="${root}/common/images/bm_t1.png" alt="" />
+					    [#elseif chnl.parent.name=='献血新闻' || chnl.name=='献血新闻']
+					    <img class="t" src="${root}/common/images/bm_t4.png" alt="" />
+					    [#elseif chnl.parent.name=='献血服务' || chnl.name=='献血服务']
+					    <img class="t" src="${root}/common/images/bm_t5.png" alt="" />
+					    [#elseif chnl.parent.name=='临床输血' || chnl.name=='临床输血']
+					    <img class="t" src="${root}/common/images/bm_t7.png" alt="" />
+					    [#elseif chnl.parent.name=='输血研究' || chnl.name=='输血研究']
+					    <img class="t" src="${root}/common/images/bm_t2.png" alt="" />
+					    [#elseif chnl.parent.name=='科研教育' || chnl.name=='科研教育']
+					    <img class="t" src="${root}/common/images/bm_t8.png" alt="" />
+					    [#elseif chnl.parent.name=='志愿服务' || chnl.name=='志愿服务']
+					    <img class="t" src="${root}/common/images/bm_t9.png" alt="" />
+					    [#elseif chnl.parent.name=='献血招募' || chnl.parent.name=='信息反馈' || chnl.name=='献血招募']
+					    <img class="t" src="${root}/common/images/bm_t6.png" alt="" />
+					    [#elseif chnl.parent.name=='信息沟通']
+					    <img class="t" src="${root}/common/images/bm_t3.png" alt="" />
+					    [#elseif chnl.name=='关于我们' || chnl.parent.name=='关于我们']
+					    <img class="t" src="${root}/common/images/bm_t10.png" alt="" />
+					    [#else]
+					    [/#if]
+                        </div>
+                        <ul class="bd">                        
+                        	[#assign chnlname = (chnl.name)!("")]
+                        	
+                        	[#assign chnlid = (chnl.id)]
+                        	[#if chnl.child?size == 0]
+                        	[#assign chnlid = (chnl.parentId)]
+                        	[/#if]
+                        	[@cms.ChnlList id='${chnlid}' inner='1';c]
+                        		<li class="item">
+                        			<a href="${c.url}" [#if chnlname==c.name]class="current"[/#if]>${c.name}</a>
+                        		</li>
+                        	[/@cms.ChnlList]                             
+                        </ul>
+                        <span class="cl"></span><span class="cr"></span>
+                    </div>
+                    
+                    

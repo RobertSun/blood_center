@@ -1,0 +1,9 @@
+[#--
+该模板用于用户自定义显示风格。
+调整标签参数sysTpl='0'可调用本模板
+--]
+<ul>
+[#list pagination.list as chnl]
+<li><a href="${chnl.url}" class="${linkClass}"[#if linkTarget=="1"] target="_blank"[/#if]>${chnl.name}</a></li>
+[/#list]
+</ul>

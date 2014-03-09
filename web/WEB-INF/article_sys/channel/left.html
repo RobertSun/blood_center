@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>left</title>
+<#include "/WEB-INF/article_sys/head.ftl"/>
+</head>
+<body class="lbody">
+<div class="lttop">
+	<a href="javascript:location.reload()">刷新目录</a>
+&nbsp;<@p.operateRight operate="/admin/cms/chnl_model/Com_list"> <a href="${base}/admin/cms/chnl_model/Com_list.do" target="rightFrame">模型管理</a></li></@p.operateRight>
+</div>
+<hr/>
+<@p.tree root=treeRoot showDeep=2 url="/admin/article/channel/Com_edit" durl="/admin/article/channel/Com_list"
+	dparams={"pid":"id"} params={"id":"id"} childName="treeChild" treeName="node.treeName+'[<span style=\"color:red\">'+node.model.shortName+'</span>]'"/>
+</body>
+</html>

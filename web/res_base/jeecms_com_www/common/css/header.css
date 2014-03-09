@@ -1,0 +1,60 @@
+.BLOODHOME {background:url(images/bloodhome.jpg) no-repeat 50% 0;}
+.BLOODTEST {background:url(images/bloodtest.jpg) no-repeat 50% 0;}
+#hd,#bd {width:1004px;margin:0 auto;text-align:left;}
+#hd {position:relative;margin-bottom:8px;}
+#hd .panel,
+#hd .logo {position:absolute;}
+
+#hd .panel {color:#1c4cb1;top:5px;right:12px;}
+#hd .panel a {color:#1c4cb1;text-decoration:none;}
+#hd .panel a:hover {color:#138ae6;}
+
+#hd .logo {top:40px;left:16px; display:none;}
+
+#hd .nav {padding-top:145px;}
+#hd .nav li {float:left;display:inline;}
+#hd .nav .top {background:url(images/nav_top.png) no-repeat;line-height:35px;height:35px;padding-left:15px;}
+#hd .nav .top ul {float:left;overflow:hidden;}
+#hd .nav .top li {background:url(images/nav_split.gif) no-repeat;margin-left:-1px;}
+#hd .nav .top a {color:#fff;float:left;display:inline;height:35px;background-repeat:no-repeat;background-position:50% 50%;text-indent:-999em;overflow:hidden;width:82px;}
+#hd .nav .n1 a {background-image:url(images/n1.gif);}
+#hd .nav .n2 a {background-image:url(images/n2.gif);}
+#hd .nav .n3 a {background-image:url(images/n3.gif);}
+#hd .nav .n4 a {background-image:url(images/n4.gif);}
+#hd .nav .n5 a {background-image:url(images/n5.gif);}
+#hd .nav .n6 a {background-image:url(images/n6.gif);}
+#hd .nav .n7 a {background-image:url(images/n7.gif);}
+#hd .nav .n8 a {background-image:url(images/n8.gif);}
+#hd .nav .n9 a {background-image:url(images/n9.gif);}
+#hd .nav .n10 a {background-image:url(images/n10.gif);}
+#hd .nav .n11 a {background-image:url(images/n11.gif);}
+#hd .nav .n12 a {background-image:url(images/n12.gif);}
+#hd .nav .n1 .current,
+#hd .nav .n1 a:hover {background-image:url(images/h1.png);}
+#hd .nav .n2 .current,
+#hd .nav .n2 a:hover {background-image:url(images/h2.png);}
+#hd .nav .n3 .current,
+#hd .nav .n3 a:hover {background-image:url(images/h3.png);}
+#hd .nav .n4 .current,
+#hd .nav .n4 a:hover {background-image:url(images/h4.png);}
+#hd .nav .n5 .current,
+#hd .nav .n5 a:hover {background-image:url(images/h5.png);}
+#hd .nav .n6 .current,
+#hd .nav .n6 a:hover {background-image:url(images/h6.png);}
+#hd .nav .n7 .current,
+#hd .nav .n7 a:hover {background-image:url(images/h7.png);}
+#hd .nav .n8 .current,
+#hd .nav .n8 a:hover {background-image:url(images/h8.png);}
+#hd .nav .n9 .current,
+#hd .nav .n9 a:hover {background-image:url(images/h9.png);}
+#hd .nav .n10 .current,
+#hd .nav .n10 a:hover {background-image:url(images/h10.png);}
+#hd .nav .n11 .current,
+#hd .nav .n11 a:hover {background-image:url(images/h11.png);}
+#hd .nav .n12 .current,
+#hd .nav .n12 a:hover {background-image:url(images/h12.png);}
+
+#hd .nav .sub {background:url(images/nav_sub.png) no-repeat;line-height:25px;height:25px;padding:0 10px;margin:0 23px;color:#b8bdc3;}
+#hd .nav .sub a {margin:0 5px;}
+#hd .nav .sub a.mover,
+#hd .nav .sub a:hover {color:#b00;text-decoration:none;}

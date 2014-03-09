@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>edit</title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+<script type="text/javascript">
+function ajaxSubmit() {
+	$.postJson('${base}/admin/core/resource/ajax/resUpdate.do', {
+		'tplName' : $('#tplName').val(),
+		'tplContent' : $('#tplContent').val(),
+		'relPath' : $('#relPath').val()
+	}, function(data) {
+		if (data.success) {
+			alert(data.msg);
+		} else {
+			alert(data.msg);
+		}
+	});
+}
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 资源管理 - 修改</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回列表" onclick="this.form.action='Com_resList.do?relPath=${parentPath?j_string}';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form onsubmit="ajaxSubmit();return false;">
+<@p.td label="文件名">${tplName}<@p.hidden id="tplName" name="tplName"/></@p.td><@p.tr/>
+<@p.textarea label="内容" id="tplContent" name="tplContent" cols="90" rows="20" onkeydown="if((event.keyCode==115||event.keyCode==83)&&event.ctrlKey){ajaxSubmit();return false;}"/>
+<@p.td><@p.hidden id="relPath" name="relPath" /><@p.button value="保存" onclick="ajaxSubmit();"/>&nbsp;&nbsp;&nbsp;<@p.reset value="重置" /></@p.td>
+</@p.form>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.auxiliary.entity">
+	<class
+		name="VoteItem"
+		table="VOTE_ITEM"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="VOTEITEM_ID"
+		>
+			<generator class="native"/>
+		</id>
+
+		<property
+			name="title"
+			column="TITLE"
+			type="string"
+			not-null="false"
+			length="255"
+		/>
+		<property
+			name="description"
+			column="DESCRIPTION"
+			type="string"
+			not-null="false"
+			length="255"
+		/>
+		<property
+			name="voteCount"
+			column="VOTE_COUNT"
+			type="java.lang.Long"
+			not-null="false"
+			length="19"
+		/>
+		<property
+			name="priority"
+			column="PRIORITY"
+			type="integer"
+			not-null="true"
+			length="10"
+		/>
+		<many-to-one
+			name="topic"
+			column="VTOPIC_ID"
+			class="VoteTopic"
+			not-null="true"
+		>
+		</many-to-one>
+	</class>	
+</hibernate-mapping>

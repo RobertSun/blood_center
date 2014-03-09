@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 文档维护 - 评论管理 - 列表</div>
+	<form class="ropt" method="post">
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.table
+	cols=[{"label":"ID","name":"row.id"},
+		{"label":"文档","name":"'<a href=\"'+row.doc.url+'\" target=\"_blank\">'+row.doc.tit(25)+'</a>'","escape":false},
+		{"label":"会员","name":"row.member.loginName"},
+		{"label":"评论","name":"row.contentMember"},
+        {"label":"审核","name":"row.check?string('是','<span style=\"{color:red;}\">否</span>')","escape":false}
+        {"label":"禁用","name":"row.disabled?string('<strong>是</strong>','否')","escape":false}
+		]
+	rowIndex=false
+	normalOperate=[{"action":"Com_edit","name":"修改"},
+				{"action":"Com_delete","name":"删除","confirm":"您确定删除吗？"}
+				]
+	batchOperate=[{"action":"Com_check","name":"通过审核","confirm":"您确定通过审核吗？"},
+				{"action":"Com_delete","name":"删除","confirm":"您确定删除吗？"}
+				]
+/>
+<#include "/WEB-INF/common/alert_message.ftl"/>
+</div>
+</body>
+</html>

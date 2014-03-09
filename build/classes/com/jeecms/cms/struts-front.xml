@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--JEECMS前台页面-->
+	<package name="cms.front.page" namespace="/jeedynamic/jeecms" extends="empty-default">		
+		<action name="Page" class="cms.cmsPageAct">
+			<result>${tplPath}</result>
+			<result name="pageCache" type="pageCache">${tplPath}</result>
+			<interceptor-ref name="exception"/>
+			<interceptor-ref name="chain"/>
+		</action>
+	</package>
+	<!--栏目标签-->
+	<package name="cms.front.tag" namespace="/jeecms/tag/cms" extends="tag-default">
+		<action name="ChnlList" method="chnlList" class="cms.chnlPartAct">
+			<result name="sysTpl">/WEB-INF/ftl_lib/jeecms/cms/chnl_list.ftl</result>
+			<result>${tplPath}</result>
+		</action>
+		<action name="ChnlListInner" method="chnlListInner" class="cms.chnlPartAct"/>
+		<action name="CommentList" method="commentList" class="cms.commentPartAct">
+			<result name="sysTpl">/WEB-INF/ftl_lib/jeecms/cms/comment_list.ftl</result>
+			<result>${tplPath}</result>
+		</action>
+		<action name="CommentListInner" method="commentListInner" class="cms.commentPartAct"/>
+		<action name="AjaxLogin" method="ajaxLogin" class="cms.loginPartAct">
+			<result name="sysTpl">/WEB-INF/ftl_lib/jeecms/cms/ajax_login.ftl</result>
+			<result>${tplPath}</result>
+		</action>
+		<action name="TopicListInner" method="topicListInner" class="cms.topicPartAct"/>
+	</package>
+	<!--评论标签-->
+	<package name="cms.front.ajax" namespace="/jeecms/ajax/cms" extends="ajax-default">
+		<action name="CommentSubmit" method="commentSubmit" class="cms.commentIndeAct">
+			<result type="json"/>
+		</action>
+	</package>
+	<!--独立模板-->
+	<package name="cms.front.inde" namespace="/jeecms" extends="inde-default">
+		<!--会员注册-->
+		<action name="Register*" method="register{1}" class="cms.registerIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<!--会员包含页登录-->
+		<action name="LoginFrame*" method="loginFrame{1}" class="cms.loginIndeAct">
+			<result>${tplPath}</result>
+			<result name="logout" type="redirectAction">
+				<param name="namespace">/jeecms</param>
+				<param name="actionName">LoginFrameInput</param>
+			</result>
+		</action>
+		<!--会员独立页登录-->
+		<action name="LoginAlone*" method="loginAlone{1}" class="cms.loginIndeAct">
+			<result>${tplPath}</result>
+			<result name="lastUrl" type="redirect">${redirectUrl}</result>
+		</action>
+		<!--评论页-->
+		<action name="Comment*" method="comment" class="cms.commentIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<!--专题页-->
+		<action name="topic" method="topic" class="cms.topicIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<action name="module*" method="pung" class="cms.moduleAct">
+			<result>${tplPath}</result>
+		</action>
+	</package>
+	<!--会员模板-->
+	<package name="cms.front.member" namespace="/cmsmember" extends="inde-default">
+		<!--会员中心首页-->
+		<action name="index" method="memberCenter" class="cms.memberIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<!--会员信息-->
+		<action name="MemberInfo*" method="memberInfo{1}" class="cms.memberIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<!--会员密码和邮箱-->
+		<action name="MemberPwd*" method="memberPwd{1}" class="cms.memberIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<!--我的评论-->
+		<action name="MemberComment*" method="memberComment" class="cms.memberIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<!--文章稿件管理-->
+		<action name="Article*" method="article{1}" class="cms.articleIndeAct">
+			<result>${tplPath}</result>
+		</action>
+	</package>
+</struts>

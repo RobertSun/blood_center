@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>jeecms-left</title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+$(function(){
+	JCore.lmenu('lmenu');
+});
+</script>
+</head>
+<body class="lbody">
+<ul id="lmenu">
+<@p.operateRight operate="/admin/article/chnl_model/Com_list">
+<li><a href="${base}/admin/article/chnl_model/Com_list.do" target="rightFrame">栏目模型</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/article/channel/Com_main">
+<li><a href="${base}/admin/article/channel/Com_main.do" target="mainFrame">栏目管理</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/article/article/Com_main">
+<li><a href="${base}/admin/article/article/Com_main.do" target="mainFrame">文章管理</a></li>
+</@p.operateRight>
+</ul>
+</body>
+</html>

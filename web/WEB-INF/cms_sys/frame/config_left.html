@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>jeecms-left</title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+$(function(){
+	JCore.lmenu('lmenu');
+});
+</script>
+</head>
+<body class="lbody">
+<ul id="lmenu">
+<@p.operateRight operate="/admin/core/config/Com_siteEdit">
+<li><a href="${base}/admin/core/config/Com_siteEdit.do" target="rightFrame">站点设置</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/core/config/Com_emailEdit">
+<li><a href="${base}/admin/core/config/Com_emailEdit.do" target="rightFrame"">邮件设置</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/cms/config/Com_configEdit">
+<li><a href="${base}/admin/cms/config/Com_configEdit.do" target="rightFrame">系统设置</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/auxiliary/config/Com_configEdit">
+<li><a href="${base}/admin/auxiliary/config/Com_configEdit.do" target="rightFrame">辅助设置</a></li>
+</@p.operateRight>
+<@p.operateRight operate="/admin/core/config/Com_globalEdit">
+<li><a href="${base}/admin/core/config/Com_globalEdit.do" target="rightFrame">全局设置</a></li>
+</@p.operateRight>
+</ul>
+</body>
+</html>

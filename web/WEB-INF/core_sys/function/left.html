@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>left</title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+</head>
+<body class="lbody">
+<div class="lttop">
+	<a href="javascript:location.reload()">刷新目录</a>
+&nbsp <a href="${base}/admin/cms/frame/core_main.do" target="mainFrame">返回菜单</a>
+</div>
+<hr/>
+<@p.tree root=funcRoot showDeep=2 url="/admin/core/function/Com_edit" durl="/admin/core/function/Com_list"
+	dparams={"pid":"id"} params={"id":"id"}/>
+</body>
+</html>

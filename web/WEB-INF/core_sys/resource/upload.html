@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 资源管理 - 添加</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回列表" onclick="this.form.action='Com_resList.do?relPath=${relPath?j_string}';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form labelWidth="15" action="Com_resUploadSubmit" enctype="multipart/form-data">
+<@p.td label="当前目录">${relPath?has_content?string(relPath,"资源根目录")}</@p.td><@p.tr/>
+<@p.td label="上传资源">
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+<@p.file name="resFile" size="60"/>
+</@p.td><@p.tr/>
+<@p.td><@p.hidden id="relPath" name="relPath" /><@p.submit value="保存"/> &nbsp; <@p.reset value="重置" /></@p.td>
+</@p.form>
+</div>
+</body>
+</html>

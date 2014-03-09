@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=gbk" />
+	<title>${chnl.name} - ${web.name}</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="robots" content="all" />
+	<meta name="author" content="" />
+	<link rel="stylesheet" type="text/css" href="${root}/common/css/theme.css" media="all" />
+</head>
+<body class="BLOODHOME">
+    [@cms.Include name='head.html' solution='default'/]
+    <div id="bd">
+        <div class="path" align="right">
+            您的位置: [@cms.Position/]
+        </div>
+        <div class="wrapper">
+                <div class="col w222 mr6">
+                    [@cms.Include name='menu.html' solution='default'/]
+                </div>
+                <div class="col w775">
+                    <div class="skin-gray mt18">
+                        <div class="hd">
+                            <h3>${chnl.name}</h3>
+                            <!--<a class="more" href="#"><img src="${root}/common/images/more.gif" alt="MORE"></a>-->
+                        </div>
+                        <div class="bd">
+                            ${chnl.content!}
+                            <div class="clear"></div>
+                        </div>
+                        <span class="cl"></span><span class="cr"></span>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    [@cms.Include name='foot.html' solution='default'/]
+</body>
+</html>

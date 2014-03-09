@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--下载搜索-->
+	<package name="download.front.inde" namespace="/download" extends="inde-default">
+		<action name="DownloadSearch*" method="search" class="download.downloadIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<action name="DownSort*" method="downSort" class="download.downloadIndeAct">
+			<result>${tplPath}</result>
+		</action>
+		<action name="UserDownload" method="userDownload" class="download.downloadIndeAct">
+			<result name="fail">
+				${tplPath}
+			</result>
+		</action>
+	</package>
+	<!--下载标签-->
+	<package name="download.front.tag" namespace="/download/tag" extends="tag-default">
+		<action name="DownloadList" method="downloadList" class="download.downloadPartAct">
+			<result name="sysTpl">/WEB-INF/ftl_lib/jeecms/download/download_list.ftl</result>
+			<result>${tplPath}</result>
+		</action>
+		<action name="DownSortList" method="downSortList" class="download.downloadPartAct">
+			<result name="sysTpl">/WEB-INF/ftl_lib/jeecms/download/download_list.ftl</result>
+			<result>${tplPath}</result>
+		</action>
+		<action name="Download" method="download" class="download.downloadPartAct">
+			<result></result>
+		</action>
+		<action name="DownloadListInner" method="downloadListInner" class="download.downloadPartAct">
+			<result></result>
+		</action>
+	</package>
+</struts>

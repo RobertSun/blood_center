@@ -1,0 +1,66 @@
+<script language="javascript">
+function check_votes(allowCount) {
+var voteItems=document.getElementsByName('voteItems');
+  var count = 0;
+  for(var i=0;i<voteItems.length;i++)
+  {
+   if(voteItems[i].checked){
+     count++;
+   }
+  }
+  if(count==allowCount&&allowCount>1){
+   for(var i=0;i<voteItems.length;i++){
+     if(!voteItems[i].checked){
+       voteItems[i].disabled = true;
+     }
+   }
+   return true;
+  }
+  else{
+    for(var i=0;i<voteItems.length;i++){
+       voteItems[i].disabled = false;
+    }
+  }
+  if(count==0){
+	  alert("对不起，请至少选择一个投票项！");
+	  return false;0
+  }
+  return true;
+}
+</script>	
+	<form name="votes" action="${base}/jeecms/VoteResult.jspx" method="get" target="_blank">
+	<dl>
+        [#list pagination.list as bo]
+		<dt>
+			${bo.title}
+			<input type="hidden" name="ids" value="${bo.id}"/></td>
+		</dt>
+		<dd>
+			<table>
+				<tbody>
+					[#if bo.multiSelect gt 1]
+						[#list bo.items as item]
+						<tr>
+							<td>
+								<input type="checkbox" name="items[${bo.id}]" value="${item.id}"  id="${item.id}"/>
+								${item.title}
+							</td>							
+						</tr>
+						[/#list]
+					[#else]
+						[#list bo.items as item]
+						<tr>
+							<td> <input class="R"  type="radio" name="items[${bo.id}]" value="${item.id}"/>${item.title}</td>							
+						</tr>
+						[/#list]
+					[/#if]													
+				</tbody>
+			</table>
+		</dd>
+        [/#list]
+	</dl>
+	<div class="sender">
+		<!--<input class="B" type="image" alt="submit" src="${root}/common/images/sendrest.png" onClick="return check_votes({bo.multiSelect})" />-->
+        <input class="B" type="image" alt="submit" src="${root}/common/images/sendrest.png" />
+	</div>
+	</form>	

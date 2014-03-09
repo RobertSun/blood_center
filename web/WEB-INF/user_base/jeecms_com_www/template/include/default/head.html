@@ -1,0 +1,99 @@
+    <div id="hd">
+    	<div class="curpoint">
+   			<a href="${base}/notice/310.htm" target="_blank"><img src="${root}/common/images/curpoint.gif" /></a>
+		</div>
+		<div class="panel" id="panel">
+			[#if cmsMember?exists]
+				欢迎你，${cmsMember.loginName} | 
+				<a href="${base}/cmsmember/index.jspx" target="_top">会员中心</a>|
+			[#else]
+				<a href="${base}/jeecms/LoginAloneInput.jspx">登录</a> | <a href="${base}/jeecms/RegisterInput.jspx">注册</a> | 
+			[/#if]
+			<a href="#">站内导航</a> | <a href="#">加入收藏</a>
+		</div>
+		<div class="logo"><a href="#"><img src="${root}/common/images/logo.png" alt="" /></a></div>
+		<div class="nav">
+			<div class="top">
+				<ul>
+                    [#assign chnlname = (chnl.name)!("n10")]
+					<li class="n1"><a [#if chnlname=="首页"]class="current"[/#if] href="${base}/index.jspa">首 页</a></li>
+                    [@cms.ChnlList id='' inner='1';c]
+                    [#assign curl= c.url]
+                    [#if c.id != 29]
+                    [#list c.child as item]
+                        [#assign curl=item.url]
+                        [#break]
+                    [/#list]
+                    [/#if]
+                    [#if c.name=='医院下载']
+                    	[#assign hosurl= c.url]
+                    [#else]
+                    <li class="${c.title!}"><a href="${curl}" [#if chnlname==c.name]class="current"[/#if]>${c.name}</a></li>
+                    [/#if]
+                    [/@cms.ChnlList]
+					<li class="n10"><a [#if chnlname=="n10"]class="current"[/#if] href="${base}/jeecms/Guestbook.jspx?msgCtgId=1">信息沟通</a></li>
+                    <li class="n11"><a [#if chnlname=="下载中心"]class="current"[/#if] href="${base}/down/index.htm">下载中心</a></li>
+					<li class="n12"><a [#if chnlname=="关于我们"]class="current"[/#if] href="${base}/about.htm">联系我们</a></li>
+				</ul>
+			</div>
+			<div class="sub">
+                [#if chnl?exists && chnl.child?size>0 && chnl.name!="首页"]
+                [#list chnl.child as item]
+				<a href="${item.url}" [#if chnlname==item.name]class="mover"[/#if]>${item.name}</a>
+                [#if item_has_next]|[/#if]
+                [/#list]
+                [#elseif chnl?? && chnl.parent?? && chnl.name != "献血招募" && chnl.name!='医院下载']
+                [#list chnl.parent.child as item]
+                <a href="${item.url}" [#if chnlname==item.name]class="mover"[/#if]>${item.name}</a>
+                [#if item_has_next]|[/#if]
+                [/#list]
+                [/#if]
+                
+                [#if chnl?exists && chnl.name=="下载中心" && hosurl?exists]
+                	<a href="${hosurl}">医院下载</a>
+                [/#if]
+			</div>
+		</div>
+	</div>
+<!-- QQ链接 -->
+<script>
+/*
+$(function(){
+	$(".qqlk").css("top","120px");
+	$(window).scroll(function(){
+		var h = 0
+		if(!window.innerHeight){
+		h = document.documentElement.scrollTop;//$('body').attr('scrollTop')+150;
+		}
+		$(".qqlk").css("top",h+100+"px");
+	});
+})
+*/
+function closeQQ(){
+	try{
+		$(".qqlk").fadeOut('fast');
+	}catch(e){
+		document.getElementById('qqlk').style.display='none';
+	}
+}
+</script>
+<div class="qqlk" id="qqlk">
+    <div style="height:85px;background:url(${root}/common/images/qq_top1.png) no-repeat;margin-left:-1px;">
+        <a href="javascript:closeQQ()"><img src="${root}/common/images/qq_delete.gif" style=" margin-left:75px; margin-top:20px; border:none;"/></a>
+    </div>
+    <div style="background:url(${root}/common/images/qq_bg.gif) repeat-y; width:101px; margin:0px;">
+   	 <div style=" height:23px;background:url(${root}/common/images/qq_bg.gif) repeat-y; width:101px;"><img src="${root}/common/images/qq_title1.gif" style="margin:8px 18px 0;"/></div>
+        <ul style="list-style:none; margin:0px;">
+            <li style=" height:23px;background:url(${root}/common/images/qq_button.png) no-repeat; margin-left:5px;"><a href="http://wpa.qq.com/msgrd?V=1&Uin=2686284278&Site=&Menu=yes" style=" color:#000; text-decoration:none;"><p style="height:23px; line-height:23px; margin:0 0 0 -10px; font-family:Arial, Helvetica, sans-serif; font-size:12px;">2686284278</p></a></li>
+            <li style=" height:23px;background:url(${root}/common/images/qq_button.png) no-repeat; margin-left:5px;"><a href="http://wpa.qq.com/msgrd?V=1&Uin=2460516451&Site=&Menu=yes" style=" color:#000; text-decoration:none;"><p style="height:23px; line-height:23px; margin:0 0 0 -10px; font-family:Arial, Helvetica, sans-serif; font-size:12px;">2460516451</p></a></li>
+        </ul>
+     <div style=" height:23px;background:url(${root}/common/images/qq_bg.gif) repeat-y; width:101px;"><img src="${root}/common/images/qq_title2.gif" style="margin:8px 18px 0;"/></div>
+     	<ul style="list-style:none; margin:0px;">
+            <li style=" height:23px;background:url(${root}/common/images/qq_button.png) no-repeat; margin-left:5px;"><a href="http://wpa.qq.com/msgrd?V=1&Uin=2425924947&Site=&Menu=yes" style=" color:#000; text-decoration:none;"><p style="height:23px; line-height:23px; margin:0 0 0 -10px; font-family:Arial, Helvetica, sans-serif; font-size:12px;">2425924947</p></a></li>
+            <li style=" height:23px;background:url(${root}/common/images/qq_button.png) no-repeat; margin-left:5px;"><a href="http://wpa.qq.com/msgrd?V=1&Uin=2350668326&Site=&Menu=yes" style=" color:#000; text-decoration:none;"><p style="height:23px; line-height:23px; margin:0 0 0 -10px; font-family:Arial, Helvetica, sans-serif; font-size:12px;">2350668326</p></a></li>
+        </ul>
+    </div>
+    <div>
+        <img src="${root}/common/images/qq_buttom.png"/>
+    </div>
+</div>

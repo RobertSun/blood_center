@@ -1,0 +1,56 @@
+[#if arti.allowComment]
+<script type="text/javascript">
+	$(function() {
+		$("#commentForm").validate($.extend($.validator.AlertError,{
+			submitHandler:function() {
+				$.postJson('${base}/jeecms/ajax/cms/CommentSubmit.do', {
+					'content' : $('#commentContent').val(),
+					'checkCode' : $('#commentCheckCode').val(),
+					'articleId' : ${arti.id}
+				}, function(data) {
+					if (data.success) {
+						alert(data.msg);
+						location.reload();
+					} else {
+						alert(data.msg);
+					}
+				});
+			}
+		}));
+		new JCore.CheckCode($('#commentCheckCode'),'${base}/CheckCode.svl');
+	});
+</script>
+<form id="commentForm">
+<table class="mrgt_5px border_nt" cellspacing="0" cellpadding="0" width="100%" border="0">
+    <tbody>
+       <tr>
+         <td align="center" width="25" background="${root}/default/article/img/news_bg.jpg" height="24"><img src="${root}/default/article/img/ico_2.gif" /></td>
+         <td align="left" width="464" background="${root}/default/article/img/news_bg.jpg"><strong>相关评论</strong></td>
+         <td align="center" width="212" background="${root}/default/article/img/news_bg.jpg">共 <span style="color: #ff0000">${arti.commentCount}</span> 条评论 　　【<a href="${base}/jeecms/Comment.jspx?articleId=${arti.id}" target="_blank">查看所有评论</a>】</td>
+       </tr>
+       <tr>
+         <td colspan="3">
+		   <table cellspacing="1" cellpadding="0" width="100%" bgcolor="#cccccc" border="0">
+			<tbody>
+			  <tr>
+				<td align="right" width="17%" bgcolor="#f9f9f9" height="30">评论内容：</td>
+				<td width="83%" align="left" bgcolor="#ffffff">&nbsp;
+				  <textarea id="commentContent" name="commentContent" cols="70" rows="5" class="required" minlength="3" title="请填写评论（3到255个字符）"></textarea></td>
+			  </tr>
+			  <tr>
+				<td align="right" bgcolor="#f9f9f9" height="30">验 证 码：</td>
+				<td align="left" bgcolor="#ffffff">&nbsp;
+				  <input class="required" id="commentCheckCode" title="请填写验证码" maxlength="10" name="commentCheckCode" type="text" /> &nbsp;<input type="submit" value="发表评论" /></td>
+			  </tr>
+			</tbody>
+		  </table>
+		 </td>
+       </tr>
+    </tbody>
+</table>
+
+
+
+
+</form>
+[/#if]

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/article_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 文章系统 - 文章管理 - 列表</div>
+	<form class="ropt" method="post">
+	<#if chnlId??>
+		<input type="submit" value="添加文章" onclick="this.form.action='Com_add.do?chnlId=${chnlId}';"/>
+	</#if>
+	</form>
+	<div class="clear"></div>
+</div>
+<form action="Com_list.do" method="post" class="rhead">
+<#if !selfOnly><@p.select name="queryInputAdminId" list=adminList listKey="id" listValue="loginName" headerKey="" headerValue="所有管理员"/></#if>
+<@p.select name="queryStatus" list={"0":"所有状态","1":"草稿","2":"待审核","3":"已审核","4":"退稿"} />
+<@p.select name="queryContentCtgId" list=contentCtgList listKey="id" listValue="name" headerKey="" headerValue="所有属性"/>
+<@p.select name="queryTopLevel" list={"0":"所有固顶","1":"不固顶","2":"固顶"} />
+<@p.select name="queryOrder" list={"0":"ID降序","1":"ID升序","2":"日点击降序","3":"日点击升序","4":"周点击降序","5":"周点击升序","6":"月点击降序","7":"月点击升序","8":"季点击降序","9":"季点击升序","10":"年点击降序","11":"年点击升序","12":"总点击降序","13":"总点击升序"}/>
+<@p.checkbox name="queryTopTime" value="true" labelFor="置顶"/>
+<@p.checkbox name="queryDisabled" value="true" labelFor="禁用"/>
+&nbsp;标题：<@p.text name="queryTitle" size="15"/>
+<@p.submit value="查询"/>
+</form>
+<#assign
+	cols=[{"label":"ID","name":"row.id"},
+		{"label":"标题","name":"'<strong>[<a class=\"normal\" href=\"'+row.channel.url+'\" target=\"_blank\">'+row.channel.name+'</a>]</strong><a class=\"normal\" href=\"'+row.url+'\" target=\"_blank\">'+row.tit(25)+'</a>'","escape":false},
+		{"label":"属性","name":"row.contentCtg.name"},
+		{"label":"发布时间","name":"row.releaseDate?string('yyyy-MM-dd')"},
+		{"label":"录入员","name":"row.adminInput.loginName"},
+		{"label":"固顶","name":"row.topLevel"}
+		]
+/>
+<#if queryOrder??>
+	<#switch queryOrder>
+	<#case 2>
+	<#case 3>
+		<#assign cols=cols+[{"label":"日点击","name":"row.visitToday"}]/>
+		<#break>
+	<#case 4>
+	<#case 5>
+		<#assign cols=cols+[{"label":"周点击","name":"row.visitWeek"}]/>
+		<#break>
+	<#case 6>
+	<#case 7>
+		<#assign cols=cols+[{"label":"月点击","name":"row.visitMonth"}]/>
+		<#break>
+	<#case 8>
+	<#case 9>
+		<#assign cols=cols+[{"label":"季点击","name":"row.visitQuarter"}]/>
+		<#break>
+	<#case 10>
+	<#case 11>
+		<#assign cols=cols+[{"label":"年点击","name":"row.visitYear"}]/>
+		<#break>
+	<#default>
+		<#assign cols=cols+[{"label":"总点击","name":"row.visitTotal"}]/>
+	</#switch>
+</#if>
+<#if queryTopTime?? && queryTopTime><#assign cols=cols+[{"label":"置顶","name":"row.topHour+'h'"}]/></#if>
+<#if queryStatus??>
+	<#switch queryStatus>
+	<#case 1>
+		<#assign cols=cols+[{"label":"草稿","name":"row.draft?string('<strong>是</strong>','否')","escape":false}]/>
+		<#break>
+	<#case 2>
+	<#case 3>
+		<#assign cols=cols+[{"label":"状态","name":"row.check?string('终审通过',row.checkStep)"}]/>
+		<#break>
+	<#case 4>
+		<#assign cols=cols+[{"label":"退回原因","name":"row.checkOpinion"}]/>
+		<#break>
+	<#default>
+		<#assign cols=cols+[
+		{"label":"草稿","name":"row.draft?string('<strong>是</strong>','否')","escape":false},
+		{"label":"退回","name":"row.reject?string('<span style=\"color:red\">是</span>','否')","escape":false},
+		{"label":"状态","name":"row.check?string('终审通过',row.checkStep)"}]/>
+	</#switch>
+</#if>
+<@p.table
+	cols=cols
+	rowIndex=false keepParams=["chnlId"]
+	normalOperate=[{"action":"Com_edit","name":"修改"}, 
+				{"action":"Com_disable","name":"禁用","displayExp":"!row.disabled"},
+				{"action":"Com_undisable","name":"解禁","displayExp":"row.disabled"},
+				{"action":"Com_delete","name":"删除","confirm":"您确定删除吗？"}
+				]
+	batchOperate=[{"action":"Com_delete","name":"删除","confirm":"您确定删除吗？"},
+				{"action":"Com_disable","name":"禁用"},
+				{"action":"Com_undisable","name":"解禁"}
+				]
+/>
+<#include "/WEB-INF/common/alert_message.ftl"/>
+</div>
+</body>
+</html>

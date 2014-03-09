@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+    <diskStore path="java.io.tmpdir/jeecms2/application"/>
+    <cacheManagerEventListenerFactory class="" properties=""/>
+    <defaultCache maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="120"  timeToLiveSeconds="120" overflowToDisk="true" diskSpoolBufferSizeMB="30"  maxElementsOnDisk="10000000" diskPersistent="false" diskExpiryThreadIntervalSeconds="120" memoryStoreEvictionPolicy="LRU"/>
+	<cache name="com.jeecms.core.page.Homepage"
+		maxElementsInMemory="3" eternal="false" timeToIdleSeconds="7200" timeToLiveSeconds="8640"
+		overflowToDisk="true" diskSpoolBufferSizeMB="30" maxElementsOnDisk="30" diskPersistent="true"/>
+	<cache name="com.jeecms.core.page.Channel"
+		maxElementsInMemory="20" eternal="false" timeToIdleSeconds="7200" timeToLiveSeconds="8640"
+		overflowToDisk="true" diskSpoolBufferSizeMB="30" maxElementsOnDisk="200" diskPersistent="true"/>            
+	<cache name="com.jeecms.core.entity.Website.DOMAIN2ID"
+		maxElementsInMemory="3000" eternal="true" overflowToDisk="true"/>
+	<cache name="com.jeecms.core.entity.Website.Alias2DOMAIN" 
+		maxElementsInMemory="10000" eternal="true" overflowToDisk="true"/>
+	<cache name="com.jeecms.core.entity.User.LOGINNAME2ID" 
+		maxElementsInMemory="3000" eternal="false" timeToIdleSeconds="3600" timeToLiveSeconds="7200" overflowToDisk="false"/>
+	<cache name="com.jeecms.core.CommonId" 
+		maxElementsInMemory="10000"	overflowToDisk="false" eternal="false" timeToIdleSeconds="3600" timeToLiveSeconds="7200"/>
+	<cache name="com.jeecms.bbs.Global"
+		maxElementsInMemory="1" eternal="true" overflowToDisk="true" diskSpoolBufferSizeMB="300"/>
+	<cache name="com.jeecms.bbs.Forum"
+		maxElementsInMemory="50" eternal="true" overflowToDisk="true" diskSpoolBufferSizeMB="300"/>
+	<cache name="com.jeecms.bbs.Topic"
+		maxElementsInMemory="1000" eternal="true" overflowToDisk="true" diskSpoolBufferSizeMB="300"/>
+	<cache name="com.jeecms.bbs.Member"
+		maxElementsInMemory="200" eternal="true" overflowToDisk="true" diskSpoolBufferSizeMB="300"/>
+	<cache name="com.jeecms.bbs.Category"
+		maxElementsInMemory="2" eternal="true" overflowToDisk="true" diskSpoolBufferSizeMB="300"/>
+</ehcache>

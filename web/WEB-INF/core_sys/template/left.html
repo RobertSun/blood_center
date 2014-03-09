@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>left</title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+</head>
+<body class="lbody">
+<div class="lttop">
+	<a href="javascript:location.reload()">刷新目录</a>
+&nbsp;<a href="Com_solutionEdit.do" target="rightFrame">模板方案</a>
+	<a href="Com_importTpl.do" target="rightFrame">导入</a>
+	<a href="Com_exportTpl.do" target="rightFrame">导出</a>
+</div>
+<hr/>
+<@p.tree root=treeRoot showDeep=1 url="/admin/core/template/Com_edit" durl="/admin/core/template/Com_list" dparams={"relPath":"relPath"} params={"relPath":"relPath"}/>
+</body>
+</html>

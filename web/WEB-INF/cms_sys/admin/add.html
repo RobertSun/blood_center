@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<style type="text/css">
+label.lerror{display:none;}
+</style>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+
+var userinfo = true;
+function toggleUserinfo() {
+	userinfo = $("input[name='createUser']:checked").val();
+	if(userinfo=='true') {
+		$('#userinfo').show();
+	} else {
+		$('#userinfo').hide();
+	}
+}
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 核心功能 - 管理员管理 - 添加</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回列表" onclick="this.form.action='Com_list.do';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form id="jvForm" action="Com_save">
+<@p.text label="用户名" name="bean.admin.user.loginName" required="true" vld="{required:true,rangelength:[${web.control.nameMinLen},20],username:true}"/>
+<@p.td label="用户信息">
+	<input type="radio" id="nuser" name="createUser" checked="checked" value="true" onclick="toggleUserinfo();"/><label for="nuser">新用户</label>
+	<input type="radio" id="ouser" name="createUser" value="false" onclick="toggleUserinfo();"/><label for="ouser">已存在用户</label>
+	<table id="userinfo" style="margin-top:5px" cellpadding="0" cellspacing="3" border="0">
+	<tr><td><span class="pn-frequired">*</span>密码：<@p.password name="bean.admin.user.password" id="password" style="width:130px" maxlength="32" vld="{required:'#nuser:checked'}"/></td><td> &nbsp;<span class="pn-frequired">*</span>确认密码：<input type="password" style="width:130px" vld="{equalTo:'#password'}"/></td></tr>
+	<tr><td><span class="pn-frequired">*</span>邮箱：<@p.text name="bean.admin.user.email" style="width:130px" maxlength="100" vld="{required:'#nuser:checked',email:true}"/></td><td> &nbsp;真实姓名：<@p.text name="bean.admin.user.realName" style="width:130px" maxlength="50"/></td></tr>
+	</table>
+</@p.td><@p.tr/>
+<@p.td label="角色">
+<label for="roles.id" class="error lerror">请选择角色</label>
+<@p.checkboxlist name="roles.id" list=roleList listKey="id" listValue="name" required="true" class="required"/>
+</@p.td><@p.tr/>
+<@p.select label="会员组" name="groupId" list=groupList listKey="id" listValue="name" headerKey="" headerValue="--不注册前台会员--" help="会员组为前台权限，角色为后台权限"/>
+<@p.text label="审核级别" name="bean.checkRight" value="0" help="0为录入员，内容不用审核时所有管理员都可为0"/>
+<@p.radio label="只能管理自己的数据" name="bean.selfOnly" list={"true":"是","false":"否"} value="false"/>
+<@p.td label="文章栏目权限">
+	<#if artiChnlRoot?? && artiChnlRoot?size gt 0>
+		<@p.tree treeId="at" root=artiChnlRoot showDeep=1 isUrl=false isCheckBox=true checkBoxName="channels.id"/>
+	</#if>
+</@p.td><@p.tr/>
+<#--
+<@p.td label="下载栏目权限">
+	<#if downChnlRoot?? && downChnlRoot?size gt 0>
+		<@p.tree treeId="dt" root=downChnlRoot showDeep=1 isUrl=false isCheckBox=true checkBoxName="channels.id"/>
+	</#if>
+</@p.td><@p.tr/>
+-->
+<@p.radio label="禁用" name="bean.admin.disabled" list={"true":"是","false":"否"} value="false"/>
+<@p.td><@p.submit value="保存"/> &nbsp; <@p.reset value="重置"/></@p.td>
+</@p.form>
+</div>
+</body>
+</html>

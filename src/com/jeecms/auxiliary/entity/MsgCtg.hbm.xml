@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.auxiliary.entity">
+	<class
+		name="MsgCtg"
+		table="AUXI_MSG_CTG"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="MSGCTG_ID"
+		>
+			<generator class="native"/>
+		</id>
+		<property
+			name="name"
+			column="NAME"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="description"
+			column="DESCRIPTION"
+			type="string"
+			not-null="false"
+			length="250"
+		/>
+		<many-to-one
+			name="website"
+			column="WEBSITE_ID"
+			class="com.jeecms.core.entity.Website"
+			not-null="true"
+		>
+		</many-to-one>
+		<set name="msgs" inverse="true">
+			<key column="MSGCTG_ID"/>
+			<one-to-many class="Msg"/>
+		</set>
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+
+<div id="hd">
+<div class="panel"><a href="#">登录</a> | <a href="#">注册</a> | <a
+	href="#">站内导航</a> | <a href="#">加入收藏</a></div>
+<div class="logo"><a href="#"><img
+	src="${root}/common/images/logo_2.png" alt="" /></a></div>
+<div class="nai">
+<div class="top">
+<ul>
+	<li><a [#if chnl?exists][#if chnl.name== "鉴定所首页"]class="current"
+		[/#if][/#if] href="${base}/index.jspa"><span>鉴定所首页</span></a></li>
+	[@cms.ChnlList id='' inner='1';c]
+	<li><a [#if chnl?exists][#if chnl.name==c.name]class=
+		"current"[/#if]
+		[/#if] href="${c.url}"><span>${c.name}</span></a></li>
+	[/@cms.ChnlList]
+	<li><a [#if !chnl?exists]class="current"[/#if]href="${base}/jeecms/Guestbook.jspx"><span>留言板</span></a></li>
+</ul>
+<a class="goback" href="#">返回血液中心</a></div>
+</div>
+</div>
+<script>
+function closeQQ(){
+	$(".qqlk").fadeOut('fast');
+}
+</script>
+<div class="qqlk">
+    <div style=" height:101px;background:url(${root}/common/images/qq_top.png) no-repeat;margin-left:-1px;">
+        <a href="javascript:closeQQ()"><img src="${root}/common/images/qq_delete.gif" style=" margin-left:75px; margin-top:20px; border:none;"/></a>
+    </div>
+    <div style="background:url(${root}/common/images/qq_bg.gif) repeat-y; width:101px; margin:0px;">
+        <ul style="list-style:none; margin:0px;">
+            <li style=" height:23px;background:url(${root}/common/images/qq_button.png) no-repeat; margin-left:5px;"><a href="http://wpa.qq.com/msgrd?V=1&Uin=2686284278&Site=&Menu=yes" style=" color:#000; text-decoration:none;"><p style="height:23px; line-height:23px; margin:0 0 0 -10px; font-family:Arial, Helvetica, sans-serif; font-size:12px;">2686284278</p></a></li>
+            <li style=" height:23px;background:url(${root}/common/images/qq_button.png) no-repeat; margin-left:5px;"><a href="http://wpa.qq.com/msgrd?V=1&Uin=2460516451&Site=&Menu=yes" style=" color:#000; text-decoration:none;"><p style="height:23px; line-height:23px; margin:4px 0 0 -10px; font-family:Arial, Helvetica, sans-serif; font-size:12px;">2460516451</p></a></li>
+        </ul>
+    </div>
+    <div>
+        <img src="${root}/common/images/qq_buttom.png"/>
+    </div>
+</div>

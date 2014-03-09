@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=gbk" />
+<title>大连市血液中心</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="robots" content="all" />
+<meta name="author" content="" />
+<link rel="stylesheet" type="text/css"
+	href="${root}/common/css/theme.css" media="all" />
+</head>
+<body class="BLOODHOME">
+[@cms.Include name='head.html' solution='default'/]
+<div id="bd">
+<div class="wrapper">
+<div class="col w222 mr6">
+
+<div class="skin-gray mt4">
+
+<div class="hd">
+<h3>通知公告</h3>
+<a class="more" href="${base}/notice/index.htm"><img src="${root}/common/images/more.gif"
+	alt="MORE" /></a></div>
+
+<div class="bd news-alert">
+<ul class="info-list">
+	[@cms.ArtiList chnlId='59' count='10' sysContent='1-1' titLen='15'
+	sysTpl='0' style='1' /]
+</ul>
+</div>
+<span class="cl"></span><span class="cr"></span></div>
+<div class="mod-svideos">
+
+<div class="player"><img
+	src="${root}/common/images/temp/temp_svideo.jpg" alt=""></div>
+<ul class="menu">
+    [@cms.ArtiList chnlId='62' count='6' sysContent='1-1' titLen='17' sysTpl='2' style='9' inner='1';v]
+    <li><a href="${v.url}" target="_blank">${v.title?substring(0,3)}</a></li>
+    [/@cms.ArtiList]
+</ul>
+</div>
+
+</div>
+
+<div class="col w542 mr6">
+<div class="skin-gray mt4">
+<div class="hd">
+<h3>图片新闻</h3>
+<a class="more" href="${base}/pictures/index.htm"><img src="${root}/common/images/more.gif"
+	alt="MORE"></a></div>
+<div class="bd">
+<ul class="pic-list">
+    [@cms.ArtiList chnlId='61' count='8' attr='2' titLen='25' sysTpl='0' style='2' inner='1';p]
+    <li class="wtem">
+        <a href="${p.url}" target="_blank" title="${p.title}">
+            <img src="${p.imgUrl!}" width="109" height="84" alt="${p.title}" />
+            <span>${p.stit(7)}</span>
+        </a>
+    </li>
+    [/@cms.ArtiList]
+</ul>
+</div>
+<span class="cl"></span><span class="cr"></span></div>
+
+<div class="skin-gray mt6">
+<div class="hd">
+<h3>献血报</h3>
+<a class="more" href="${base}/newspaper/index.htm"><img src="${root}/common/images/more.gif"
+	alt="MORE"></a></div>
+<div class="bd">
+<ul class="info-list lh28">
+	[@cms.ArtiList chnlId='63' count='6' sysContent='1-1' titLen='30'
+	sysTpl='2' style='9' inner='1';n]
+    <li><span class="date">[${n.releaseDate!}]</span><a href="${n.url}" title="${n.title}" target="_blank">${n.stit(30)}</a></li>
+    [/@cms.ArtiList]
+</ul>
+</div>
+<span class="cl"></span><span class="cr"></span></div>
+</div>
+
+<div class="col w227">
+<div class="skin-gray mt4">
+<div class="hd">
+<h3>新闻动态</h3>
+<a class="more" href="${base}/latest/index.htm"><img src="${root}/common/images/more.gif"
+	alt="MORE" /></a></div>
+<div class="bd news-alert">
+<ul class="info-list">
+	[@cms.ArtiList chnlId='60' count='10' sysContent='1-1' titLen='15'
+	sysTpl='0' style='1' /]
+</ul>
+</div>
+<span class="cl"></span><span class="cr"></span></div>
+<div class="skin-gray mt6">
+<div class="hd">
+<h3>献血故事</h3>
+<a class="more" href="${base}/storise/index.htm"><img src="${root}/common/images/more.gif"
+	alt="MORE" /></a></div>
+<div class="bd">
+<ul class="info-list lh28">
+	[@cms.ArtiList chnlId='64' count='6' sysContent='1-1' titLen='15'
+	sysTpl='0' style='1' /]
+</ul>
+</div>
+<span class="cl"></span><span class="cr"></span></div>
+</div>
+</div>
+</div>
+
+[@cms.Include name='foot.html' solution='default'/]
+</body>
+</html>

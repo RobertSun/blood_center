@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>right</title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 首页 - 邮件设置</div>
+	<div class="clear"></div>
+</div>
+<@p.form action="Com_emailUpdate" validate="false">
+<@p.text label="邮件字符集" name="email.charset" size="20"/>
+<@p.text label="邮件服务器" name="email.hostname" size="20"/>
+<@p.text label="邮箱账号" name="email.account" size="20"/>
+<@p.text label="发件人姓名" name="email.userName" size="20"/>
+<@p.text label="邮箱登录名" name="email.userId" size="20"/>
+<@p.password label="邮箱密码" name="email.userPwd" size="20"/>
+<@p.text label="邮件标题" name="email.subject" size="20"/>
+<@p.textarea label="邮件内容" name="email.content" cols="80" rows="7"/>
+<@p.td><@p.submit value="保存"/>&nbsp;&nbsp;&nbsp;<@p.reset value="重置" /></@p.td>
+</@p.form>
+<#include "/WEB-INF/common/alert_message.ftl" />
+</div>
+</body>
+</html>

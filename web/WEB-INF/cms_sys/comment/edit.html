@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#submitForm").validate();
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 文档维护 - 评论管理 - 修改</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form id="submitForm" action="Com_update">
+<@p.text label="所属文档" name="bean.doc.title" disabled="disabled" size="70"/>
+<@p.text label="会员" name="bean.member.loginName" disabled="disabled"/>
+<@p.text label="评论时间" name="bean.createTime" disabled="disabled"/>
+<@p.text label="IP地址" name="bean.ip" disabled="disabled"/>
+<@p.textarea label="评论内容" name="bean.contentMember" cols="70" rows="5"/>
+<@p.textarea label="管理员回复" name="bean.contentAdmin" cols="70" rows="5"/>
+<@p.radio label="审核" name="bean.check" list={"true":"是","false":"否"}/>
+<@p.radio label="禁用" name="bean.disabled" list={"true":"是","false":"否"}/>
+<@p.td><@p.hidden name="bean.id"/><@p.submit/> &nbsp; <@p.reset/></@p.td>
+</@p.form>
+</div>
+</body>
+</html>

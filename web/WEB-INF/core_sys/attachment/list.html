@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 核心功能 - 附件管理 - 列表</div>
+	<form class="ropt" method="post">
+		
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.table
+	cols=[{"label":"ID","name":"row.id"},
+		{"label":"名称","name":"row.name"},
+		{"label":"路径","name":"row.filePath"},
+		{"label":"作者","name":"row.user.loginName"},
+		{"label":"分类","name":"row.ownerCtg"},
+		{"label":"所在标题","name":"'<a href=\"'+row.docUrl+'\" target=\"_blank\">'+row.ownerName+'</a>'", "escape":false},
+		{"label":"尺寸","name":"row.fileSize+' KB'"},
+		{"label":"下载次数","name":"row.downCount"},
+		{"label":"免费下载","name":"row.free?string('<b>是</b>','否')", "escape":false}
+		]
+	rowIndex=false
+	normalOperate=[]
+	batchOperate=[]
+/>
+<#include "/WEB-INF/common/alert_message.ftl"/>
+</div>
+</body>
+</html>

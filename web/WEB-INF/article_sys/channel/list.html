@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/article_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 文章系统 - 栏目管理 - 列表</div>
+	<form class="ropt" method="post">
+		<#if hasChild>
+		<select onchange="var url=this.options[this.selectedIndex].value;if(url!=null&&url!=''){location=url;}">
+			<option>--添加栏目--</option>
+			<#list models as model>
+			<option value="Com_add.do?pid=${pid!}&modelId=${model.id}">${model.name}</option>
+			</#list>
+		</select>
+		</#if>
+	</form>
+	<div class="clear"></div>
+</div>
+<#include "/WEB-INF/cms_sys/abstract/channel/list.html"/>
+<#include "/WEB-INF/common/alert_message.ftl"/>
+</div>
+</body>
+</html>

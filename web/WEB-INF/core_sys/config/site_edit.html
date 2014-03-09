@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>首页 - 站点设置</title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 首页 - 站点设置</div>
+	<div class="clear"></div>
+</div>
+<@p.form id="jvForm" action="Com_siteUpdate">
+<@p.text label="名称" name="bean.name" size="20" required="true" class="required" maxlength="100"/>
+<@p.text label="简称" name="bean.shortName" size="20" maxlength="20"/>
+<@p.text label="域名" name="bean.domain" size="20"required="true" class="required" maxlength="50"/>
+<@p.text label="域名别名" name="bean.domainAlias" size="70" maxlength="255" helpPosition="3" help="多个域名用英文,分割，使用这些域名访问网站将自动重定向至主域名"/>
+<@p.text label="根域名" name="bean.baseDomain" size="20" maxlength="50" help="多站点需要单点登录时使用，如域名是www.sina.com则填写sina.com。"/>
+<@p.text label="资源路径" name="bean.resPath" size="20" maxlength="20" required="true" class="required" maxlength="20" help="资源保存的路径，一般按域名填写，如域名是www.sina.com则填写sina_com_www"/>
+<#--<@p.select label="系统类型" name="bean.currentSystem" list={'jeecms':'内容管理系统','jeeshop':'商城系统','jeeforum':'论坛系统'} style="width:150px;"/>-->
+<@p.select label="系统类型" name="bean.currentSystem" list={'jeecms':'内容管理系统'} style="width:150px;"/>
+<@p.select label="URL后缀" name="bean.suffix" list={'htm':'htm','jspa':'jspa','php':'php','asp':'asp','aspx':'aspx'} style="width:150px;"/>
+<@p.text label="COOKIE识别码" name="bean.cookieKey" size="40" required="true" class="required" maxlength="50" help="一般根据域名填写，如_sina"/>
+<@p.text label="公司名称" name="bean.company" size="40" help="company" maxlength="200"/>
+<@p.text label="站长邮箱" name="bean.email" size="40" help="email" maxlength="100"/>
+<@p.textarea label="版权信息" name="bean.copyright" cols="70" rows="2" help="copyright" maxlength="255"/>
+<@p.textarea label="备案号" name="bean.recordCode" cols="70" rows="2" help="recordCode" maxlength="255"/>
+<@p.td><@p.submit /> &nbsp; <@p.reset /></@p.td>
+</@p.form>
+<#include "/WEB-INF/common/alert_message.ftl" />
+</div>
+</body>
+</html>

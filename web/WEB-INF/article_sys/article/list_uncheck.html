@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/article_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 文档维护 - 文章审核 - 列表</div>
+	<form class="ropt" method="post">
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.table
+	cols=[{"label":"ID","name":"row.id"},
+		{"label":"标题","name":"'<strong>[<a class=\"normal\" href=\"'+row.channel.url+'\" target=\"_blank\">'+row.channel.name+'</a>]</strong><a class=\"normal\" href=\"'+row.url+'\" target=\"_blank\">'+row.tit(25)+'</a>'","escape":false},
+		{"label":"属性","name":"row.contentCtg.name"},
+		{"label":"发布时间","name":"row.releaseDate?string('yyyy-MM-dd')"},
+		{"label":"录入员","name":"row.adminInput.loginName"}
+		]
+	rowIndex=false keepParams=["updateType"]
+	normalOperate=[{"action":"Com_checkView","name":"查看"},
+				{"action":"Com_pass","name":"通过","confirm":"您确定通过吗？"},
+				{"action":"Com_reject","name":"退回","confirm":"您确定退回吗？"},
+				{"action":"Com_edit","name":"修改"}
+				]
+	batchOperate=[{"action":"Com_pass","name":"通过","confirm":"您确定通过吗？"},
+				{"action":"Com_reject","name":"退回","confirm":"您确定退回吗？"}
+				]
+/>
+<#include "/WEB-INF/common/alert_message.ftl"/>
+</div>
+</body>
+</html>

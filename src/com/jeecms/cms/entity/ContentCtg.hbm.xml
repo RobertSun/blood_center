@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.cms.entity">
+	<class
+		name="ContentCtg"
+		table="CMS_CONTENT_CTG"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="CTTCTG_ID"
+		>
+			<generator class="native"/>
+		</id>
+
+		<property
+			name="label"
+			column="LABEL"
+			type="string"
+			not-null="true"
+			length="20"
+		/>
+		<property
+			name="name"
+			column="NAME"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="imgWidth"
+			column="IMG_WIDTH"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="imgHeight"
+			column="IMG_HEIGHT"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="hasTitleimg"
+			column="HAS_TITLEIMG"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<property
+			name="disabled"
+			column="IS_DISABLED"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<many-to-one
+			name="website"
+			column="WEBSITE_ID"
+			class="com.jeecms.core.entity.Website"
+			not-null="true"
+		>
+		</many-to-one>
+	</class>	
+</hibernate-mapping>

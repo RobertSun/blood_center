@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>right</title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 网站配置 - 全局设置</div>
+	<div class="clear"></div>
+</div>
+<@p.form id="jvForm" action="Com_globalUpdate">
+<@p.text label="部署路径" name="global.contextPath" size="20" help="程序的部署路径，如果部署在根目录上，请留空"/>
+<@p.text label="端口号" name="global.port" size="20" class="digits" help="程序的部署的端口号，一般为80端口"/>
+<@p.td><@p.hidden name="global.id"/><@p.submit /> &nbsp; <@p.reset /></@p.td>
+</@p.form>
+<#include "/WEB-INF/common/alert_message.ftl" />
+</div>
+</body>
+</html>

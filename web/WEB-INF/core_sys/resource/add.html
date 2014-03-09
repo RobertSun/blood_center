@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 资源管理 - 添加</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回列表" onclick="this.form.action='Com_resList.do?relPath=${relPath?j_string}';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form action="Com_resSave">
+<@p.td label="文件名"><@p.text name="tplName" size="20"/></@p.td><@p.tr/>
+<@p.textarea label="内容" id="tplContent" name="tplContent" cols="90" rows="20"/>
+<@p.td><@p.hidden id="relPath" name="relPath" /><@p.submit value="保存"/>&nbsp;&nbsp;&nbsp;<@p.reset value="重置" /></@p.td>
+</@p.form>
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.cms.entity">
+	<class
+		name="CmsComment"
+		table="CMS_COMMENT"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="COMMENT_ID"
+		>
+			<generator class="native"/>
+		</id>
+
+		<property
+			name="title"
+			column="TITLE"
+			type="string"
+			not-null="false"
+			length="200"
+		/>
+		<property
+			name="contentMember"
+			column="CONTENT_MEMBER"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="contentAdmin"
+			column="CONTENT_ADMIN"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="createTime"
+			column="CREATE_TIME"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="replayTime"
+			column="REPLAY_TIME"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="ip"
+			column="IP"
+			type="string"
+			not-null="false"
+			length="50"
+		/>
+		<property
+			name="check"
+			column="IS_CHECK"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<property
+			name="recommend"
+			column="IS_RECOMMEND"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<property
+			name="disabled"
+			column="IS_DISABLED"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<any name="doc" meta-type="string" id-type="java.lang.Long">
+			<meta-value value="ARTI" class="com.jeecms.article.entity.Article"/>
+			<meta-value value="DOWN" class="com.jeecms.download.entity.Download"/>
+			<column name="REF_DOC_TYPE"/>
+			<column name="REF_DOC_ID"/>
+		</any>
+		<many-to-one
+			name="website"
+			column="WEBSITE_ID"
+			class="com.jeecms.core.entity.Website"
+			not-null="true"
+		>
+		</many-to-one>
+		<many-to-one
+			name="admin"
+			column="ADMIN_ID"
+			class="com.jeecms.cms.entity.CmsAdmin"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="member"
+			column="MEMBER_ID"
+			class="com.jeecms.core.entity.Member"
+			not-null="false"
+		>
+		</many-to-one>
+	</class>	
+</hibernate-mapping>

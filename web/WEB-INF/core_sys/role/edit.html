@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+<style type="text/css">
+label.lerror{display:none;}
+</style>
+<script type="text/javascript">
+$(function() {
+	$("#submitForm").validate();
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 核心功能 - 角色管理 - 修改</div>
+	<form class="ropt" method="post">
+		<input type="button" value="返回列表" onclick="history.back();"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form id="submitForm" action="Com_update">
+<@p.text label="名称" name="bean.name" required="true" class="required" maxlength="50"/>
+<@p.text label="描述" name="bean.description" maxlength="250"/>
+<@p.td label="拥有的功能">
+<label for="functions.id" class="error lerror">请选择功能</label>
+<#if funcRoot??>
+<@p.tree root=funcRoot showDeep=1 isUrl=false isCheckBox=true checkBoxName="functions.id" valueContent=stack.findValue("bean.functions.{id}") vld="{required:true}"/>
+</#if>
+</@p.td><@p.tr/>
+<@p.td><@p.hidden name="bean.id" /><@p.submit value="保存"/> &nbsp; <@p.reset value="重置" /></@p.td>
+</@p.form>
+</div>
+</body>
+</html>

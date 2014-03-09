@@ -1,0 +1,184 @@
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+<validators>
+	<field name="uploadRuleId">
+		<field-validator type="required">
+			<message>该项不能为空</message>
+		</field-validator>
+	</field>
+	<field name="bean.model.id">
+		<field-validator type="required">
+			<message>该项不能为空</message>
+		</field-validator>
+	</field>
+	<field name="bean.name">
+		<field-validator type="requiredstring">
+			<message>该项不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="maxLength">100</param>
+			<param name="trim">false</param>
+			<message>长度不能超过100个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.path">
+		<field-validator type="requiredstring">
+			<message>该项不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="maxLength">100</param>
+			<param name="trim">false</param>
+			<message>长度不能超过100个字符</message>
+		</field-validator>
+		<field-validator type="regex">
+			<param name="expression"><![CDATA[^[0-9a-zA-Z]+$]]></param>
+			<message>只能由英文字母、数字组成</message>
+        </field-validator>
+	</field>
+	<field name="bean.content">
+		<field-validator type="stringlength">
+			<param name="maxLength">1048576</param>
+			<param name="trim">false</param>
+			<message>长度不能超过1048576(2M)个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.titleImg">
+		<field-validator type="stringlength">
+			<param name="maxLength">100</param>
+			<param name="trim">false</param>
+			<message>长度不能超过100个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.contentImg">
+		<field-validator type="stringlength">
+			<param name="maxLength">100</param>
+			<param name="trim">false</param>
+			<message>长度不能超过100个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.tplIndex">
+		<field-validator type="stringlength">
+			<param name="maxLength">100</param>
+			<param name="trim">false</param>
+			<message>长度不能超过100个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.tplContent">
+		<field-validator type="stringlength">
+			<param name="maxLength">100</param>
+			<param name="trim">false</param>
+			<message>长度不能超过100个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.title">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.keywords">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.description">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.outerUrl">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.param1">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.param2">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.param3">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.defStr1">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.defStr2">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.defStr3">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.defStr4">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.defStr5">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.defStr6">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.defStr7">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.defStr8">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+	<field name="bean.defStr9">
+		<field-validator type="stringlength">
+			<param name="maxLength">255</param>
+			<param name="trim">false</param>
+			<message>长度不能超过255个字符</message>
+		</field-validator>
+	</field>
+</validators>

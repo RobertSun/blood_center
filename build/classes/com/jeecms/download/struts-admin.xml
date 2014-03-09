@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--软件类型-->
+	<package name="download.downType" namespace="/admin/download/down_type" extends="core-default">
+		<action name="Com_*" method="{1}" class="download.downTypeAct">
+			<result name="list">/WEB-INF/download_sys/down_type/list.html</result>
+			<result name="add">/WEB-INF/download_sys/down_type/add.html</result>
+			<result name="edit">/WEB-INF/download_sys/down_type/edit.html</result>
+		</action>
+	</package>
+	<!--栏目管理-->
+	<package name="download.cmsChannel" namespace="/admin/download/channel" extends="core-default">
+		<action name="Com_*" method="{1}" class="download.channelAct">
+			<result name="list">/WEB-INF/download_sys/channel/list.html</result>
+			<result name="add">/WEB-INF/download_sys/channel/add.html</result>
+			<result name="edit">/WEB-INF/download_sys/channel/edit.html</result>
+			<result name="main">/WEB-INF/download_sys/channel/main.html</result>
+			<result name="left">/WEB-INF/download_sys/channel/left.html</result>
+		</action>
+	</package>
+	<!--下载管理-->
+	<package name="download.download" namespace="/admin/download/download" extends="core-default">
+		<action name="Com_*" method="{1}" class="download.downloadAct">
+			<result name="list">/WEB-INF/download_sys/download/list.html</result>
+			<result name="add">/WEB-INF/download_sys/download/add.html</result>
+			<result name="edit">/WEB-INF/download_sys/download/edit.html</result>
+			<result name="main">/WEB-INF/download_sys/download/main.html</result>
+			<result name="left">/WEB-INF/download_sys/download/left.html</result>
+		</action>
+	</package>
+</struts>

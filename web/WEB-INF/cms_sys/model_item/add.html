@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/cms_sys/head.ftl"/>
+<script type="text/javascript">
+$(function() {
+	$("#submitForm").validate();
+});
+</script>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 模型内容 - 添加</div>
+	<form class="ropt" method="post">
+		<input type="submit" value="返回" onclick="this.form.action='Com_edit.do?id=${modelId}';"/>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.form id="submitForm" labelWidth="15" action="Com_saveItem">
+<@p.text colspan="1" width="50" label="名称" name="modelItem.name" class="required"/>
+<@p.text colspan="1" width="50" label="标题" name="modelItem.label" class="required"/><@p.tr/>
+<@p.text colspan="1" width="50" label="默认值" name="modelItem.defValue"/>
+<@p.text colspan="1" width="50" label="帮助" name="modelItem.help"/><@p.tr/>
+<@p.select colspan="1" width="50" label="数据类型" name="modelItem.dataType" list={"1":"文本","2":"整数","3":"金额","4":"日期","5":"布尔"}/>
+<@p.select colspan="1" width="50" label="输入框类型" name="modelItem.inputType" list={"1":"text","2":"textarea","3":"select","4":"radio","5":"checkboxlist"}/><@p.tr/>
+<@p.text colspan="1" width="50" label="文本框大小" name="modelItem.inputSize" class="digits"/>
+<@p.text colspan="1" width="50" label="下拉列表宽度" name="modelItem.inputWidth" class="digits"/><@p.tr/>
+<@p.text colspan="1" width="50" label="文本区行数" name="modelItem.textareaRows" class="digits"/>
+<@p.text colspan="1" width="50" label="文本区列数" name="modelItem.textareaCols" class="digits"/><@p.tr/>
+<@p.text colspan="1" width="50" label="可选项" name="modelItem.optionValue" size="40" help="用,分割"/>
+<@p.text colspan="1" width="50" label="排列顺序" name="modelItem.priority" value="100"/><@p.tr/>
+<@p.radio colspan="1" width="50" label="是否预定义" name="modelItem.predefine" list={"true":"是","false","否"} value="false"/>
+<@p.radio colspan="1" width="50" label="是否显示" name="modelItem.checked" list={"true":"是","false","否"} value="true"/><@p.tr/>
+<@p.td colspan="2">
+	<input type="hidden" name="modelId" value="${modelId}"/>
+	<input type="hidden" name="modelItem.itemType" value="${itemType}"/>
+	<@p.submit value="保存"/> &nbsp; <@p.reset value="重置"/>
+</@p.td>
+</@p.form>
+</div>
+</body>
+</html>

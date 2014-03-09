@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>left</title>
+<#include "/WEB-INF/core_sys/head.ftl"/>
+</head>
+<body class="lbody">
+<div class="lttop">
+	<a href="javascript:location.reload()">刷新目录</a>
+	<@p.operateRight operate="/admin/download/down_type/Com_list">
+		<a href="${base}/admin/download/down_type/Com_list.do" target="rightFrame">类型</a>
+	</@p.operateRight>
+</div>
+<hr/>
+<#if treeRoot??>
+<@p.tree root=treeRoot showDeep=2 url="/admin/download/download/Com_list" durl="/admin/download/download/Com_list"
+	dparams={"chnlId":"id"} params={"chnlId":"id"}/>
+<#else>
+	<div style="color:red;font-weight:bolt;text-align:center;">请先添加栏目</div>
+</#if>
+</body>
+</html>

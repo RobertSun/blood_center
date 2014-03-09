@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<#include "/WEB-INF/download_sys/head.ftl"/>
+</head>
+<body>
+<div class="body-box">
+<div class="rhead">
+	<div class="rpos">当前位置： 下载系统 - 下载管理 - 列表</div>
+	<form class="ropt" method="post">
+		<#if chnlId??>
+		<input type="submit" value="添加下载" onclick="this.form.action='Com_add.do?chnlId=${chnlId}';"/>
+		<#else>
+		<strong style="color:red">请先添加栏目</strong>
+		</#if>
+	</form>
+	<div class="clear"></div>
+</div>
+<@p.table
+	cols=[{"label":"ID","name":"row.id"},
+		{"label":"名称","name":"row.title"},
+		{"label":"下载类型","name":"row.downType.name"},
+		{"label":"文件类型","name":"row.fileType"}
+		]
+	rowIndex=false
+	normalOperate=[{"action":"Com_edit","name":"修改"},
+	            {"action":"Com_check","name":"确认审核","othname":"取消审核","confirm":"您确定要执行该操作吗？","ifcheck":"row.check"},
+				{"action":"Com_delete","name":"删除","confirm":"您确定删除吗？"}
+				]
+	batchOperate=[{"action":"Com_delete","name":"删除","confirm":"您确定删除吗？"}
+				]
+/>
+<#include "/WEB-INF/common/alert_message.ftl"/>
+</div>
+</body>
+</html>

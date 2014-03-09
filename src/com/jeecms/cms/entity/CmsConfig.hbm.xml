@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.jeecms.cms.entity">
+	<class
+		name="CmsConfig"
+		table="CMS_CONFIG"
+	>
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id
+			name="id"
+			type="java.lang.Long"
+			column="CONFIG_ID"
+		>
+			<generator class="foreign">
+				<param name="property">website</param>
+			</generator>
+		</id>
+		
+		<property
+			name="checkCount"
+			column="CHECK_COUNT"
+			type="integer"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="defaultSystem"
+			column="DEFAULT_SYSTEM"
+			type="string"
+			not-null="true"
+			length="20"
+		/>
+		
+		<property
+			name="commentNeedCheck"
+			column="COMMENT_NEED_CHECK"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<property
+			name="commentNeedLogin"
+			column="COMMENT_NEED_LOGIN"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<property
+			name="commentSort"
+			column="COMMENT_SORT"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<property
+			name="commentMaxLength"
+			column="COMMENT_MAX_LENGTH"
+			type="integer"
+			not-null="true"
+			length="10"
+		/>
+		
+		<property
+			name="registerStatus"
+			column="REGISTER_STATUS"
+			type="integer"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="autoRegister"
+			column="AUTO_REGISTER"
+			type="java.lang.Boolean"
+			not-null="false"
+		/>
+		<property
+			name="registerRule"
+			column="REGISTER_RULE"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="cacheHomepage"
+			column="IS_CACHE_HOMEPAGE"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		<property
+			name="cacheChannel"
+			column="IS_CACHE_CHANNEL"
+			type="java.lang.Boolean"
+			not-null="true"
+		/>
+		
+		<many-to-one
+			name="defArticleModel"
+			column="DEF_ARTICLE_MODEL"
+			class="ChnlModel"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="defDownloadModel"
+			column="DEF_DOWNLOAD_MODEL"
+			class="ChnlModel"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="memberGroup"
+			column="REGISTER_GROUP"
+			class="CmsMemberGroup"
+			not-null="false"
+		>
+		</many-to-one>
+		<one-to-one
+			name="website"
+			class="com.jeecms.core.entity.Website"
+			constrained="true"
+			cascade="all"
+		/>
+	</class>
+</hibernate-mapping>
