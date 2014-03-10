@@ -1,4 +1,3 @@
-#Mon Feb 24 09:28:17 GMT+08:00 2014
 eclipse.preferences.version=1
 encoding//src/com/jeecms/article/action/ArticleAct.java=UTF-8
 encoding//src/com/jeecms/auxiliary/action/BookingAct.java=UTF-8
@@ -70,4 +69,5 @@ encoding//web/WEB-INF/cms_sys/topic/edit.html=GBK
 encoding//web/WEB-INF/cms_sys/topic/list.html=GBK
 encoding//web/WEB-INF/user_base/jeecms_com_www/template/article/default/index.html=GBK
 encoding//web/WEB-INF/user_base/jeecms_com_www/template/article/default/sys_pung.html=GBK
+encoding/<project>=GBK
 encoding/src=UTF-8
