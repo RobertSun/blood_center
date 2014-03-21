@@ -1,0 +1,54 @@
+    <div id="hd">
+		<div class="panel" id="panel">
+			[#if cmsMember?exists]
+				欢迎你，${cmsMember.loginName} | 
+				<a href="${base}/cmsmember/index.jspx" target="_top">会员中心</a>|
+			[#else]
+				<a href="${base}/jeecms/LoginAloneInput.jspx">登录</a> | <a href="${base}/jeecms/RegisterInput.jspx">注册</a> | 
+			[/#if]
+			<a href="#">站内导航</a> | <a href="#">加入收藏</a>
+		</div>
+		<div class="logo"><a href="#"><img src="${root}/common/images/logo.png" alt="" /></a></div>
+		<div class="nav">
+			<div class="top">
+				<ul>
+                    [#assign chnlname = (chnl.name)!("n10")]
+					<li class="n1"><a [#if chnlname=="首页"]class="current"[/#if] href="${base}/index.jspa">首 页</a></li>
+                    [@cms.ChnlList id='' inner='1';c]
+                    [#assign curl= c.url]
+                    [#if c.id != 29]
+                    [#list c.child as item]
+                        [#assign curl=item.url]
+                        [#break]
+                    [/#list]
+                    [/#if]
+                    [#if c.name=='医院下载']
+                    	[#assign hosurl= c.url]
+                    [#else]
+                    <li class="${c.title!}"><a href="${curl}" [#if chnlname==c.name]class="current"[/#if]>${c.name}</a></li>
+                    [/#if]
+                    [/@cms.ChnlList]
+					<li class="n10"><a [#if chnlname=="n10"]class="current"[/#if] href="${base}/jeecms/Guestbook.jspx?msgCtgId=1">信息沟通</a></li>
+                    <li class="n11"><a [#if chnlname=="下载中心"]class="current"[/#if] href="${base}/down/index.htm">下载中心</a></li>
+					<li class="n12"><a [#if chnlname=="关于我们"]class="current"[/#if] href="${base}/about.htm">联系我们</a></li>
+				</ul>
+			</div>
+			<div class="sub">
+                [#if chnl?exists && chnl.child?size>0 && chnl.name!="首页"]
+                [#list chnl.child as item]
+				<a href="${item.url}" [#if chnlname==item.name]class="mover"[/#if]>${item.name}</a>
+                [#if item_has_next]|[/#if]
+                [/#list]
+                [#elseif chnl?? && chnl.parent?? && chnl.name != "献血招募" && chnl.name!='医院下载']
+                [#list chnl.parent.child as item]
+                <a href="${item.url}" [#if chnlname==item.name]class="mover"[/#if]>${item.name}</a>
+                [#if item_has_next]|[/#if]
+                [/#list]
+                [/#if]
+                
+                [#if chnl?exists && chnl.name=="下载中心" && hosurl?exists]
+                	<a href="${hosurl}">医院下载</a>
+                [/#if]
+			</div>
+		</div>
+	</div>

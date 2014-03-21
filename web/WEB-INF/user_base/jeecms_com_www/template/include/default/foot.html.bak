@@ -1,0 +1,6 @@
+<div id="ft">
+    [@cms.Include name='hotlink.html' solution='default'/]
+    <p class="cp">
+       ${(web.copyright)!} ${(web.recordCode)!} 大连市血液中心地址：大连市中山区延安路90号
+    </p>
+</div>
