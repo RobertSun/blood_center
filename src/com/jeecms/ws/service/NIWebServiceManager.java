@@ -30,7 +30,7 @@ public class NIWebServiceManager {
 	}
 	
 	/**
-	 * ÑéÖ¤ÍøÉÏÔ¤Ô¼ÈËÔ±ÊÇ·ñÂú×ãÔ¤Ô¼ÒªÇó
+	 * ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Ô¤Ô¼ï¿½ï¿½Ô±ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤Ô¼Òªï¿½ï¿½
 	 * @param Booking
 	 * @return NetAppReturnInfo
 	 * @throws DatatypeConfigurationException, DatatypeConfigurationException
@@ -42,7 +42,7 @@ public class NIWebServiceManager {
     }
 	
 	/**
-	 * ÑéÖ¤ÍøÉÏÔ¤Ô¼¼ÇÂ¼ÊÇ·ñÂú×ãÏ×Ñª¼ä¸ô
+	 * ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½Ô¤Ô¼ï¿½ï¿½Â¼ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½ï¿½
 	 * @param Booking
 	 * @return NetAppReturnInfo
 	 * @throws DatatypeConfigurationException, DatatypeConfigurationException
@@ -56,7 +56,7 @@ public class NIWebServiceManager {
     }
 	
 	/**
-	 * ÍøÕ¾ÉóºËÍ¨¹ýºóÉÏ´«Ô¤Ô¼¼ÇÂ¼½Ó¿Ú
+	 * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ï´ï¿½Ô¤Ô¼ï¿½ï¿½Â¼ï¿½Ó¿ï¿½
 	 * @param NetAppRecordInfo
 	 * @return NetAppReturnInfo
 	 * @throws 
@@ -67,7 +67,7 @@ public class NIWebServiceManager {
     }
 	
 	/**
-	 * »ñÈ¡Ï×Ñª¹ÜÀíÏµÍ³ËùÓÐ²ÉÑªµØµãÁÐ±í
+	 * ï¿½ï¿½È¡ï¿½ï¿½Ñªï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½Ð²ï¿½Ñªï¿½Øµï¿½ï¿½Ð±ï¿½
 	 * @param 
 	 * @return List<CollectPlaceDic>
 	 * @throws 
@@ -78,7 +78,7 @@ public class NIWebServiceManager {
     }
 	
 	/**
-	 * ¸ù¾ÝÏ×ÑªÂë»ñÈ¡¼ìÑé½á¹ûÑéÖ¤Âë
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½
 	 * @param String donCode
 	 * @return NetSearchTestResultInfo
 	 * @throws 
@@ -89,7 +89,7 @@ public class NIWebServiceManager {
     }
 	
 	/**
-	 * ¸ù¾ÝÏ×ÑªÂë¡¢ÑéÖ¤Âë»ñÈ¡¼ìÑé½á¹û
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ñªï¿½ë¡¢ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param String donCode
 	 * @param String verifyCode
 	 * @return NetSearchTestResultInfo
@@ -101,7 +101,7 @@ public class NIWebServiceManager {
     }
 	
 	/**
-	 * ¸ù¾ÝÖ¤¼þÀàÐÍ¡¢Ö¤¼þºÅÂë»ñÈ¡¼ìÑé½á¹ûÑéÖ¤Âë
+	 * ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½Í¡ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½
 	 * @param String idTypeID
 	 * @param String idCode
 	 * @return NetSearchTestResultInfo
@@ -113,7 +113,7 @@ public class NIWebServiceManager {
     }
 	
 	/**
-	 * ¸ù¾ÝÖ¤¼þÀàÐÍ¡¢Ö¤¼þºÅÂë»ñÈ¡¼ìÑé½á¹û
+	 * ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½Í¡ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param String idTypeID
 	 * @param String idCode
 	 * @param String verifyCode

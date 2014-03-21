@@ -26,7 +26,7 @@ public class NIWebService
     static {
         URL url = null;
         try {
-            //url = new URL("file:///home/winmess/Shinow.wsdl");
+            //url = new URL("file:///D:/apache-tomcat-6.0.36/wtpwebapps/blood/WEB-INF/classes/org/dlbc/ws/Shinow.wsdl");
 //            for test url
             url = new URL("http://192.168.0.43/NI/NIWebService.asmx?wsdl");
         } catch (MalformedURLException e) {

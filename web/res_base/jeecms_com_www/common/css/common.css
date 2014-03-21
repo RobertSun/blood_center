@@ -42,20 +42,20 @@ Commont
 
 **************************************************************************************************/
 body {font:12px/1.62 tahoma,helvetica,arial,clean,sans-serif;text-align:center;background:#fff;color:#3b3b3c;}
-.BLOODHOME {background:url(images/bloodhome0.jpg) no-repeat 50% 0;}
+.BLOODHOME {background:url(images/bloodhome.jpg) no-repeat 50% 0;}
 .BLOODTEST {background:url(images/bloodtest.jpg) no-repeat 50% 0;}
 #hd,#bd {width:1004px;margin:0 auto;text-align:left;}
-#hd {position:relative;margin-bottom:8px;}
+#hd {margin-bottom:8px;}
 #hd .panel,
-#hd .logo {position:absolute;}
+#hd .logo {}
 
-#hd .panel {color:#1c4cb1;top:5px;right:12px;}
+#hd .panel {color:#1c4cb1;float:right;margin-top:5px;}
 #hd .panel a {color:#1c4cb1;text-decoration:none;}
 #hd .panel a:hover {color:#138ae6;}
 
 #hd .logo {top:40px;left:16px; display:none;}
 
-#hd .nav {padding-top:145px;}
+#hd .nav {padding-top:121px;}
 #hd .nav li {float:left;display:inline;}
 #hd .nav .top {background:url(images/nav_top.png) no-repeat;line-height:35px;height:35px;padding-left:15px;}
 #hd .nav .top ul {float:left;overflow:hidden;}
@@ -374,7 +374,7 @@ body {font:12px/1.62 tahoma,helvetica,arial,clean,sans-serif;text-align:center;b
 
 
 /*Pop-up window*/
-/*----------------弹出层样式*/
+/*----------------弹出层样�?/
 	.Popwarp{ border-top:1px solid #dbdbdb;}
 	.Popwarp .PopImg{ text-align:center; padding-top:30px;}
 	.Popwarp p{ line-height:18px; height:40px; font-size:14px; font-weight:bold; padding-top:10px;}
@@ -440,3 +440,5 @@ body {font:12px/1.62 tahoma,helvetica,arial,clean,sans-serif;text-align:center;b
 /* qq链接 */
 .qqlk {z-index:1000;width:100px;height:40px;position:fixed !important;position:absolute;right:10px;top:120px;}
 /* =============================**add 2011.11 end ===========================*/
+/*modify 2011-12-16*/
+.curpoint{ position:absolute; top:62px; right:233px;}
