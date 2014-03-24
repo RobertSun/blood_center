@@ -30,9 +30,19 @@
             } else {
                 $("#place").empty();
                 $("#place").append(selHead);
-				[#list places as o]
-                    $("#place").append("<option value='${o.placeId}' [#if (booking.place)?? && booking.place==o.placeId]selected[/#if]>${o.placeName}</option>");
-				[/#list]
+                $("#place").append("<option value='1802040101017000000' [#if (booking.place)?? && booking.place==1802040101017000000]selected[/#if]>中心内</option>");
+    			$("#place").append("<option value='5802040120413000000' [#if (booking.place)?? && booking.place==5802040120413000000]selected[/#if]>复州城</option>");
+    			$("#place").append("<option value='1802040110810000000' [#if (booking.place)?? && booking.place==1802040110810000000]selected[/#if]>凯旋广场</option>");
+    			$("#place").append("<option value='1802040101017000007' [#if (booking.place)?? && booking.place==1802040101017000007]selected[/#if]>丰源</option>");
+    			$("#place").append("<option value='1802040101017000004' [#if (booking.place)?? && booking.place==1802040101017000004]selected[/#if]>华南</option>");
+    			$("#place").append("<option value='1802040101017000002' [#if (booking.place)?? && booking.place==1802040101017000002]selected[/#if]>西安路</option>");
+    			$("#place").append("<option value='1802040101017000009' [#if (booking.place)?? && booking.place==1802040101017000009]selected[/#if]>开发区</option>");
+    			$("#place").append("<option value='1802040101017000010' [#if (booking.place)?? && booking.place==1802040101017000010]selected[/#if]>普兰店</option>");
+    			$("#place").append("<option value='1802040101017000013' [#if (booking.place)?? && booking.place==1802040101017000013]selected[/#if]>瓦房店</option>");
+    			$("#place").append("<option value='1802040101017000014' [#if (booking.place)?? && booking.place==1802040101017000014]selected[/#if]>庄河</option>");
+    			$("#place").append("<option value='1802040101017000011' [#if (booking.place)?? && booking.place==1802040101017000011]selected[/#if]>旅顺</option>");
+    			$("#place").append("<option value='1802040101017000012' [#if (booking.place)?? && booking.place==1802040101017000012]selected[/#if]>金州</option>");
+    			$("#place").append("<option value='5802040131122000000' [#if (booking.place)?? && booking.place==5802040131122000000]selected[/#if]>万达广场</option>");
             }
         });
             
@@ -153,9 +163,19 @@
 									<th><em>*</em>预约地点：</th>
 									<td><select name="booking.place" id="place" onchange="savePlaceName()">
 											<option value="-1">*请选择*</option>
-											[#list places as o]
-											<option value="${o.placeId}" [#if (booking.place)?? && booking.place==o.placeId]selected[/#if]>${o.placeName}</option>
-											[/#list]
+											<option value="1802040101017000000" [#if (booking.place)?? && booking.place==1802040101017000000]selected[/#if]>中心内</option>
+											<option value="5802040120413000000" [#if (booking.place)?? && booking.place==5802040120413000000]selected[/#if]>复州城</option>
+											<option value="1802040110810000000" [#if (booking.place)?? && booking.place==1802040110810000000]selected[/#if]>凯旋广场</option>
+											<option value="1802040101017000007" [#if (booking.place)?? && booking.place==1802040101017000007]selected[/#if]>丰源</option>
+											<option value="1802040101017000004" [#if (booking.place)?? && booking.place==1802040101017000004]selected[/#if]>华南</option>
+											<option value="1802040101017000002" [#if (booking.place)?? && booking.place==1802040101017000002]selected[/#if]>西安路</option>
+											<option value="1802040101017000009" [#if (booking.place)?? && booking.place==1802040101017000009]selected[/#if]>开发区</option>
+											<option value="1802040101017000010" [#if (booking.place)?? && booking.place==1802040101017000010]selected[/#if]>普兰店</option>
+											<option value="1802040101017000013" [#if (booking.place)?? && booking.place==1802040101017000013]selected[/#if]>瓦房店</option>
+											<option value="1802040101017000014" [#if (booking.place)?? && booking.place==1802040101017000014]selected[/#if]>庄河</option>
+											<option value="1802040101017000011" [#if (booking.place)?? && booking.place==1802040101017000011]selected[/#if]>旅顺</option>
+											<option value="1802040101017000012" [#if (booking.place)?? && booking.place==1802040101017000012]selected[/#if]>金州</option>
+											<option value="5802040131122000000" [#if (booking.place)?? && booking.place==5802040131122000000]selected[/#if]>万达广场</option>
 										</select>
 							        	<input type="hidden" id="placeName" name="booking.placeName" /></td>
 								</tr>
