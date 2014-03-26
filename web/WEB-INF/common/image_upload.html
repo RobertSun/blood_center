@@ -1,21 +1,21 @@
 <script type="text/javascript">
-//ÉÏ´«Í¼Æ¬
+//ï¿½Ï´ï¿½Í¼Æ¬
 function upload(n) {
 	var of = $('#uploadFile'+n);
-	//¼ì²éÊÇ·ñÑ¡ÔñÁËÍ¼Æ¬
+	//ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
 	if(of.val()=='') {
-		alert('ÇëÑ¡ÔñÒªÉÏ´«µÄÍ¼Æ¬');
+		alert('ï¿½ï¿½Ñ¡ï¿½ï¿½Òªï¿½Ï´ï¿½ï¿½ï¿½Í¼Æ¬');
 		return;
 	}
-	//½«fileÒÆ¶¯ÖÁÉÏ´«±íµ¥
+	//ï¿½ï¿½fileï¿½Æ¶ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½?
 	$('#fileContent').empty();
 	$('#fileContent').append(of);
-	//¸´ÖÆÒ»¸öfile·ÅÖÁÔ­´¦
+	//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½fileï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½
 	$('#ufc'+n).append(of.clone());
-	//ÐÞ¸ÄÊôÐÔ
+	//ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	of.attr('id','');
 	of.attr('name','uploadFile');
-	//ÆäËû±íµ¥
+	//ï¿½ï¿½ï¿½ï¿½?
 	if($('#zoom'+n).attr('checked')) {
 		$('#ufZoom').val('true');
 	} else {
@@ -27,17 +27,17 @@ function upload(n) {
 	
 	$('#uploadForm').submit();
 }
-//¼ô²ÃÍ¼Æ¬
+//ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
 function imgCut(n) {
 	if($('#uploadImgPath'+n).val()=='') {
-		alert("ÇëÏÈÉÏ´«Í¼Æ¬£¬ÔÙ¼ô²Ã");
+		alert("ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½Í¼Æ¬ï¿½ï¿½ï¿½Ù¼ï¿½ï¿½ï¿½");
 		return;
 	}
 	var url = "${base}/admin/core/common/ImgAreaSelect.do?imgSrcRoot=${web.uploadUrl}&uploadNum="+n+"&imgSrcPath="
 		+$("#uploadImgPath"+n).val()+"&zoomWidth="+$("#zoomWidth"+n).val()+"&zoomHeight="+$("#zoomHeight"+n).val();
 	window.open(url,"imgcut","height=550, width=1000, top=0, left=0, toolbar=no, menubar=no, scrollbars=auto, resizable=yes,location=no, status=no");
 }
-//Çå³ýÍ¼Æ¬
+//ï¿½ï¿½ï¿½Í¼Æ¬
 function clearImg(n) {
 	$('#uploadImgPath'+n).val("");
 	$('#preImg'+n).attr("src","");
