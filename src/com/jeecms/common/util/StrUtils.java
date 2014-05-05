@@ -4,7 +4,7 @@ import org.apache.commons.lang.StringUtils;
 
 public class StrUtils {
 	/**
-	 * ÊÇ·ñÓÐÖÐÎÄ×Ö·û
+	 * ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½
 	 * 
 	 * @param s
 	 * @return
@@ -17,7 +17,7 @@ public class StrUtils {
 	}
 
 	/**
-	 * »ñµÃ×Ö·û¡£·ûºÏÖÐÎÄÏ°¹ß¡£
+	 * ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ß¡ï¿½
 	 * 
 	 * @param s
 	 * @param length
@@ -31,7 +31,7 @@ public class StrUtils {
 		if (sl <= len) {
 			return s;
 		}
-		// Áô³öÒ»¸öÎ»ÖÃÓÃÓÚ¡­
+		// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½Ú¡ï¿½
 		len -= 1;
 		int maxCount = len * 2;
 		int count = 0;
@@ -47,11 +47,11 @@ public class StrUtils {
 		if (count > maxCount) {
 			i--;
 		}
-		return s.substring(0, i) + "¡­";
+		return s.substring(0, i) + "..";
 	}
 
 	/**
-	 * ¼ÆËãGBK±àÂëµÄ×Ö·û´®µÄ×Ö½ÚÊý
+	 * ï¿½ï¿½ï¿½ï¿½GBKï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½
 	 * 
 	 * @param s
 	 * @return
@@ -72,7 +72,7 @@ public class StrUtils {
 	}
 
 	/**
-	 * ÎÄ±¾×ªhtml
+	 * ï¿½Ä±ï¿½×ªhtml
 	 * 
 	 * @param txt
 	 * @return
@@ -113,7 +113,7 @@ public class StrUtils {
 	}
 
 	/**
-	 * html×ªÎÄ±¾
+	 * html×ªï¿½Ä±ï¿½
 	 * 
 	 * @param htm
 	 * @return
@@ -132,7 +132,7 @@ public class StrUtils {
 	}
 
 	/**
-	 * Ìæ»»×Ö·û´®
+	 * ï¿½æ»»ï¿½Ö·ï¿½
 	 * 
 	 * @param sb
 	 * @param what
@@ -150,7 +150,7 @@ public class StrUtils {
 	}
 
 	/**
-	 * Ìæ»»×Ö·û´®
+	 * ï¿½æ»»ï¿½Ö·ï¿½
 	 * 
 	 * @param s
 	 * @param what
@@ -162,7 +162,7 @@ public class StrUtils {
 	}
 
 	/**
-	 * È«½Ç-->°ë½Ç
+	 * È«ï¿½ï¿½-->ï¿½ï¿½ï¿½
 	 * 
 	 * @param qjStr
 	 * @return
@@ -216,7 +216,7 @@ public class StrUtils {
 	}
 
 	/**
-	 * ³¤ÕûÊý×ª»»³ÉN62
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½N62
 	 * 
 	 * @param l
 	 * @return
@@ -230,11 +230,11 @@ public class StrUtils {
 	}
 
 	/**
-	 * ³¤ÕûÊý×ª»»³ÉN62
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½N62
 	 * 
 	 * @param l
 	 * @param length
-	 *            ÈçN62²»×ãlength³¤¶È£¬Ôò²¹×ã0¡£
+	 *            ï¿½ï¿½N62ï¿½ï¿½ï¿½ï¿½lengthï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½
 	 * @return
 	 */
 	public static String longToN62(long l, int length) {
@@ -254,7 +254,7 @@ public class StrUtils {
 	}
 
 	/**
-	 * N62×ª»»³ÉÕûÊý
+	 * N62×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param n62
 	 * @return
@@ -284,7 +284,7 @@ public class StrUtils {
 				return i;
 			}
 		}
-		throw new RuntimeException("N62(N36)·Ç·¨×Ö·û£º" + c);
+		throw new RuntimeException("N62(N36)ï¿½Ç·ï¿½ï¿½Ö·ï¿½" + c);
 	}
 
 	public static void main(String[] args) {

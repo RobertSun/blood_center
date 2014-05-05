@@ -30,22 +30,17 @@ public class AuxiFrontAjaxAct extends AuxiAjaxAction {
 			.getLogger(AuxiFrontAjaxAct.class);
 
 	public String msgSave() {
-//		boolean isHuman = imageCaptchaService.validateResponseForID(contextPvd
-//				.getSessionId(false), checkCode);
-//		if (!isHuman) {
-//			jsonRoot.put("success", false);
-//			jsonRoot.put("msg", "��֤�����");
-//			return SUCCESS;
-//		}
 		Msg msg = new Msg();
 		msg.setCtg(ctg);
-		log.debug("���Ա��⣺{}", title);
-		msg.setTitle(StringEscapeUtils.escapeHtml(title));
-		log.debug("���Ա���escape��{}", msg.getTitle());
+		log.debug("留言标题：", title);
+		String htmlTitle = StringEscapeUtils.escapeHtml(title);
+		msg.setTitle(htmlTitle);
+		log.debug("留言HTML标题：", msg.getTitle());
 		content = StrUtils.getCn(content, getConfig().getMsgMaxSize());
-		log.debug("�������ݣ�{}", content);
-		msg.setContentMember(StrUtils.txt2htm(content));
-		log.debug("��������htmlת����{}", msg.getContentMember());
+		log.debug("留言内容", content);
+		String htmlContent = StrUtils.txt2htm(content);
+		msg.setContentMember(htmlContent);
+		log.debug("留言HTML内容", msg.getContentMember());
 
         msg.setEmail(email);
 
@@ -55,15 +50,20 @@ public class AuxiFrontAjaxAct extends AuxiAjaxAction {
 		msg.setCheck(false);
 		msg.setRecommend(false);
 		msg.setDisabled(false);
-		msg.setIp(contextPvd.getRemoteIp());
-		msgMng.save(msg);
-		boolean check = getConfig().getMsgNeedCheck();
+		String ip = contextPvd.getRemoteIp();
+		msg.setIp(ip);
 		jsonRoot.put("success", true);
+		boolean check = getConfig().getMsgNeedCheck();
 		jsonRoot.put("isNeedCheck", check);
-		if (check) {
-			jsonRoot.put("msg", "���Գɹ�������Ҫ����Ա��˲�����ʾ��");
+		if (msgMng.isDuplicated(ip, htmlTitle, htmlContent)) { //禁止重复留言
+			jsonRoot.put("msg", "你已写过类似留言，请等待回复。");
 		} else {
-			jsonRoot.put("msg", "���Գɹ���");
+			msgMng.save(msg);
+			if (check) {
+				jsonRoot.put("msg", "留言成功，请等待审核。");
+			} else {
+				jsonRoot.put("msg", "恭喜您，留言成功！");
+			}
 		}
 		return SUCCESS;
 	}
@@ -90,15 +90,12 @@ public class AuxiFrontAjaxAct extends AuxiAjaxAction {
 	}
 
 	/**
-	 * ͨ��֤����ȡ��֤��
+	 * 确认码
 	 * @return
 	 */
 	public String searchVerifyCodeByIdCode() {
 		NIWebServiceManager wsMng = new NIWebServiceManager();
 		NetSearchTestResultInfo netSearchTestResultinfo = new NetSearchTestResultInfo();
-
-		//netSearchTestResultinfo.setStatus("4");
-		//netSearchTestResultinfo.setErrorInfo("��Ѫ��δ���ֻ����");
 		netSearchTestResultinfo = wsMng.getTestResultSearchVerifyCodeByIdCode(idTypeID,idCode);
 
 		if("0".equals(netSearchTestResultinfo.getStatus())){
@@ -120,7 +117,6 @@ public class AuxiFrontAjaxAct extends AuxiAjaxAction {
 	private String idCode;//֤������
 
 	private String checkCode;
-	@SuppressWarnings("unused")
 	@Autowired
 	private ImageCaptchaService imageCaptchaService;
 	@Autowired

@@ -12,4 +12,14 @@ public interface MsgMng extends JeeCoreManager<Msg> {
 	public Pagination getForTag(Long webId, Long ctgId, boolean isRecommand,
 			boolean isCheck, int orderBy, boolean isPage, int firstResult,
 			int pageNo, int pageSize);
+	
+	/**
+	 * <p>Title: isDuplicated</p>
+	 * <p>Description: 检查是否有完全重复的问题 .</p>
+	 * @param ip
+	 * @param title
+	 * @param content
+	 * @return boolean
+	 */
+	boolean isDuplicated(String ip, String title, String content);
 }

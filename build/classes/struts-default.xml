@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-
     <package name="struts-default" abstract="true">
         <result-types>
             <result-type name="chain" class="com.opensymphony.xwork2.ActionChainResult"/>
@@ -14,13 +13,14 @@
             <result-type name="xslt" class="org.apache.struts2.views.xslt.XSLTResult"/>
             <result-type name="plainText" class="org.apache.struts2.dispatcher.PlainTextResult" />
             <!--自定义result-type-->
-        	<result-type name="json" class="com.googlecode.jsonplugin.JSONResult">
+            <result-type name="json" class="org.apache.struts2.json.JSONResult">
 				<param name="root">jsonRoot</param>
-			</result-type>			
+			</result-type>
             <result-type name="pageCache" class="com.jeecms.cms.web.PageCacheResult" />
         </result-types>
 
         <interceptors>
+            <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
             <interceptor name="alias" class="com.opensymphony.xwork2.interceptor.AliasInterceptor"/>
             <interceptor name="autowiring" class="com.opensymphony.xwork2.spring.interceptor.ActionAutowiringInterceptor"/>
             <interceptor name="chain" class="com.opensymphony.xwork2.interceptor.ChainingInterceptor"/>
@@ -52,7 +52,6 @@
             <interceptor name="profiling" class="org.apache.struts2.interceptor.ProfilingActivationInterceptor" />
             <interceptor name="roles" class="org.apache.struts2.interceptor.RolesInterceptor" />
             <interceptor name="annotationWorkflow" class="com.opensymphony.xwork2.interceptor.annotations.AnnotationWorkflowInterceptor" />
-            
             <!--自定义拦截器-->
             <!--域名 拦截器-->
             <interceptor name="domain" class="com.jeecms.common.struts2.interceptor.DomainNameInterceptor" />
@@ -201,5 +200,17 @@
 		<default-interceptor-ref name="defaultStack"/>
         <default-class-ref class="com.opensymphony.xwork2.ActionSupport"/>
     </package>
+
+	<package name="json-default" extends="struts-default">
+		<result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult">
+				<param name="root">jsonRoot</param>
+			</result-type>
+        </result-types>
+
+        <interceptors>
+            <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+        </interceptors>
+	</package>
 
 </struts>

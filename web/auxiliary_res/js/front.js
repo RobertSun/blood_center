@@ -1,5 +1,5 @@
 Pn.ns('Auxi');
-/* Ìá½»ÁôÑÔ */
+/* ä¿å­˜ç•™è¨€ */
 Auxi.saveMsg = function(base, callback) {
 	base = base || '';
 	$.postJson(base + '/jeecms/ajax/auxiliary/msgSave.do', {

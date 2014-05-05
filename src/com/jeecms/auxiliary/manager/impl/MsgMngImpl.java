@@ -96,4 +96,21 @@ public class MsgMngImpl extends JeeCoreManagerImpl<Msg> implements MsgMng {
 		return (MsgDao) super.getDao();
 	}
 
+	/**
+	 * @see com.jeecms.auxiliary.manager.MsgMng#isDuplicated(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public boolean isDuplicated(String ip, String title, String content) {
+		Msg eg = new Msg();
+		eg.setIp(ip);
+		eg.setTitle(title);
+		eg.setContentMember(content);
+		List<Msg> msgs =  findByEgList(eg, new Condition[] { OrderBy
+				.asc(Msg.PROP_ID) });
+		if (msgs != null && !msgs.isEmpty()) {
+			return true;
+		}
+		return false;
+	}
+
 }
