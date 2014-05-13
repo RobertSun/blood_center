@@ -8,18 +8,18 @@ public class Booking extends BaseBooking {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private java.lang.String sexName;//ĞÔ±ğ
-	private java.lang.String papersTypeName;//Ö¤¼şÀàĞÍ
-	private java.lang.String donateBloodTypeName;//Ï×ÑªÀàĞÍ
-	private java.lang.String appStateInfo;//Ô¤Ô¼×´Ì¬£º0-Î´Ô¤Ô¼£»1-Ô¤Ô¼³É¹¦£»-1-Ô¤Ô¼Ê§°Ü
+	private java.lang.String sexName;//æ€§åˆ«
+	private java.lang.String papersTypeName;//è¯ä»¶ç±»å‹
+	private java.lang.String donateBloodTypeName;//çŒ®è¡€ç±»å‹
+	private java.lang.String appStateInfo;//é¢„çº¦çŠ¶æ€ï¼š0-æœªé¢„çº¦ï¼›1-é¢„çº¦æˆåŠŸï¼›-1-é¢„çº¦å¤±è´¥
 	
 	public java.lang.String getSexName() {
 		if("1".equals(this.getSex())){
-			sexName = "ÄĞ";
+			sexName = "ç”·";
 		}else if("2".equals(this.getSex())){
-			sexName = "Å®";
+			sexName = "å¥³";
 		}else{
-			sexName = "Î´Öª";
+			sexName = "æœªçŸ¥";
 		}
 		return sexName;
 	}
@@ -28,17 +28,17 @@ public class Booking extends BaseBooking {
 	}
 	public java.lang.String getPapersTypeName() {
 		if("0".equals(this.getPapersType())){
-			papersTypeName = "Éí·İÖ¤";
+			papersTypeName = "èº«ä»½è¯";
 		}else if("1".equals(this.getPapersType())){
-			papersTypeName = "¾üÈËÖ¤";
+			papersTypeName = "å†›äººè¯";
 		}else if("2".equals(this.getPapersType())){
-			papersTypeName = "»¤ÕÕ";
+			papersTypeName = "æŠ¤ç…§";
 		}else if("3".equals(this.getPapersType())){
-			papersTypeName = "ÆäËü";
+			papersTypeName = "å…¶å®ƒ";
 		}else if("4".equals(this.getPapersType())){
-			papersTypeName = "Ï×ÑªÖ¤";
+			papersTypeName = "çŒ®è¡€è¯";
 		}else{
-			papersTypeName = "Î´Öª";
+			papersTypeName = "æœªçŸ¥";
 		}
 		return papersTypeName;
 	}
@@ -47,11 +47,11 @@ public class Booking extends BaseBooking {
 	}
 	public java.lang.String getDonateBloodTypeName() {
 		if("101".equals(this.getDonateBloodType())){
-			donateBloodTypeName = "È«Ñª";
+			donateBloodTypeName = "å…¨è¡€";
 		}else if("301".equals(this.getDonateBloodType())){
-			donateBloodTypeName = "µ¥²ÉÑªĞ¡°å";
+			donateBloodTypeName = "å•é‡‡è¡€å°æ¿";
 		}else{
-			donateBloodTypeName = "Î´Öª";
+			donateBloodTypeName = "æœªçŸ¥";
 		}
 		return donateBloodTypeName;
 	}
@@ -60,11 +60,11 @@ public class Booking extends BaseBooking {
 	}
 	public java.lang.String getAppStateInfo() {
 		if(this.getAppState() == 1){
-			appStateInfo = "Ô¤Ô¼³É¹¦";
+			appStateInfo = "é¢„çº¦æˆåŠŸ";
 		}else if(this.getAppState() == -1){
-			appStateInfo = "Ô¤Ô¼Ê§°Ü";
+			appStateInfo = "é¢„çº¦å¤±è´¥";
 		}else{
-			appStateInfo = "Î´Ô¤Ô¼";
+			appStateInfo = "æœªé¢„çº¦";
 		}
 		return appStateInfo;
 	}

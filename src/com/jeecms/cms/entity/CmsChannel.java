@@ -26,7 +26,7 @@ public class CmsChannel extends BaseCmsChannel implements SelectTree,
 	/**
 	 * �ڸ������е����
 	 */
-	public static final String ATTACHMENT_CTG = "��Ŀ";
+	public static final String ATTACHMENT_CTG = ">";
 
 	/**
 	 * ��ñ���ͼƬURL��ַ

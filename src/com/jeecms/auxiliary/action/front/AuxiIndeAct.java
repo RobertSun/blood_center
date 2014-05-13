@@ -58,7 +58,6 @@ public class AuxiIndeAct extends AuxiIndeAction {
 	}
 
 	/**
-	 * ��ѪԤԼ BookingSubmit
 	 * @return
 	 */
 	@SuppressWarnings("deprecation")
@@ -70,13 +69,11 @@ public class AuxiIndeAct extends AuxiIndeAction {
 			this.returnMsg = new ReturnMsg();
 		}
 
-		// �ظ��ύͬһform
 		if("0".equals(contextPvd.getSessionAttr("save_state"))){
 			return "BookingBack";
 		}
 
 		NIWebServiceManager wsMng = new NIWebServiceManager();
-		// ��֤����ԤԼ��Ա�Ƿ�����ԤԼҪ��
 		NetAppReturnInfo netAppReturnInfo = wsMng.checkAppArchives(booking);
 		if(!"0".equals(netAppReturnInfo.getStatus())){
 			this.returnMsg.setReturnState("1");
@@ -85,7 +82,6 @@ public class AuxiIndeAct extends AuxiIndeAction {
 
 			return handleResult("Booking");
 		}
-		// ��֤����ԤԼ��¼�Ƿ�������Ѫ���
 		NetAppReturnInfo netAppReturnInfo2 = wsMng.checkAppInterval(booking);
 		if(!"0".equals(netAppReturnInfo2.getStatus())){
 			this.returnMsg.setReturnState("1");
@@ -99,16 +95,16 @@ public class AuxiIndeAct extends AuxiIndeAction {
 
 		this.booking.setCreateTime(ComUtils.now());
 		this.booking.setCheck(false);
-		this.booking.setAppState(0);// ��ʼ��δԤԼ״̬
+		this.booking.setAppState(0);
 		this.booking.setWebsite(getWeb());
 
 		if(this.bookingMng.save(this.booking) != null){
 			this.returnMsg.setReturnState("0");
-			this.returnMsg.setReturnMessage("ԤԼ�ύ�ɹ�");
+			this.returnMsg.setReturnMessage("提交成功，请等待审核");
 			contextPvd.setSessionAttr("save_state", "0");
 		}else{
 			this.returnMsg.setReturnState("1");
-			this.returnMsg.setReturnMessage("ԤԼ�ύʧ��");
+			this.returnMsg.setReturnMessage("预约失败");
 		}
 		contextPvd.setSessionAttr("booking_msg_key", this.returnMsg);
 
@@ -116,7 +112,6 @@ public class AuxiIndeAct extends AuxiIndeAction {
 	}
 
 	/**
-	 * ��ѪԤԼ ������ʾҳ��
 	 * @return
 	 */
 	public String bookingBack() {
@@ -133,7 +128,6 @@ public class AuxiIndeAct extends AuxiIndeAction {
 	}
 
 	/**
-	 * ��ȡ��Ѫ�ص��б�
 	 * @return List<CollectPlace> places;
 	 */
 	private void getPlacesList() {
@@ -149,25 +143,9 @@ public class AuxiIndeAct extends AuxiIndeAction {
 			cpd.setPlaceName(place.getName());
 			this.places.add(cpd);
         }
-		/*
-		//test
-		CollectPlace cpd1 = new CollectPlace();
-		cpd1.setPlaceId("1");
-		cpd1.setPlaceName("����");
-		this.places.add(cpd1);
-		CollectPlace cpd2 = new CollectPlace();
-		cpd2.setPlaceId("2");
-		cpd2.setPlaceName("����");
-		this.places.add(cpd2);
-		CollectPlace cpd3 = new CollectPlace();
-		cpd3.setPlaceId("3");
-		cpd3.setPlaceName("�Ϻ�");
-		this.places.add(cpd3);
-		*/
 	}
 
 	/**
-	 * ����Ѫ�������ѯҳ��
 	 * @return
 	 */
 	public String searchTest() {
@@ -180,7 +158,6 @@ public class AuxiIndeAct extends AuxiIndeAction {
 	}
 
 	/**
-	 * ��Ѫ�������ѯ
 	 * @return
 	 */
 	public String searchTestResult() {
@@ -194,15 +171,12 @@ public class AuxiIndeAct extends AuxiIndeAction {
 		NIWebServiceManager wsMng = new NIWebServiceManager();
 		NetSearchTestResultInfo netSearchTestResultinfo = new NetSearchTestResultInfo();
 		if("1".equals(this.bookingSearch.getSearchType())){
-			// ͨ����Ѫ��
 			netSearchTestResultinfo = wsMng.getTestResultByDonCode(bookingSearch.getDonCode(), bookingSearch.getVerifyCodeDon());
 		}else if("2".equals(this.bookingSearch.getSearchType())){
-			// ͨ��֤��
 			netSearchTestResultinfo = wsMng.getTestResultByIdCode(bookingSearch.getIdTypeID(), bookingSearch.getIdCode(), bookingSearch.getVerifyCodeID());
 		}
 
 		if("0".equals(netSearchTestResultinfo.getStatus())){
-			//��ѯ������ɹ�
 			if("0".equals(netSearchTestResultinfo.getTestResultID())){
 				this.returnMsg.setReturnMessage("���鲻�ϸ�!");
 			}else if("1".equals(netSearchTestResultinfo.getTestResultID())){
@@ -211,7 +185,6 @@ public class AuxiIndeAct extends AuxiIndeAction {
 				this.returnMsg.setReturnMessage("�޼�����!");
 			}
 		}else{
-			//��ѯ������ʧ��
 			this.returnMsg.setReturnMessage(netSearchTestResultinfo.getErrorInfo());
 		}
 		this.returnMsg.setReturnState(netSearchTestResultinfo.getStatus());
@@ -222,7 +195,6 @@ public class AuxiIndeAct extends AuxiIndeAction {
 	}
 
 	/**
-	 * ��Ѫ�������ѯ������ʾҳ��
 	 * @return
 	 */
 	public String bookingSearchBack() {
@@ -317,8 +289,8 @@ public class AuxiIndeAct extends AuxiIndeAction {
 	private int nowDay;
 	private List<CollectPlace> places;
 
-	private String msgId = "-1";//���ر�ʶ  0:�ɹ�  1��ʧ��
-	private String msgStr = "";//������Ϣ
+	private String msgId = "-1";
+	private String msgStr = "";
 
 	private ReturnMsg returnMsg;
 

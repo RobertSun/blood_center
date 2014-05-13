@@ -1,12 +1,12 @@
 package com.jeecms.auxiliary.entity;
 
 public class BookingSearch {
-	private java.lang.String searchType;//²éÑ¯ÀàĞÍ£º1-Í¨¹ıÏ×ÑªÂë£»2-Í¨¹ıÖ¤¼şºÅ
-	private java.lang.String idTypeID;//Ö¤¼şÀàĞÍid
-	private java.lang.String idCode;//Ö¤¼şºÅÂë
-	private java.lang.String donCode;//Ï×ÑªÂë
-	private java.lang.String verifyCodeDon;//ÑéÖ¤Âë-Í¨¹ıÏ×ÑªÂë
-	private java.lang.String verifyCodeID;//ÑéÖ¤Âë-Í¨¹ıÖ¤¼şºÅ
+	private java.lang.String searchType;//æŸ¥è¯¢ç±»å‹ï¼š1-é€šè¿‡çŒ®è¡€ç ï¼›2-é€šè¿‡è¯ä»¶å·
+	private java.lang.String idTypeID;//è¯ä»¶ç±»å‹id
+	private java.lang.String idCode;//è¯ä»¶å·ç 
+	private java.lang.String donCode;//çŒ®è¡€ç 
+	private java.lang.String verifyCodeDon;//éªŒè¯ç -é€šè¿‡çŒ®è¡€ç 
+	private java.lang.String verifyCodeID;//éªŒè¯ç -é€šè¿‡è¯ä»¶å·
 	
 	public java.lang.String getSearchType() {
 		return searchType;

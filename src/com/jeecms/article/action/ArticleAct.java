@@ -136,6 +136,7 @@ public class ArticleAct extends com.jeecms.cms.CmsSysAction {
 	}
 
 	public String save() {
+		validateSave();
 		articleMng.saveArticle(bean, getCmsAdmin(), uploadRule, getWeb()
 				.getResUrl(), getConfig().getCheckCount(), topTime);
 
@@ -143,11 +144,12 @@ public class ArticleAct extends com.jeecms.cms.CmsSysAction {
 		// removeUploadRule();
 
 		log.info("��� ���� �ɹ�:{}", bean.getTitle());
-		addActionMessage("��ӳɹ�");
+		addActionMessage("添加成功");
 		return add();
 	}
 
 	public String update() {
+		validateSave();
 		articleMng.updateArticle(bean, getCmsAdmin(), uploadRule, topTime);
 
 		// ����ϴ�����
@@ -169,7 +171,7 @@ public class ArticleAct extends com.jeecms.cms.CmsSysAction {
 				log.info("ɾ�� ���� �ɹ�:{}", o.getTitle());
 			}
 		} catch (DataIntegrityViolationException e) {
-			addActionError("��¼�ѱ����ã�����ɾ��!");
+			addActionError("删除失败!");
 			return SHOW_ERROR;
 		}
 		return list();
@@ -519,9 +521,7 @@ public class ArticleAct extends com.jeecms.cms.CmsSysAction {
 	}
 
 	private void removeUploadRule() {
-		// ɾ��δ��ʹ�õ�ͼƬ
 		uploadRule.clearUploadFile();
-		// ����ϴ�����
 		contextPvd.removeAttribute(UploadRule.KEY + uploadRuleId);
 	}
 
